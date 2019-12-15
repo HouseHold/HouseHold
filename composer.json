@@ -5,6 +5,7 @@
         "php": "^7.2",
         "ext-iconv": "*",
         "ext-json": "*",
+        "api-platform/api-pack": "^1.2",
         "beberlei/assert": "^3.0",
         "broadway/broadway-bundle": "^0.4.2",
         "broadway/event-store-dbal": "^0.3",
