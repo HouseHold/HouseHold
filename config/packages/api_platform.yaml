@@ -5,3 +5,7 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
+    graphql:
+        default_ide: graphql-playground
+        graphiql:
+            enabled: true
