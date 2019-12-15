@@ -1,0 +1,22 @@
+{# @var bool is_current_user #}
+{% extends '@layout/default.twig' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-3">
+            {% embed '@Account/shared/profile/widget/profile.twig' %}{% endembed %}
+        </div>
+        <div class="col-md-9">
+            {% embed '@Account/shared/profile/content.twig' %}
+                {% block profile_content_nav %}
+                    <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="false">{{ 'Settings'|trans }}</a></li>
+                {% endblock %}
+                {% block profile_content_tab %}
+                    {% embed '@Account/shared/profile/content/tab-settings.twig' %}
+                        {% set tab_settings_active = true %}
+                    {% endembed %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

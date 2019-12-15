@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: nginx:1.15-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./etc/dev/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - .:/app
+    depends_on:
+      - php
+
+  php:
+    build: ./etc/dev/php
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - rmq
+
+  workers:
+    image: jorge07/alpine-php:7.3.5-dev
+    volumes:
+      - .:/app
+    command: ['/app/bin/console', 'rabbitmq:multiple-consumer', 'events']
+
+  db:
+    image: mariadb:10.4
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=household
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=household
+    volumes:
+      - db_data:/var/lib/mysql
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8888:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=household
+      - PMA_PASSWORD=1234
+
+  rmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.6.1
+    ports:
+      - 5601:5601
+    volumes:
+      - "$PWD/etc/dev/kibana/config:/usr/share/kibana/config/kibana.yml"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+    environment:
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+
+volumes:
+  db_data:

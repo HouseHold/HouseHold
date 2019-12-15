@@ -1,0 +1,4 @@
+twig:
+  paths:
+    '%kernel.project_dir%/src/Core/UI/Http/Web/templates': Core
+

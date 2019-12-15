@@ -1,0 +1,14 @@
+hh:
+  security:
+    authentication:
+      oauth:
+        enabled: true
+        default_provider: user_pass
+        providers:
+#          drupal: Drupal
+          user_pass: Username & Password
+
+      drupal:
+        scopes:
+          - hh_member
+          - authenticated

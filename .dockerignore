@@ -1,0 +1,11 @@
+report/
+doc/
+vendor/
+test/
+.covertalls.yml
+.env
+.styleci.yml
+README.md
+phpstan.neon
+docker-compose*
+.git/

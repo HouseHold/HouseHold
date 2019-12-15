@@ -1,0 +1,54 @@
+#security:
+#    encoders:
+#        bcrypt:
+#            algorithm: bcrypt
+#            cost: 12
+#    providers:
+#        users:
+#            id: 'App\Core\Infrastructure\ExampleUser\Auth\AuthProvider'
+
+#    firewalls:
+#        dev:
+#            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+
+#        api_healthz:
+#            pattern:  ^/api/healthz
+#            stateless: true
+#            anonymous: true
+
+#        api_doc:
+#            pattern:  ^/api/doc
+#            stateless: true
+#            anonymous: true
+
+#        api_secured:
+#            pattern:  ^/api
+#            provider: users
+ #           stateless: true
+#            guard:
+#              authenticators:
+#                - lexik_jwt_authentication.jwt_token_authenticator
+
+#        secured_area:
+#            provider: users
+#            anonymous: ~
+#            guard:
+#              entry_point: 'App\Core\Infrastructure\ExampleUser\Auth\Guard\LoginAuthenticator'
+#              authenticators:
+#                - 'App\Core\Infrastructure\ExampleUser\Auth\Guard\LoginAuthenticator'
+#            form_login:
+#              login_path: /sign-in
+#              check_path: sign-in
+#            logout:
+#              path: /logout
+#              target: /
+
+#    access_control:
+#        - { path: ^/api/healthz, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/profile/*,   roles: ROLE_USER                    }
+#        - { path: ^/login,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/auth,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/signup,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/doc,     roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/,        roles: IS_AUTHENTICATED_FULLY       }

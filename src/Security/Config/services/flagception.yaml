@@ -1,0 +1,15 @@
+# See full configuration at https://github.com/bestit/flagception-bundle
+flagception:
+  features:
+    security: &security
+      default: true
+      cookie: false
+    login:
+      <<: *security
+    oauth:
+      <<: *security
+    oauth_username_password:
+      <<: *security
+    oauth_drupal:
+      default: false
+      cookie: false

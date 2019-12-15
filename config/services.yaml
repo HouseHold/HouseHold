@@ -1,0 +1,45 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+  elastic:
+    hosts:
+      - '%env(ELASTIC_HOST)%'
+
+  env(ELASTIC_HOST): 'elasticsearch:9200'
+
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $elasticConfig: '%elastic%'
+      $queryBus: '@tactician.commandbus.query'
+      $commandBus: '@tactician.commandbus.command'
+      $eventBus: '@broadway.event_handling.event_bus'
+      $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
+      $eventProducer: '@old_sound_rabbit_mq.events_producer'
+
+  _instanceof:
+    Broadway\EventHandling\EventListener:
+      public: true
+      tags:
+        - { name: broadway.domain.event_listener }
+
+  App\:
+    resource: '../src/**/*'
+    exclude: '../src/**/**/{Migrations}'
+    #exclude: '../src/**/**/{Migrations,EventSubscriber}'
+
+  ### Event Store
+
+  Broadway\EventStore\Dbal\DBALEventStore:
+    public: true
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '@broadway.serializer.payload'
+      - '@broadway.serializer.metadata'
+      - 'events'
+      - true
+      - '@broadway.uuid.converter'

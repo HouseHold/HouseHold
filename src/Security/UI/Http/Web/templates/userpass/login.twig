@@ -1,0 +1,42 @@
+{% extends '@AdminLTE/layout/security-layout.html.twig' %}
+
+{% block login_form %}
+    <form action="{{ path('connect_user_pass_check'|route_alias) }}" method="post">
+        {% block login_form_start %}{% endblock %}
+        <div class="form-group has-feedback">
+            <input type="text" name="_username" class="form-control"
+                   placeholder="{{ 'Username'|trans({}, 'AdminLTEBundle') }}" value="{{ last_username|default('') }}">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input name="_password" type="password" class="form-control"
+                   placeholder="{{ 'Password'|trans({}, 'AdminLTEBundle') }}">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <!-- <div class="form-group">
+            <input id="remember_me" name="_remember_me" type="checkbox">
+            <label for="remember_me">{{ 'Remember Me'|trans({}, 'AdminLTEBundle') }}</label>
+        </div> -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">{{ 'Sign In'|trans({}, 'AdminLTEBundle') }}</button>
+        </div>
+        {% block login_form_end %}{% endblock %}
+    </form>
+{% endblock %}
+
+
+{% block login_social_auth %}
+    <!-- No Social authentication here. -->
+{% endblock %}
+
+{% block login_box_msg %}
+    <div class="social-auth-links text-center">
+        <div class="box-danger">
+            <p>{{ 'Sign In' | trans({}, 'auth') }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block logo_login %}
+    <b>{{ 'HomeHold' | trans() }}</b>
+{% endblock %}

@@ -1,0 +1,13 @@
+<div class="{% block wg_col %}col-md-3 col-sm-6 col-xs-12{% endblock %}">
+    <div class="{{ block('wg_type') }}-box">
+        <span class="{% block wg_type %}info{% endblock %}-box-icon bg-aqua">
+            <i class="{% block wg_icon %}fas fa-envelope{% endblock %}"></i></span>
+
+        <div class="{{ block('wg_type') }}-box-content">
+            <span class="{{ block('wg_type') }}-box-text">{% block wg_text %}Messages<{% endblock %}/span>
+            <span class="{{ block('wg_type') }}-box-number">{% block wg_number %}1,410{% endblock %}</span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+</div>

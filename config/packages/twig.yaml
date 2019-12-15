@@ -1,0 +1,6 @@
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    paths:
+        '%kernel.project_dir%/templates/layout': layout
+        '%kernel.project_dir%/templates/widget': widget

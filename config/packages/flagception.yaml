@@ -1,0 +1,4 @@
+# See full configuration at https://github.com/bestit/flagception-bundle
+flagception:
+    annotation:
+        enable: true

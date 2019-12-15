@@ -1,0 +1,32 @@
+security:
+  encoders:
+    App\Security\Domain\User\User:
+      algorithm: auto
+      cost: 14
+
+  providers:
+    oauth:
+      id: App\Security\Infrastructure\User\Authentication\Provider\OAuth
+
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      logout:
+        path: /logout
+        target: /
+      guard:
+        entry_point: App\Security\Infrastructure\OAuth\Authentication\Guard\UsernamePassword
+        authenticators:
+          - App\Security\Infrastructure\OAuth\Authentication\Guard\UsernamePassword
+
+      pattern:
+      #switch_user: true
+      anonymous: ~
+
+  access_control:
+    - { path: ^/api/healthz,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/connect,        roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/,               roles: IS_AUTHENTICATED_FULLY }

@@ -1,0 +1,8 @@
+# See full configuration at https://github.com/bestit/flagception-bundle
+flagception:
+  features:
+    account: &dashboard
+      default: true
+      cookie: false
+    profile:
+      <<: *dashboard

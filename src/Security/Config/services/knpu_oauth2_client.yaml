@@ -1,0 +1,9 @@
+knpu_oauth2_client:
+    clients:
+        username_password:
+            type: generic
+            provider_class: App\Security\Infrastructure\OAuth\Authentication\Provider\UsernamePassword
+            client_id: ''
+            client_secret: ''
+            redirect_route: connect_user_pass_check
+            redirect_params: {}
