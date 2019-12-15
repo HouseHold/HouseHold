@@ -1,0 +1,10 @@
+# Activate Routing Annotation for API.
+core_api_controllers:
+  resource: '../../UI/Http/Rest/Controller/'
+  type: annotation
+  prefix: /api
+
+# Activate Routing Annotation for Web.
+core_web_controllers:
+  resource: '../../UI/Http/Web/Controller/'
+  type: annotation

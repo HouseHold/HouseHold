@@ -1,0 +1,4 @@
+# We do not support API Authentication yet.
+security_web_controllers:
+  resource: '../../UI/Http/Web/Controller/'
+  type: annotation

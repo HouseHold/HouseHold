@@ -1,0 +1,25 @@
+parameters:
+    env(DATABASE_HOST): 'mysql'
+    env(DATABASE_PORT): '3306'
+    env(DATABASE_NAME): 'api'
+    env(DATABASE_USER): 'root'
+    env(DATABASE_PASS): 'api'
+
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%env(DATABASE_HOST)%"
+        port:     "%env(DATABASE_PORT)%"
+        dbname:   "%env(DATABASE_NAME)%"
+        user:     "%env(DATABASE_USER)%"
+        password: "%env(DATABASE_PASS)%"
+        charset:  UTF8
+        server_version: '8.0'
+        types:
+          uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
+        mapping_types:
+          uuid_binary: binary
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true

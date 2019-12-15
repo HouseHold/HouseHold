@@ -1,0 +1,4 @@
+twig:
+  paths:
+    '%kernel.project_dir%/src/Security/UI/Http/Web/templates': Security
+

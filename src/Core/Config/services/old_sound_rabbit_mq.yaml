@@ -1,0 +1,9 @@
+old_sound_rabbit_mq:
+    multiple_consumers:
+        events:
+            queues:
+                elastic_events:
+                    name: elastic_events
+                    routing_keys:
+                        - 'App.Domain.#'
+                    callback: App\Core\Infrastructure\Share\Event\Consumer\SendEventsToElasticConsumer

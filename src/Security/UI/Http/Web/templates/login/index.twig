@@ -1,0 +1,33 @@
+{% extends '@AdminLTE/layout/security-layout.html.twig' %}
+
+{% block login_form %}
+    <!-- OAuth Enabled, No Login Form Displayed. -->
+{% endblock %}
+
+{% if oauth_services is not defined %}
+    {% set error = { messageKey: 'No authentication methods configured'|trans({}, 'security'), messageData: {}} %}
+{% endif %}
+
+{% block login_social_auth %}
+    {% if oauth_services is defined %}
+        <div class="social-auth-links text-center">
+            {% for oauth_service in oauth_services %}
+                <a href="{{ oauth_service.url }}" class="btn btn-block btn-social btn-openid btn-flat"><i class="fab fa-openid"></i>
+                    {{ "Sign in using #{oauth_service.name}" |trans({}, 'security') }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block login_box_msg %}
+    <div class="social-auth-links text-center">
+        <div class="box-danger">
+            <p>{{ 'Sign In' | trans({}, 'auth') }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block logo_login %}
+    <b>{{ 'HomeHold' | trans() }}</b>
+{% endblock %}

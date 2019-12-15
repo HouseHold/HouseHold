@@ -1,0 +1,10 @@
+ornicar_gravatar:
+  rating: g
+  size: 128
+  default: mm
+  secure: true
+
+services:
+  Ornicar\GravatarBundle\GravatarApi:
+    class: Ornicar\GravatarBundle\GravatarApi
+    public: true

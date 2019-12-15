@@ -1,0 +1,34 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+services:
+  _instanceof:
+    App\Core\Application\Command\CommandHandlerInterface:
+      public: true
+      tags:
+        - { name: tactician.handler, typehints: true, bus: command }
+
+    App\Core\Application\Query\QueryHandlerInterface:
+      public: true
+      tags:
+        - { name: tactician.handler, typehints: true, bus: query }
+
+  ### UI
+  App\Core\UI\Cli\Command\:
+    resource: '../../UI/Cli/Command'
+
+  App\Core\UI\Http\Rest\Controller\:
+    resource: '../../UI/Http/Rest/Controller/*'
+    tags: [ 'controller.service_arguments' ]
+
+  App\Core\UI\Http\Web\Controller\:
+    resource: '../../UI/Http/Web/Controller/*'
+    tags: [ 'controller.service_arguments' ]
+
+  ### UI Listeners
+  App\Core\UI\Http\Rest\EventSubscriber\ExceptionSubscriber:
+    tags:
+      - { name: 'kernel.event_listener', event: 'kernel.exception' }
+
+  App\Core\UI\Http\Rest\EventSubscriber\JsonBodyParserSubscriber:
+    tags:
+      - { name: 'kernel.event_listener', event: 'kernel.request', method: 'onKernelRequest', priority: 100 }
