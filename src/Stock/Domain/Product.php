@@ -14,8 +14,15 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_product")
+ * @ApiResource()
+ */
 class Product
 {
     /**
@@ -47,4 +54,18 @@ class Product
      * @ORM\Column(type="string")
      */
     public ProductCollection $collection;
+    /**
+     * @var ArrayCollection|ProductLocation[]
+     * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
+     * @ORM\JoinColumn(name="productLocation_id", referencedColumnName="id")
+     */
+    public ArrayCollection $location;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

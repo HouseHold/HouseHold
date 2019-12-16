@@ -14,9 +14,30 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_product_collection")
+ * @ApiResource
+ */
 class ProductCollection
 {
     private string $id;
     public string $name;
     public ProductCategory $category;
+    /**
+     * @ORM\OneToOne(targetEntity="App\Stock\Domain\Product", inversedBy="collection")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    public Product $product;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

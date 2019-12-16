@@ -14,8 +14,35 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_product_category")
+ * @ApiResource
+ */
 class ProductCategory
 {
     private string $id;
     public string $name;
+    /**
+     * @var ProductCollection[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    public ArrayCollection $collections;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * ProductCategory constructor.
+     */
+    public function __construct()
+    {
+        $this->collections = new ArrayCollection();
+    }
 }

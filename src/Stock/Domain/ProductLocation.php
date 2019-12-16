@@ -14,25 +14,37 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_location")
+ * @ApiResource
  */
-class Location
+class ProductLocation
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="string")
-     */private string $id;
+     */
+    private string $id;
 
     /**
      * @ORM\Column(type="string")
      */
     private string $name;
 
+    /**
+     * @var Product
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="location", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    public Product $products;
+
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
