@@ -1,0 +1,3 @@
+account_web_controllers:
+  resource: '../../UI/Http/Api/Controller/'
+  type: annotation

@@ -1,0 +1,6 @@
+# See full configuration at https://github.com/bestit/flagception-bundle
+flagception:
+  features:
+    stock: &stock
+      default: true
+      cookie: false
