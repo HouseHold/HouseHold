@@ -61,9 +61,6 @@ class Product
      */
     public ArrayCollection $location;
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
