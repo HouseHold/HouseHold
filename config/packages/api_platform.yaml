@@ -15,3 +15,5 @@ api_platform:
         default_ide: graphql-playground
         graphiql:
             enabled: true
+
+    path_segment_name_generator: App\Core\Infrastructure\Api\PathSegmentNameGeneratorSlash

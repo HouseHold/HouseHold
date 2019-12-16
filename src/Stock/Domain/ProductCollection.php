@@ -33,9 +33,6 @@ class ProductCollection
      */
     public Product $product;
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
