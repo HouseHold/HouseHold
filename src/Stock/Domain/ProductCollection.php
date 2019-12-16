@@ -7,6 +7,6 @@ namespace App\Stock\Domain;
 class ProductCollection
 {
     private string $id;
-    private string $name;
-    private ProductCategory $category;
+    public string $name;
+    public ProductCategory $category;
 }
