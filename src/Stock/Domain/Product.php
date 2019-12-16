@@ -32,9 +32,13 @@ class Product
      */
     public array $ean;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="float")
      */
-    public bool $expires;
+    public string $price;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    public bool $expiring;
     /**
      * @ORM\Column(type="string")
      */

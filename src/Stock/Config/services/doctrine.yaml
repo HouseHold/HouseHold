@@ -1,0 +1,9 @@
+doctrine:
+  orm:
+    mappings:
+      Security_Domain:
+        is_bundle: false
+        type: annotation
+        dir: '%kernel.project_dir%/src/Stock/Domain'
+        prefix: 'App\Stock\Domain'
+        alias: Domain

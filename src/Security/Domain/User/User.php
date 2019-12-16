@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="security_users")
  */
 class User implements UserInterface
 {
