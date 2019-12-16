@@ -14,9 +14,36 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_product_collection")
+ */
 class ProductCollection
 {
-    private string $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
+     */private string $id;
+    /**
+     * @ORM\Column(type="string")
+     */
     public string $name;
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
+     * @ORM\JoinColumn(name="productCategory_id", referencedColumnName="id")
+     */
     public ProductCategory $category;
+    /**
+     * @ORM\OneToOne(targetEntity="App\Stock\Domain\Product", inversedBy="collection")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    public Product $product;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

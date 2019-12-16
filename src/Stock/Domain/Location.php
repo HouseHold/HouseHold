@@ -31,7 +31,7 @@ class Location
     /**
      * @ORM\Column(type="string")
      */
-    private string $name;
+    public string $name;
 
     public function getId(): string
     {

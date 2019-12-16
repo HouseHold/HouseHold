@@ -16,31 +16,40 @@ namespace App\Stock\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_product")
+ */
 class Product
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
      */private string $id;
     /**
      * @ORM\Column(type="string")
      */
     public string $name;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="json_array")
      */
     public array $ean;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="boolean")
      */
     public bool $expires;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="datetime")
      */
     public \DateTime $bestBefore;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\OneToOne(targetEntity="App\Stock\Domain\ProductCollection", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     public ProductCollection $collection;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }
