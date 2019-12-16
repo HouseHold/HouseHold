@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users_profile")
+ * @ORM\Table(name="security_profile")
  */
 class Profile
 {
