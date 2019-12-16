@@ -7,9 +7,9 @@ namespace App\Stock\Domain;
 class Product
 {
     private string $id;
-    private string $name;
-    private array $ean;
-    private bool $expires;
-    private \DateTime $bestBefore;
-    private ProductCollection $collection;
+    public string $name;
+    public array $ean;
+    public bool $expires;
+    public \DateTime $bestBefore;
+    public ProductCollection $collection;
 }
