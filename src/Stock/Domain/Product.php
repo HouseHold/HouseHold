@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  *
  * Household 2019 — NOTICE OF LICENSE
@@ -12,12 +14,33 @@
 
 namespace App\Stock\Domain;
 
+use Doctrine\ORM\Mapping as ORM;
+
 class Product
 {
-    private string $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */private string $id;
+    /**
+     * @ORM\Column(type="string")
+     */
     public string $name;
+    /**
+     * @ORM\Column(type="string")
+     */
     public array $ean;
+    /**
+     * @ORM\Column(type="string")
+     */
     public bool $expires;
+    /**
+     * @ORM\Column(type="string")
+     */
     public \DateTime $bestBefore;
+    /**
+     * @ORM\Column(type="string")
+     */
     public ProductCollection $collection;
 }

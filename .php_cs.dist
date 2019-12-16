@@ -21,6 +21,7 @@ $config = PhpCsFixer\Config::create()
         'blank_line_before_statement' => true,
         'combine_consecutive_unsets' => true,
         'concat_space' => ['spacing' => 'none'],
+        'declare_strict_types' => true,
         'general_phpdoc_annotation_remove' => ['annotations' => ['expectedException', 'expectedExceptionMessage', 'expectedExceptionMessageRegExp']],
         'heredoc_to_nowdoc' => true,
         'list_syntax' => ['syntax' => 'short'],

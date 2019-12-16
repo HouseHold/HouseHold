@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  *
  * Household 2019 — NOTICE OF LICENSE
@@ -12,9 +14,27 @@
 
 namespace App\Stock\Domain;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_location")
+ */
 class Location
 {
-    private string $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
+     */private string $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private string $name;
-    // TODO: Type generic. (Dry, Cold, Freezer, etc...)
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }
