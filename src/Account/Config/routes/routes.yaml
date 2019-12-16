@@ -1,3 +1,0 @@
-account_web_controllers:
-  resource: '../../UI/Http/Web/Controller/'
-  type: annotation

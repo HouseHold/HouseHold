@@ -1,5 +1,0 @@
-twig:
-  paths:
-    '%kernel.project_dir%/src/Account/UI/Http/Web/templates': Account
-  form_themes:
-    - '@AdminLTE/layout/form-theme-horizontal.html.twig'
