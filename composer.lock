@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "375ace53b556f5805f550ddc66bd7bec",
+    "content-hash": "83e49af41ab3a64c104bac8e073e1c76",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -2356,132 +2356,6 @@
             "time": "2019-12-09T09:54:29+00:00"
         },
         {
-            "name": "knplabs/knp-menu",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "b6aade272c345b6fbd07fce5929a761cba0909b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/b6aade272c345b6fbd07fce5929a761cba0909b8",
-                "reference": "b6aade272c345b6fbd07fce5929a761cba0909b8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "conflict": {
-                "twig/twig": "<1.40|>=2,<2.9"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/http-foundation": "~2.4|~3.0|^4.0",
-                "symfony/phpunit-bridge": "~3.3|^4.0",
-                "symfony/routing": "~2.3|~3.0|^4.0",
-                "twig/twig": "^1.40|^2.9"
-            },
-            "suggest": {
-                "twig/twig": "for the TwigRenderer and the integration with your templates"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Knp\\Menu\\": "src/Knp/Menu"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "KnpLabs",
-                    "homepage": "https://knplabs.com"
-                },
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://github.com/KnpLabs/KnpMenu/contributors"
-                }
-            ],
-            "description": "An object oriented menu library",
-            "homepage": "https://knplabs.com",
-            "keywords": [
-                "menu",
-                "tree"
-            ],
-            "time": "2019-09-02T10:16:14+00:00"
-        },
-        {
-            "name": "knplabs/knp-menu-bundle",
-            "version": "v2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "78b0cebf8e1490f12ba6555511282954de83f627"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/78b0cebf8e1490f12ba6555511282954de83f627",
-                "reference": "78b0cebf8e1490f12ba6555511282954de83f627",
-                "shasum": ""
-            },
-            "require": {
-                "knplabs/knp-menu": "~2.3",
-                "php": "^7.1",
-                "symfony/framework-bundle": "^3.4 | ^4.0"
-            },
-            "require-dev": {
-                "symfony/expression-language": "^3.4 | ^4.0",
-                "symfony/phpunit-bridge": "^3.4 | ^4.0",
-                "symfony/templating": "^3.4 | ^4.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Knp\\Bundle\\MenuBundle\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Knplabs",
-                    "homepage": "http://knplabs.com"
-                },
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://github.com/KnpLabs/KnpMenuBundle/contributors"
-                }
-            ],
-            "description": "This bundle provides an integration of the KnpMenu library",
-            "keywords": [
-                "menu"
-            ],
-            "time": "2019-09-19T08:51:48+00:00"
-        },
-        {
             "name": "knpuniversity/oauth2-client-bundle",
             "version": "v1.31.0",
             "source": {
@@ -3322,71 +3196,6 @@
                 "service proxies"
             ],
             "time": "2019-08-10T10:43:36+00:00"
-        },
-        {
-            "name": "ornicar/gravatar-bundle",
-            "version": "1.3.0",
-            "target-dir": "Ornicar/GravatarBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/henrikbjorn/GravatarBundle.git",
-                "reference": "5a4e3619f0654eaa3ad4e4a45d927bd0bf044e7c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/henrikbjorn/GravatarBundle/zipball/5a4e3619f0654eaa3ad4e4a45d927bd0bf044e7c",
-                "reference": "5a4e3619f0654eaa3ad4e4a45d927bd0bf044e7c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "symfony/framework-bundle": "~4.0|~3.0|~2.3",
-                "symfony/templating": "~4.0|~3.0|~2.0"
-            },
-            "conflict": {
-                "twig/twig": "<1.12"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7",
-                "twig/extensions": "1.0.*"
-            },
-            "suggest": {
-                "twig/twig": "For gravatar twig extension usage"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Ornicar\\GravatarBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thibault Duplessis",
-                    "email": "thibault.duplessis@gmail.com"
-                },
-                {
-                    "name": "Henrik Bjørnskov",
-                    "email": "henrik@bjrnskov.dk"
-                }
-            ],
-            "description": "This bundles provides a Gravatar API various utilities to work with it in templates",
-            "keywords": [
-                "Symfony2",
-                "gravatar",
-                "templating",
-                "twig"
-            ],
-            "abandoned": true,
-            "time": "2018-02-01T09:44:32+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -7125,62 +6934,6 @@
             "time": "2019-11-05T16:11:08+00:00"
         },
         {
-            "name": "symfony/templating",
-            "version": "v4.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/templating.git",
-                "reference": "628e5d6b9f779721a960cbc02f129c8b02c3f514"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/templating/zipball/628e5d6b9f779721a960cbc02f129c8b02c3f514",
-                "reference": "628e5d6b9f779721a960cbc02f129c8b02c3f514",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "require-dev": {
-                "psr/log": "~1.0"
-            },
-            "suggest": {
-                "psr/log-implementation": "For using debug logging in loaders"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Templating\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Templating Component",
-            "homepage": "https://symfony.com",
-            "time": "2019-10-28T20:30:34+00:00"
-        },
-        {
             "name": "symfony/translation",
             "version": "v4.4.1",
             "source": {
@@ -8409,33 +8162,34 @@
         },
         {
             "name": "dama/doctrine-test-bundle",
-            "version": "v5.0.5",
+            "version": "v6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmaicher/doctrine-test-bundle.git",
-                "reference": "a60b0712f4659eab710c49783713b4b43e3c3149"
+                "reference": "13eaeacf5bda4fd716c5d6d8ec6bf7bac89d3947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/a60b0712f4659eab710c49783713b4b43e3c3149",
-                "reference": "a60b0712f4659eab710c49783713b4b43e3c3149",
+                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/13eaeacf5bda4fd716c5d6d8ec6bf7bac89d3947",
+                "reference": "13eaeacf5bda4fd716c5d6d8ec6bf7bac89d3947",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.9,>=2.9.3",
-                "doctrine/doctrine-bundle": "~1.4|~2.0",
+                "doctrine/doctrine-bundle": "^1.11 || ^2.0",
                 "php": "^7.1",
-                "symfony/framework-bundle": "~3.4|~4.0"
+                "symfony/framework-bundle": "^3.4 || ^4.3 || ^5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~7.0|~8.0",
-                "symfony/phpunit-bridge": "^4.3",
-                "symfony/yaml": "~2.8|~3.0|~4.0"
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^7.0 || ^8.0",
+                "symfony/phpunit-bridge": "^4.3 || ^5.0",
+                "symfony/yaml": "^3.4 || ^4.3 || ^5.0"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1.x-dev"
+                    "dev-master": "7.0.x-dev"
                 }
             },
             "autoload": {
@@ -8455,16 +8209,13 @@
             ],
             "description": "Symfony bundle to isolate doctrine database tests and improve test performance",
             "keywords": [
-                "Symfony 3",
-                "Symfony 4",
                 "doctrine",
                 "isolation",
                 "performance",
                 "symfony",
-                "symfony 2",
                 "tests"
             ],
-            "time": "2019-11-25T10:12:28+00:00"
+            "time": "2019-12-09T22:53:03+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -9195,7 +8946,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2",
+        "php": "^7.4",
         "ext-iconv": "*",
         "ext-json": "*"
     },

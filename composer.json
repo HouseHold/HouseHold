@@ -7,7 +7,7 @@
         "ext-json": "*",
         "api-platform/api-pack": "^1.2",
         "beberlei/assert": "^3.2",
-        "broadway/broadway": "^2.1",
+        "broadway/broadway-bundle": "^0.4",
         "broadway/event-store-dbal": "^0.3",
         "elasticsearch/elasticsearch": "^7.4",
         "flagception/flagception-bundle": "^3.4",
@@ -19,19 +19,19 @@
         "php-amqplib/rabbitmq-bundle": "^1.14",
         "ramsey/uuid": "^3.9",
         "ramsey/uuid-doctrine": "^1.5",
-        "symfony/asset": "^5.0",
-        "symfony/console": "^5.0",
-        "symfony/dotenv": "^5.0",
+        "symfony/asset": "^4.4",
+        "symfony/console": "^4.4",
+        "symfony/dotenv": "^4.4",
         "symfony/flex": "^1.4",
-        "symfony/form": "^5.0",
-        "symfony/framework-bundle": "^5.0",
+        "symfony/form": "^4.4",
+        "symfony/framework-bundle": "^4.4",
         "symfony/orm-pack": "^1.0",
-        "symfony/security-bundle": "^5.0",
-        "symfony/translation": "^5.0",
+        "symfony/security-bundle": "^4.4",
+        "symfony/translation": "^4.4",
         "symfony/translation-contracts": "^1.1",
-        "symfony/twig-bundle": "^5.0",
+        "symfony/twig-bundle": "^4.4",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "^5.0",
+        "symfony/yaml": "^4.4",
         "webonyx/graphql-php": "^0.13.8"
     },
     "require-dev": {
@@ -39,7 +39,7 @@
         "friendsofphp/php-cs-fixer": "^2.15",
         "roave/security-advisories": "dev-master",
         "sensiolabs-de/deptrac-shim": "^0.5.0",
-        "symfony/browser-kit": "^5.0",
+        "symfony/browser-kit": "^4.4",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
@@ -80,7 +80,7 @@
         "symfony": {
             "id": "01C1QKYZ4DSB74RHER7JCF8Q1K",
             "allow-contrib": "true",
-            "require": "^5.0"
+            "require": "^4.4"
         }
     },
     "name": "niko9911/household",
