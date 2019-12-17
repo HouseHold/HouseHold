@@ -9,3 +9,5 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && docker-php-ext-enable xdebug \
     && apk del --purge $PHPIZE_DEPS
 RUN apk add --no-cache fish nano
+
+WORKDIR /app
