@@ -14,7 +14,7 @@ doctrine:
         user:     "%env(DATABASE_USER)%"
         password: "%env(DATABASE_PASS)%"
         charset:  UTF8
-        server_version: '8.0'
+        server_version: '10.4'
         types:
           uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
         mapping_types:

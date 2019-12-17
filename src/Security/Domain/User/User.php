@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace App\Security\Domain\User;
 
 use App\Security\Domain\Profile\Profile;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -92,7 +91,8 @@ class User implements UserInterface
      * the plain-text password is stored on this object.
      */
     public function eraseCredentials(): void
-    {    }
+    {
+    }
 
     /**
      * @return string[]
