@@ -25,102 +25,68 @@ class Profile
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
-    private $id;
-
-    /**
-     * @var \DateTimeImmutable
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $changed;
+    private int $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $address;
+    public string $firstname;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $zip;
+    public string $lastname;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $city;
+    public string $address;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $firstname;
+    public string $zip;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $lastname;
+    public string $city;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    public ?string $state;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $phone;
+    public string $country;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    public string $phone;
 
     /**
      * @var User
      * @ORM\OneToOne(targetEntity="App\Security\Domain\User\User", inversedBy="profile")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+    public User $user;
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getChanged(): \DateTimeImmutable
-    {
-        return $this->changed;
-    }
-
-    public function getAddress(): string
-    {
-        return $this->address;
-    }
-
-    public function getZip(): string
-    {
-        return $this->zip;
-    }
-
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    public function getFirstname(): string
-    {
-        return $this->firstname;
-    }
-
-    public function getLastname(): string
-    {
-        return $this->lastname;
-    }
-
-    public function getPhone(): string
-    {
-        return $this->phone;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
     }
 }
