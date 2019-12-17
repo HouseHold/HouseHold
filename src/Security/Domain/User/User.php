@@ -30,39 +30,39 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $username;
+    public string $username;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $email;
+    public string $email;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $password;
+    public ?string $password;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $salt;
+    public string $salt;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|array
      * @ORM\Column(type="array")
      */
-    private $roles;
+    public ArrayCollection $roles;
 
     /**
      * @var Profile
      * @ORM\OneToOne(targetEntity="App\Security\Domain\Profile\Profile", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    private $profile;
+    public Profile $profile;
 
     /**
      * User constructor.
@@ -72,83 +72,53 @@ class User implements UserInterface
         $this->roles = new ArrayCollection();
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUuid(): string
-    {
-        return $this->uuid;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
     /**
-     * @return string The username
+     * @return string The encoded password if any
      */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @return string[] The user roles
-     */
-    public function getRoles(): array
-    {
-        if (false === $this->roles) {
-            return [];
-        }
-
-        return $this->roles->toArray();
-    }
-
-    /**
-     * @return string|null The encoded password if any
-     */
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * @return string|null The salt
+     * @return string The salt
      */
-    public function getSalt(): ?string
+    public function getSalt(): string
     {
         return $this->salt;
     }
 
     /**
-     * No Credentials are saved in current system.
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
      */
     public function eraseCredentials(): void
     {
         $this->password = null;
     }
 
-    public function getProfile(): ?Profile
+    /**
+     * @return string[]
+     */
+    public function getRoles(): array
     {
-        return $this->profile;
+        return $this->roles;
     }
 
-    public function setEmail(?string $email): void
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername(): string
     {
-        $this->email = $email;
-    }
-
-    public function setPassword(?string $password, ?string $salt): void
-    {
-        $this->password = $password;
-        $this->salt = $salt;
-    }
-
-    public function setRoles(ArrayCollection $roles): void
-    {
-        $this->roles = $roles;
+        return $this->username;
     }
 }
