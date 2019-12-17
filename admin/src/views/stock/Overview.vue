@@ -1,13 +1,19 @@
 <template>
-    <h1>Hello World!</h1>
+    <div>
+        <widgets-stock/>
+        <in-stock/>
+    </div>
 </template>
 
 <script>
+    import WidgetsStock from './WidgetsStock'
+    import InStock from "./table/InStock";
+
     export default {
-        name: "Stock"
+        name: 'Stock',
+        components: {
+            WidgetsStock,
+            InStock
+        }
     }
 </script>
-
-<style scoped>
-
-</style>
