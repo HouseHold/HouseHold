@@ -50,27 +50,19 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    public string $salt;
+    public ?string $salt;
 
     /**
-     * @var ArrayCollection|array
-     * @ORM\Column(type="array")
+     * @var array
+     * @ORM\Column(type="json_array")
      */
-    public ArrayCollection $roles;
+    public array $roles;
 
     /**
      * @var Profile
      * @ORM\OneToOne(targetEntity="App\Security\Domain\Profile\Profile", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     public Profile $profile;
-
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-    }
 
     public function getId(): int
     {
@@ -86,9 +78,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return string The salt
+     * @return string|null The salt
      */
-    public function getSalt(): string
+    public function getSalt(): ?string
     {
         return $this->salt;
     }
@@ -100,9 +92,7 @@ class User implements UserInterface
      * the plain-text password is stored on this object.
      */
     public function eraseCredentials(): void
-    {
-        $this->password = null;
-    }
+    {    }
 
     /**
      * @return string[]
