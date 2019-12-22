@@ -17,6 +17,7 @@ namespace App\Stock\Domain;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
@@ -40,14 +41,10 @@ class ProductCollection
      */
     public ProductCategory $category;
     /**
+     * @var Product[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
      */
-    public ArrayCollection $products;
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
+    public $products;
 
     public function getId(): string
     {
