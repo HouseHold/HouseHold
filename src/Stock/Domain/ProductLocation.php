@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
@@ -37,10 +39,15 @@ class ProductLocation
     private string $name;
 
     /**
-     * @var Product
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="location", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @var Product[]|PersistentCollection|ArrayCollection
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="location")
      */
-    public Product $products;
+    public $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): string
     {
