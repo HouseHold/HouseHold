@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,10 +40,14 @@ class ProductCollection
      */
     public ProductCategory $category;
     /**
-     * @ORM\OneToOne(targetEntity="App\Stock\Domain\Product", inversedBy="collection")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
      */
-    public Product $product;
+    public ArrayCollection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): string
     {

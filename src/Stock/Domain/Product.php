@@ -51,15 +51,15 @@ class Product
      */
     public \DateTime $bestBefore;
     /**
-     * @ORM\OneToOne(targetEntity="App\Stock\Domain\ProductCollection", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
      */
     public ProductCollection $collection;
     /**
-     * @var ArrayCollection|ProductLocation[]
+     * @var ProductLocation
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
      * @ORM\JoinColumn(name="productLocation_id", referencedColumnName="id")
      */
-    public ArrayCollection $location;
+    public ProductLocation $location;
 
     public function getId(): string
     {
