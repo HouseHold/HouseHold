@@ -5,6 +5,7 @@
         "@coreui/utils": "^1.0.0",
         "@coreui/vue": "^3.0.0-beta.4",
         "@coreui/vue-chartjs": "^1.0.2",
+        "house_hold": "./api",
         "vue": "^2.6.10",
         "vue-apollo": "^3.0.2",
         "vue-loader": "^15.0.11",
@@ -13,6 +14,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.7.5",
+        "@openapitools/openapi-generator-cli": "^1.0.8-4.2.2",
         "@symfony/webpack-encore": "^0.28.0",
         "@vue/cli-plugin-babel": "^4.1.1",
         "@vue/cli-plugin-e2e-nightwatch": "^4.1.1",
@@ -37,7 +39,8 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "api": "openapi-generator generate -i http://localhost/api/docs.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec"
     },
     "browserslist": [
         "> 0.5%",
