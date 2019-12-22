@@ -17,6 +17,7 @@ namespace App\Stock\Domain;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
@@ -28,21 +29,13 @@ class ProductCategory
     private string $id;
     public string $name;
     /**
-     * @var ProductCollection[]|ArrayCollection
+     * @var ProductCollection[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    public ArrayCollection $collections;
+    public $collections;
 
     public function getId(): string
     {
         return $this->id;
-    }
-
-    /**
-     * ProductCategory constructor.
-     */
-    public function __construct()
-    {
-        $this->collections = new ArrayCollection();
     }
 }
