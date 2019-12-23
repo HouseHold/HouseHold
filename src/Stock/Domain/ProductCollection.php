@@ -37,7 +37,7 @@ class ProductCollection
     public string $name;
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
-     * @ORM\JoinColumn(name="productCategory_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
      */
     public ProductCategory $category;
     /**
