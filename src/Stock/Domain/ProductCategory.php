@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 
@@ -34,9 +33,10 @@ class ProductCategory
     private string $id;
     /**
      * @ORM\Column(type="string")
+     *
      * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public  $name;
+    public $name;
     /**
      * @var ProductCollection[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
