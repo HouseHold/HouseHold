@@ -28,6 +28,10 @@ class ProductCollection
 {
     private string $id;
     public string $name;
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
+     * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
+     */
     public ProductCategory $category;
     /**
      * @var Product[]|PersistentCollection
