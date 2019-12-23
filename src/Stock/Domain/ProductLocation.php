@@ -35,8 +35,9 @@ class ProductLocation
 
     /**
      * @ORM\Column(type="string")
+     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public string $name;
+    public $name;
 
     /**
      * @var Product[]|PersistentCollection|ArrayCollection
