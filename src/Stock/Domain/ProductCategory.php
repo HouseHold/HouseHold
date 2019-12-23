@@ -27,7 +27,11 @@ use Doctrine\ORM\PersistentCollection;
 class ProductCategory
 {
     private string $id;
-    public string $name;
+    /**
+     * @ORM\Column(type="string")
+     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
+     */
+    public  $name;
     /**
      * @var ProductCollection[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
