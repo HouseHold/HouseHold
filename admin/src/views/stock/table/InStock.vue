@@ -51,10 +51,12 @@
 </template>
 
 <script>
+    import * as HH from 'house_hold/src/index';
+
     const fields = [
-        {key: 'product', _style: 'width:40%'},
-        {key: 'amount', _style: 'width:20%;'},
-        {key: 'best_before', _style: 'width:20%;'},
+        {key: 'name', _style: 'width:40%'},
+        {key: 'inStock', _style: 'width:20%;'},
+        {key: 'bestBefore', _style: 'width:20%;'},
         {
             key: 'show_details',
             label: '',
@@ -89,8 +91,48 @@
                 position !== -1 ? this.details.splice(position, 1) : this.details.push(index)
             },
             getInStockItems() {
+                const productApi = new HH.ProductApi();
+                const stockApi = new HH.ProductStockApi();
+                let results = [];
+                productApi.getProductCollection()
+                    .then((data) => {
+                        data = data['hydra:member'];
+
+                        data.forEach((item, index) => {
+                            let quantityApiCalls = item['stocks'].map((stockId) => {
+                                return stockApi.getProductStockItem(/[^/]*$/.exec(stockId)[0])
+                                    .then((stockItem) => {
+                                        return {total: stockItem['quantity']};
+                                    });
+                            });
+
+                            Promise.all(quantityApiCalls).then((quantity) => {
+                                let totalQuantity = 0;
+                                quantity.forEach((obj) => {
+                                    totalQuantity += obj.total;
+                                });
+
+
+                                let result = {
+                                    name: item['name'],
+                                    ean: item['ean'],
+                                    price: item['price'],
+                                    expiring: item['expiring'],
+                                    bestBefore: (new Date(item['bestBefore'])).toLocaleDateString(),
+                                    collection: item['collection'],
+                                    location: item['location'],
+                                    inStock: totalQuantity,
+                                    stocks: item['stocks'],
+                                    id: item['id']
+                                };
+
+                                results.push(result);
+                            });
+                        });
+                    });
+
+                this.items = results || [];
                 this.loading = false;
-                this.items = [{product: "Test Product", amount: 22, best_before: "2020-11-04T19:55:41Z"}];
             }
         }
     }
