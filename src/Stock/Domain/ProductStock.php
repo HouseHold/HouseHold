@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 /**
  *
- * Household 2019 — NOTICE OF LICENSE
+ * Household 2020 — NOTICE OF LICENSE
  * This source file is released under commercial license by copyright holders.
  *
- * @copyright 2017-2019 (c) Niko Granö (https://granö.fi)
- * @copyright 2014-2019 (c) IronLions (https://ironlions.fi)
+ * @copyright 2017-2020 (c) Niko Granö (https://granö.fi)
+ * @copyright 2014-2020 (c) IronLions (https://ironlions.fi)
  *
  */
 
 namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
@@ -51,9 +49,6 @@ class ProductStock
      */
     public int $quantity = 0;
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
