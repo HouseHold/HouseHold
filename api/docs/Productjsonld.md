@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **bestBefore** | **Date** |  | [optional] 
 **collection** | **String** |  | [optional] 
 **location** | **String** |  | [optional] 
+**stocks** | **[String]** |  | [optional] 
 **id** | **String** |  | [optional] [readonly] 
 
 

@@ -68,6 +68,9 @@ class Product {
             if (data.hasOwnProperty('location')) {
                 obj['location'] = ApiClient.convertToType(data['location'], 'String');
             }
+            if (data.hasOwnProperty('stocks')) {
+                obj['stocks'] = ApiClient.convertToType(data['stocks'], ['String']);
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -112,6 +115,11 @@ Product.prototype['collection'] = undefined;
  * @member {String} location
  */
 Product.prototype['location'] = undefined;
+
+/**
+ * @member {Array.<String>} stocks
+ */
+Product.prototype['stocks'] = undefined;
 
 /**
  * @member {String} id

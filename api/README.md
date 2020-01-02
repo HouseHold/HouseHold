@@ -142,6 +142,12 @@ Class | Method | HTTP request | Description
 *HouseHold.ProductLocationApi* | [**patchProductLocationItem**](docs/ProductLocationApi.md#patchProductLocationItem) | **PATCH** /api/product/locations/{id} | Updates the ProductLocation resource.
 *HouseHold.ProductLocationApi* | [**postProductLocationCollection**](docs/ProductLocationApi.md#postProductLocationCollection) | **POST** /api/product/locations | Creates a ProductLocation resource.
 *HouseHold.ProductLocationApi* | [**putProductLocationItem**](docs/ProductLocationApi.md#putProductLocationItem) | **PUT** /api/product/locations/{id} | Replaces the ProductLocation resource.
+*HouseHold.StockApi* | [**deleteStockItem**](docs/StockApi.md#deleteStockItem) | **DELETE** /api/stocks/{id} | Removes the Stock resource.
+*HouseHold.StockApi* | [**getStockCollection**](docs/StockApi.md#getStockCollection) | **GET** /api/stocks | Retrieves the collection of Stock resources.
+*HouseHold.StockApi* | [**getStockItem**](docs/StockApi.md#getStockItem) | **GET** /api/stocks/{id} | Retrieves a Stock resource.
+*HouseHold.StockApi* | [**patchStockItem**](docs/StockApi.md#patchStockItem) | **PATCH** /api/stocks/{id} | Updates the Stock resource.
+*HouseHold.StockApi* | [**postStockCollection**](docs/StockApi.md#postStockCollection) | **POST** /api/stocks | Creates a Stock resource.
+*HouseHold.StockApi* | [**putStockItem**](docs/StockApi.md#putStockItem) | **PUT** /api/stocks/{id} | Replaces the Stock resource.
 
 
 ## Documentation for Models
@@ -150,6 +156,7 @@ Class | Method | HTTP request | Description
  - [HouseHold.InlineResponse2001](docs/InlineResponse2001.md)
  - [HouseHold.InlineResponse2002](docs/InlineResponse2002.md)
  - [HouseHold.InlineResponse2003](docs/InlineResponse2003.md)
+ - [HouseHold.InlineResponse2004](docs/InlineResponse2004.md)
  - [HouseHold.InlineResponse200HydraSearch](docs/InlineResponse200HydraSearch.md)
  - [HouseHold.InlineResponse200HydraSearchHydraMapping](docs/InlineResponse200HydraSearchHydraMapping.md)
  - [HouseHold.InlineResponse200HydraView](docs/InlineResponse200HydraView.md)
@@ -161,6 +168,8 @@ Class | Method | HTTP request | Description
  - [HouseHold.ProductLocation](docs/ProductLocation.md)
  - [HouseHold.ProductLocationjsonld](docs/ProductLocationjsonld.md)
  - [HouseHold.Productjsonld](docs/Productjsonld.md)
+ - [HouseHold.Stock](docs/Stock.md)
+ - [HouseHold.Stockjsonld](docs/Stockjsonld.md)
 
 
 ## Documentation for Authorization

@@ -21,10 +21,10 @@ use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="stock_location")
+ * @ORM\Table(name="stock_inventory")
  * @ApiResource
  */
-class ProductLocation
+class Stock
 {
     /**
      * @ORM\Id
@@ -34,30 +34,20 @@ class ProductLocation
     private string $id;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="stocks")
      */
-    public $name;
+    public $product;
 
     /**
-     * @var Product[]|PersistentCollection|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="location")
+     * @var ProductLocation
+     * @ORM\OneToOne(targetEntity="ProductLocation", inversedBy="stock")
      */
-    public $products;
+    public $location;
 
     /**
-     * @var Stock
-     * @ORM\OneToOne(targetEntity="Stock", mappedBy="location")
+     * @var int
+     * @ORM\Column(type="integer")
      */
-    public $stock;
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
+    public int $quantity = 0;
 }

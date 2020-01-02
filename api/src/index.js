@@ -17,6 +17,7 @@ import InlineResponse200 from './model/InlineResponse200';
 import InlineResponse2001 from './model/InlineResponse2001';
 import InlineResponse2002 from './model/InlineResponse2002';
 import InlineResponse2003 from './model/InlineResponse2003';
+import InlineResponse2004 from './model/InlineResponse2004';
 import InlineResponse200HydraSearch from './model/InlineResponse200HydraSearch';
 import InlineResponse200HydraSearchHydraMapping from './model/InlineResponse200HydraSearchHydraMapping';
 import InlineResponse200HydraView from './model/InlineResponse200HydraView';
@@ -28,10 +29,13 @@ import ProductCollectionjsonld from './model/ProductCollectionjsonld';
 import ProductLocation from './model/ProductLocation';
 import ProductLocationjsonld from './model/ProductLocationjsonld';
 import Productjsonld from './model/Productjsonld';
+import Stock from './model/Stock';
+import Stockjsonld from './model/Stockjsonld';
 import ProductApi from './api/ProductApi';
 import ProductCategoryApi from './api/ProductCategoryApi';
 import ProductCollectionApi from './api/ProductCollectionApi';
 import ProductLocationApi from './api/ProductLocationApi';
+import StockApi from './api/StockApi';
 
 
 /**
@@ -95,6 +99,12 @@ export {
      * @property {module:model/InlineResponse2003}
      */
     InlineResponse2003,
+
+    /**
+     * The InlineResponse2004 model constructor.
+     * @property {module:model/InlineResponse2004}
+     */
+    InlineResponse2004,
 
     /**
      * The InlineResponse200HydraSearch model constructor.
@@ -163,6 +173,18 @@ export {
     Productjsonld,
 
     /**
+     * The Stock model constructor.
+     * @property {module:model/Stock}
+     */
+    Stock,
+
+    /**
+     * The Stockjsonld model constructor.
+     * @property {module:model/Stockjsonld}
+     */
+    Stockjsonld,
+
+    /**
     * The ProductApi service constructor.
     * @property {module:api/ProductApi}
     */
@@ -184,5 +206,11 @@ export {
     * The ProductLocationApi service constructor.
     * @property {module:api/ProductLocationApi}
     */
-    ProductLocationApi
+    ProductLocationApi,
+
+    /**
+    * The StockApi service constructor.
+    * @property {module:api/StockApi}
+    */
+    StockApi
 };

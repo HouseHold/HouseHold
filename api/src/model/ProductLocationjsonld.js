@@ -62,6 +62,9 @@ class ProductLocationjsonld {
             if (data.hasOwnProperty('products')) {
                 obj['products'] = ApiClient.convertToType(data['products'], ['String']);
             }
+            if (data.hasOwnProperty('stock')) {
+                obj['stock'] = ApiClient.convertToType(data['stock'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -97,6 +100,11 @@ ProductLocationjsonld.prototype['name'] = undefined;
  * @member {Array.<String>} products
  */
 ProductLocationjsonld.prototype['products'] = undefined;
+
+/**
+ * @member {String} stock
+ */
+ProductLocationjsonld.prototype['stock'] = undefined;
 
 /**
  * @member {String} id
