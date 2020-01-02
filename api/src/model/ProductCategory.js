@@ -64,6 +64,7 @@ class ProductCategory {
 }
 
 /**
+ * Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
  * @member {String} name
  */
 ProductCategory.prototype['name'] = undefined;

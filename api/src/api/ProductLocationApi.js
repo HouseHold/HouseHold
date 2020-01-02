@@ -105,7 +105,7 @@ export default class ProductLocationApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = InlineResponse2002;
       return this.apiClient.callApi(
         '/api/product/locations', 'GET',
@@ -152,7 +152,7 @@ export default class ProductLocationApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductLocationjsonld;
       return this.apiClient.callApi(
         '/api/product/locations/{id}', 'GET',
@@ -201,7 +201,7 @@ export default class ProductLocationApi {
 
       let authNames = [];
       let contentTypes = ['application/merge-patch+json'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductLocationjsonld;
       return this.apiClient.callApi(
         '/api/product/locations/{id}', 'PATCH',
@@ -245,8 +245,8 @@ export default class ProductLocationApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductLocationjsonld;
       return this.apiClient.callApi(
         '/api/product/locations', 'POST',
@@ -295,8 +295,8 @@ export default class ProductLocationApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductLocationjsonld;
       return this.apiClient.callApi(
         '/api/product/locations/{id}', 'PUT',

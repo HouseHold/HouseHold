@@ -105,7 +105,7 @@ export default class ProductCategoryApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = InlineResponse200;
       return this.apiClient.callApi(
         '/api/product/categories', 'GET',
@@ -152,7 +152,7 @@ export default class ProductCategoryApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCategoryjsonld;
       return this.apiClient.callApi(
         '/api/product/categories/{id}', 'GET',
@@ -201,7 +201,7 @@ export default class ProductCategoryApi {
 
       let authNames = [];
       let contentTypes = ['application/merge-patch+json'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCategoryjsonld;
       return this.apiClient.callApi(
         '/api/product/categories/{id}', 'PATCH',
@@ -245,8 +245,8 @@ export default class ProductCategoryApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCategoryjsonld;
       return this.apiClient.callApi(
         '/api/product/categories', 'POST',
@@ -295,8 +295,8 @@ export default class ProductCategoryApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCategoryjsonld;
       return this.apiClient.callApi(
         '/api/product/categories/{id}', 'PUT',

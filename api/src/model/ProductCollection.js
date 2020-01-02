@@ -53,8 +53,8 @@ class ProductCollection {
             if (data.hasOwnProperty('category')) {
                 obj['category'] = ApiClient.convertToType(data['category'], 'String');
             }
-            if (data.hasOwnProperty('product')) {
-                obj['product'] = ApiClient.convertToType(data['product'], 'String');
+            if (data.hasOwnProperty('products')) {
+                obj['products'] = ApiClient.convertToType(data['products'], ['String']);
             }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -67,19 +67,21 @@ class ProductCollection {
 }
 
 /**
+ * Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
  * @member {String} name
  */
 ProductCollection.prototype['name'] = undefined;
 
 /**
+ * Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
  * @member {String} category
  */
 ProductCollection.prototype['category'] = undefined;
 
 /**
- * @member {String} product
+ * @member {Array.<String>} products
  */
-ProductCollection.prototype['product'] = undefined;
+ProductCollection.prototype['products'] = undefined;
 
 /**
  * @member {String} id

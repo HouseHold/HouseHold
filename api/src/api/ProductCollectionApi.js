@@ -105,7 +105,7 @@ export default class ProductCollectionApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = InlineResponse2001;
       return this.apiClient.callApi(
         '/api/product/collections', 'GET',
@@ -152,7 +152,7 @@ export default class ProductCollectionApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCollectionjsonld;
       return this.apiClient.callApi(
         '/api/product/collections/{id}', 'GET',
@@ -201,7 +201,7 @@ export default class ProductCollectionApi {
 
       let authNames = [];
       let contentTypes = ['application/merge-patch+json'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCollectionjsonld;
       return this.apiClient.callApi(
         '/api/product/collections/{id}', 'PATCH',
@@ -245,8 +245,8 @@ export default class ProductCollectionApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCollectionjsonld;
       return this.apiClient.callApi(
         '/api/product/collections', 'POST',
@@ -295,8 +295,8 @@ export default class ProductCollectionApi {
       };
 
       let authNames = [];
-      let contentTypes = ['application/ld+json', 'application/json', 'text/html'];
-      let accepts = ['application/ld+json', 'application/json', 'text/html'];
+      let contentTypes = ['application/ld+json'];
+      let accepts = ['application/ld+json'];
       let returnType = ProductCollectionjsonld;
       return this.apiClient.callApi(
         '/api/product/collections/{id}', 'PUT',

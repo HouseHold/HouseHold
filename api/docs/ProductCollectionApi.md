@@ -96,7 +96,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/ld+json, application/json, text/html
+- **Accept**: application/ld+json
 
 
 ## getProductCollectionItem
@@ -138,7 +138,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/ld+json, application/json, text/html
+- **Accept**: application/ld+json
 
 
 ## patchProductCollectionItem
@@ -184,7 +184,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/merge-patch+json
-- **Accept**: application/ld+json, application/json, text/html
+- **Accept**: application/ld+json
 
 
 ## postProductCollectionCollection
@@ -227,8 +227,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/ld+json, application/json, text/html
-- **Accept**: application/ld+json, application/json, text/html
+- **Content-Type**: application/ld+json
+- **Accept**: application/ld+json
 
 
 ## putProductCollectionItem
@@ -273,6 +273,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/ld+json, application/json, text/html
-- **Accept**: application/ld+json, application/json, text/html
+- **Content-Type**: application/ld+json
+- **Accept**: application/ld+json
 

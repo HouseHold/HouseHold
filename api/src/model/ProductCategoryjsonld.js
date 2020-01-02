@@ -88,6 +88,7 @@ ProductCategoryjsonld.prototype['@id'] = undefined;
 ProductCategoryjsonld.prototype['@type'] = undefined;
 
 /**
+ * Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
  * @member {String} name
  */
 ProductCategoryjsonld.prototype['name'] = undefined;
