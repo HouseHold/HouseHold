@@ -142,12 +142,12 @@ Class | Method | HTTP request | Description
 *HouseHold.ProductLocationApi* | [**patchProductLocationItem**](docs/ProductLocationApi.md#patchProductLocationItem) | **PATCH** /api/product/locations/{id} | Updates the ProductLocation resource.
 *HouseHold.ProductLocationApi* | [**postProductLocationCollection**](docs/ProductLocationApi.md#postProductLocationCollection) | **POST** /api/product/locations | Creates a ProductLocation resource.
 *HouseHold.ProductLocationApi* | [**putProductLocationItem**](docs/ProductLocationApi.md#putProductLocationItem) | **PUT** /api/product/locations/{id} | Replaces the ProductLocation resource.
-*HouseHold.StockApi* | [**deleteStockItem**](docs/StockApi.md#deleteStockItem) | **DELETE** /api/stocks/{id} | Removes the Stock resource.
-*HouseHold.StockApi* | [**getStockCollection**](docs/StockApi.md#getStockCollection) | **GET** /api/stocks | Retrieves the collection of Stock resources.
-*HouseHold.StockApi* | [**getStockItem**](docs/StockApi.md#getStockItem) | **GET** /api/stocks/{id} | Retrieves a Stock resource.
-*HouseHold.StockApi* | [**patchStockItem**](docs/StockApi.md#patchStockItem) | **PATCH** /api/stocks/{id} | Updates the Stock resource.
-*HouseHold.StockApi* | [**postStockCollection**](docs/StockApi.md#postStockCollection) | **POST** /api/stocks | Creates a Stock resource.
-*HouseHold.StockApi* | [**putStockItem**](docs/StockApi.md#putStockItem) | **PUT** /api/stocks/{id} | Replaces the Stock resource.
+*HouseHold.ProductStockApi* | [**deleteProductStockItem**](docs/ProductStockApi.md#deleteProductStockItem) | **DELETE** /api/product/stocks/{id} | Removes the ProductStock resource.
+*HouseHold.ProductStockApi* | [**getProductStockCollection**](docs/ProductStockApi.md#getProductStockCollection) | **GET** /api/product/stocks | Retrieves the collection of ProductStock resources.
+*HouseHold.ProductStockApi* | [**getProductStockItem**](docs/ProductStockApi.md#getProductStockItem) | **GET** /api/product/stocks/{id} | Retrieves a ProductStock resource.
+*HouseHold.ProductStockApi* | [**patchProductStockItem**](docs/ProductStockApi.md#patchProductStockItem) | **PATCH** /api/product/stocks/{id} | Updates the ProductStock resource.
+*HouseHold.ProductStockApi* | [**postProductStockCollection**](docs/ProductStockApi.md#postProductStockCollection) | **POST** /api/product/stocks | Creates a ProductStock resource.
+*HouseHold.ProductStockApi* | [**putProductStockItem**](docs/ProductStockApi.md#putProductStockItem) | **PUT** /api/product/stocks/{id} | Replaces the ProductStock resource.
 
 
 ## Documentation for Models
@@ -167,9 +167,9 @@ Class | Method | HTTP request | Description
  - [HouseHold.ProductCollectionjsonld](docs/ProductCollectionjsonld.md)
  - [HouseHold.ProductLocation](docs/ProductLocation.md)
  - [HouseHold.ProductLocationjsonld](docs/ProductLocationjsonld.md)
+ - [HouseHold.ProductStock](docs/ProductStock.md)
+ - [HouseHold.ProductStockjsonld](docs/ProductStockjsonld.md)
  - [HouseHold.Productjsonld](docs/Productjsonld.md)
- - [HouseHold.Stock](docs/Stock.md)
- - [HouseHold.Stockjsonld](docs/Stockjsonld.md)
 
 
 ## Documentation for Authorization

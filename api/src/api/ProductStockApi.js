@@ -13,20 +13,20 @@
 
 
 import ApiClient from "../ApiClient";
-import InlineResponse2004 from '../model/InlineResponse2004';
-import Product from '../model/Product';
-import Productjsonld from '../model/Productjsonld';
+import InlineResponse2003 from '../model/InlineResponse2003';
+import ProductStock from '../model/ProductStock';
+import ProductStockjsonld from '../model/ProductStockjsonld';
 
 /**
-* Product service.
-* @module api/ProductApi
+* ProductStock service.
+* @module api/ProductStockApi
 * @version 1.0.0
 */
-export default class ProductApi {
+export default class ProductStockApi {
 
     /**
-    * Constructs a new ProductApi. 
-    * @alias module:api/ProductApi
+    * Constructs a new ProductStockApi. 
+    * @alias module:api/ProductStockApi
     * @class
     * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
     * default to {@link module:ApiClient#instance} if unspecified.
@@ -38,15 +38,15 @@ export default class ProductApi {
 
 
     /**
-     * Removes the Product resource.
+     * Removes the ProductStock resource.
      * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    deleteProductItemWithHttpInfo(id) {
+    deleteProductStockItemWithHttpInfo(id) {
       let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteProductItem");
+        throw new Error("Missing the required parameter 'id' when calling deleteProductStockItem");
       }
 
       let pathParams = {
@@ -64,19 +64,19 @@ export default class ProductApi {
       let accepts = [];
       let returnType = null;
       return this.apiClient.callApi(
-        '/api/products/{id}', 'DELETE',
+        '/api/product/stocks/{id}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Removes the Product resource.
+     * Removes the ProductStock resource.
      * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
-    deleteProductItem(id) {
-      return this.deleteProductItemWithHttpInfo(id)
+    deleteProductStockItem(id) {
+      return this.deleteProductStockItemWithHttpInfo(id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -84,12 +84,12 @@ export default class ProductApi {
 
 
     /**
-     * Retrieves the collection of Product resources.
+     * Retrieves the collection of ProductStock resources.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.page The collection page number (default to 1)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/InlineResponse2004} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/InlineResponse2003} and HTTP response
      */
-    getProductCollectionWithHttpInfo(opts) {
+    getProductStockCollectionWithHttpInfo(opts) {
       opts = opts || {};
       let postBody = null;
 
@@ -106,22 +106,22 @@ export default class ProductApi {
       let authNames = [];
       let contentTypes = [];
       let accepts = ['application/ld+json'];
-      let returnType = InlineResponse2004;
+      let returnType = InlineResponse2003;
       return this.apiClient.callApi(
-        '/api/products', 'GET',
+        '/api/product/stocks', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Retrieves the collection of Product resources.
+     * Retrieves the collection of ProductStock resources.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.page The collection page number (default to 1)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse2004}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse2003}
      */
-    getProductCollection(opts) {
-      return this.getProductCollectionWithHttpInfo(opts)
+    getProductStockCollection(opts) {
+      return this.getProductStockCollectionWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -129,15 +129,15 @@ export default class ProductApi {
 
 
     /**
-     * Retrieves a Product resource.
+     * Retrieves a ProductStock resource.
      * @param {String} id 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Productjsonld} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProductStockjsonld} and HTTP response
      */
-    getProductItemWithHttpInfo(id) {
+    getProductStockItemWithHttpInfo(id) {
       let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getProductItem");
+        throw new Error("Missing the required parameter 'id' when calling getProductStockItem");
       }
 
       let pathParams = {
@@ -153,21 +153,21 @@ export default class ProductApi {
       let authNames = [];
       let contentTypes = [];
       let accepts = ['application/ld+json'];
-      let returnType = Productjsonld;
+      let returnType = ProductStockjsonld;
       return this.apiClient.callApi(
-        '/api/products/{id}', 'GET',
+        '/api/product/stocks/{id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Retrieves a Product resource.
+     * Retrieves a ProductStock resource.
      * @param {String} id 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Productjsonld}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProductStockjsonld}
      */
-    getProductItem(id) {
-      return this.getProductItemWithHttpInfo(id)
+    getProductStockItem(id) {
+      return this.getProductStockItemWithHttpInfo(id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -175,18 +175,18 @@ export default class ProductApi {
 
 
     /**
-     * Updates the Product resource.
+     * Updates the ProductStock resource.
      * @param {String} id 
      * @param {Object} opts Optional parameters
-     * @param {module:model/Product} opts.product The updated Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Productjsonld} and HTTP response
+     * @param {module:model/ProductStock} opts.productStock The updated ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProductStockjsonld} and HTTP response
      */
-    patchProductItemWithHttpInfo(id, opts) {
+    patchProductStockItemWithHttpInfo(id, opts) {
       opts = opts || {};
-      let postBody = opts['product'];
+      let postBody = opts['productStock'];
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling patchProductItem");
+        throw new Error("Missing the required parameter 'id' when calling patchProductStockItem");
       }
 
       let pathParams = {
@@ -202,23 +202,23 @@ export default class ProductApi {
       let authNames = [];
       let contentTypes = ['application/merge-patch+json'];
       let accepts = ['application/ld+json'];
-      let returnType = Productjsonld;
+      let returnType = ProductStockjsonld;
       return this.apiClient.callApi(
-        '/api/products/{id}', 'PATCH',
+        '/api/product/stocks/{id}', 'PATCH',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Updates the Product resource.
+     * Updates the ProductStock resource.
      * @param {String} id 
      * @param {Object} opts Optional parameters
-     * @param {module:model/Product} opts.product The updated Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Productjsonld}
+     * @param {module:model/ProductStock} opts.productStock The updated ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProductStockjsonld}
      */
-    patchProductItem(id, opts) {
-      return this.patchProductItemWithHttpInfo(id, opts)
+    patchProductStockItem(id, opts) {
+      return this.patchProductStockItemWithHttpInfo(id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -226,14 +226,14 @@ export default class ProductApi {
 
 
     /**
-     * Creates a Product resource.
+     * Creates a ProductStock resource.
      * @param {Object} opts Optional parameters
-     * @param {module:model/Productjsonld} opts.productjsonld The new Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Productjsonld} and HTTP response
+     * @param {module:model/ProductStockjsonld} opts.productStockjsonld The new ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProductStockjsonld} and HTTP response
      */
-    postProductCollectionWithHttpInfo(opts) {
+    postProductStockCollectionWithHttpInfo(opts) {
       opts = opts || {};
-      let postBody = opts['productjsonld'];
+      let postBody = opts['productStockjsonld'];
 
       let pathParams = {
       };
@@ -247,22 +247,22 @@ export default class ProductApi {
       let authNames = [];
       let contentTypes = ['application/ld+json'];
       let accepts = ['application/ld+json'];
-      let returnType = Productjsonld;
+      let returnType = ProductStockjsonld;
       return this.apiClient.callApi(
-        '/api/products', 'POST',
+        '/api/product/stocks', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Creates a Product resource.
+     * Creates a ProductStock resource.
      * @param {Object} opts Optional parameters
-     * @param {module:model/Productjsonld} opts.productjsonld The new Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Productjsonld}
+     * @param {module:model/ProductStockjsonld} opts.productStockjsonld The new ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProductStockjsonld}
      */
-    postProductCollection(opts) {
-      return this.postProductCollectionWithHttpInfo(opts)
+    postProductStockCollection(opts) {
+      return this.postProductStockCollectionWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -270,18 +270,18 @@ export default class ProductApi {
 
 
     /**
-     * Replaces the Product resource.
+     * Replaces the ProductStock resource.
      * @param {String} id 
      * @param {Object} opts Optional parameters
-     * @param {module:model/Productjsonld} opts.productjsonld The updated Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Productjsonld} and HTTP response
+     * @param {module:model/ProductStockjsonld} opts.productStockjsonld The updated ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProductStockjsonld} and HTTP response
      */
-    putProductItemWithHttpInfo(id, opts) {
+    putProductStockItemWithHttpInfo(id, opts) {
       opts = opts || {};
-      let postBody = opts['productjsonld'];
+      let postBody = opts['productStockjsonld'];
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling putProductItem");
+        throw new Error("Missing the required parameter 'id' when calling putProductStockItem");
       }
 
       let pathParams = {
@@ -297,23 +297,23 @@ export default class ProductApi {
       let authNames = [];
       let contentTypes = ['application/ld+json'];
       let accepts = ['application/ld+json'];
-      let returnType = Productjsonld;
+      let returnType = ProductStockjsonld;
       return this.apiClient.callApi(
-        '/api/products/{id}', 'PUT',
+        '/api/product/stocks/{id}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Replaces the Product resource.
+     * Replaces the ProductStock resource.
      * @param {String} id 
      * @param {Object} opts Optional parameters
-     * @param {module:model/Productjsonld} opts.productjsonld The updated Product resource
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Productjsonld}
+     * @param {module:model/ProductStockjsonld} opts.productStockjsonld The updated ProductStock resource
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProductStockjsonld}
      */
-    putProductItem(id, opts) {
-      return this.putProductItemWithHttpInfo(id, opts)
+    putProductStockItem(id, opts) {
+      return this.putProductStockItemWithHttpInfo(id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

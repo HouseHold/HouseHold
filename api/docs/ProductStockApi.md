@@ -1,32 +1,32 @@
-# HouseHold.ProductApi
+# HouseHold.ProductStockApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteProductItem**](ProductApi.md#deleteProductItem) | **DELETE** /api/products/{id} | Removes the Product resource.
-[**getProductCollection**](ProductApi.md#getProductCollection) | **GET** /api/products | Retrieves the collection of Product resources.
-[**getProductItem**](ProductApi.md#getProductItem) | **GET** /api/products/{id} | Retrieves a Product resource.
-[**patchProductItem**](ProductApi.md#patchProductItem) | **PATCH** /api/products/{id} | Updates the Product resource.
-[**postProductCollection**](ProductApi.md#postProductCollection) | **POST** /api/products | Creates a Product resource.
-[**putProductItem**](ProductApi.md#putProductItem) | **PUT** /api/products/{id} | Replaces the Product resource.
+[**deleteProductStockItem**](ProductStockApi.md#deleteProductStockItem) | **DELETE** /api/product/stocks/{id} | Removes the ProductStock resource.
+[**getProductStockCollection**](ProductStockApi.md#getProductStockCollection) | **GET** /api/product/stocks | Retrieves the collection of ProductStock resources.
+[**getProductStockItem**](ProductStockApi.md#getProductStockItem) | **GET** /api/product/stocks/{id} | Retrieves a ProductStock resource.
+[**patchProductStockItem**](ProductStockApi.md#patchProductStockItem) | **PATCH** /api/product/stocks/{id} | Updates the ProductStock resource.
+[**postProductStockCollection**](ProductStockApi.md#postProductStockCollection) | **POST** /api/product/stocks | Creates a ProductStock resource.
+[**putProductStockItem**](ProductStockApi.md#putProductStockItem) | **PUT** /api/product/stocks/{id} | Replaces the ProductStock resource.
 
 
 
-## deleteProductItem
+## deleteProductStockItem
 
-> deleteProductItem(id)
+> deleteProductStockItem(id)
 
-Removes the Product resource.
+Removes the ProductStock resource.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let id = "id_example"; // String | 
-apiInstance.deleteProductItem(id).then(() => {
+apiInstance.deleteProductStockItem(id).then(() => {
   console.log('API called successfully.');
 }, (error) => {
   console.error(error);
@@ -55,22 +55,22 @@ No authorization required
 - **Accept**: Not defined
 
 
-## getProductCollection
+## getProductStockCollection
 
-> InlineResponse2004 getProductCollection(opts)
+> InlineResponse2003 getProductStockCollection(opts)
 
-Retrieves the collection of Product resources.
+Retrieves the collection of ProductStock resources.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let opts = {
   'page': 1 // Number | The collection page number
 };
-apiInstance.getProductCollection(opts).then((data) => {
+apiInstance.getProductStockCollection(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -99,20 +99,20 @@ No authorization required
 - **Accept**: application/ld+json
 
 
-## getProductItem
+## getProductStockItem
 
-> Productjsonld getProductItem(id)
+> ProductStockjsonld getProductStockItem(id)
 
-Retrieves a Product resource.
+Retrieves a ProductStock resource.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let id = "id_example"; // String | 
-apiInstance.getProductItem(id).then((data) => {
+apiInstance.getProductStockItem(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Productjsonld**](Productjsonld.md)
+[**ProductStockjsonld**](ProductStockjsonld.md)
 
 ### Authorization
 
@@ -141,23 +141,23 @@ No authorization required
 - **Accept**: application/ld+json
 
 
-## patchProductItem
+## patchProductStockItem
 
-> Productjsonld patchProductItem(id, opts)
+> ProductStockjsonld patchProductStockItem(id, opts)
 
-Updates the Product resource.
+Updates the ProductStock resource.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let id = "id_example"; // String | 
 let opts = {
-  'product': new HouseHold.Product() // Product | The updated Product resource
+  'productStock': new HouseHold.ProductStock() // ProductStock | The updated ProductStock resource
 };
-apiInstance.patchProductItem(id, opts).then((data) => {
+apiInstance.patchProductStockItem(id, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -171,11 +171,11 @@ apiInstance.patchProductItem(id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
- **product** | [**Product**](Product.md)| The updated Product resource | [optional] 
+ **productStock** | [**ProductStock**](ProductStock.md)| The updated ProductStock resource | [optional] 
 
 ### Return type
 
-[**Productjsonld**](Productjsonld.md)
+[**ProductStockjsonld**](ProductStockjsonld.md)
 
 ### Authorization
 
@@ -187,22 +187,22 @@ No authorization required
 - **Accept**: application/ld+json
 
 
-## postProductCollection
+## postProductStockCollection
 
-> Productjsonld postProductCollection(opts)
+> ProductStockjsonld postProductStockCollection(opts)
 
-Creates a Product resource.
+Creates a ProductStock resource.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let opts = {
-  'productjsonld': new HouseHold.Productjsonld() // Productjsonld | The new Product resource
+  'productStockjsonld': new HouseHold.ProductStockjsonld() // ProductStockjsonld | The new ProductStock resource
 };
-apiInstance.postProductCollection(opts).then((data) => {
+apiInstance.postProductStockCollection(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -215,11 +215,11 @@ apiInstance.postProductCollection(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **productjsonld** | [**Productjsonld**](Productjsonld.md)| The new Product resource | [optional] 
+ **productStockjsonld** | [**ProductStockjsonld**](ProductStockjsonld.md)| The new ProductStock resource | [optional] 
 
 ### Return type
 
-[**Productjsonld**](Productjsonld.md)
+[**ProductStockjsonld**](ProductStockjsonld.md)
 
 ### Authorization
 
@@ -231,23 +231,23 @@ No authorization required
 - **Accept**: application/ld+json
 
 
-## putProductItem
+## putProductStockItem
 
-> Productjsonld putProductItem(id, opts)
+> ProductStockjsonld putProductStockItem(id, opts)
 
-Replaces the Product resource.
+Replaces the ProductStock resource.
 
 ### Example
 
 ```javascript
 import HouseHold from 'house_hold';
 
-let apiInstance = new HouseHold.ProductApi();
+let apiInstance = new HouseHold.ProductStockApi();
 let id = "id_example"; // String | 
 let opts = {
-  'productjsonld': new HouseHold.Productjsonld() // Productjsonld | The updated Product resource
+  'productStockjsonld': new HouseHold.ProductStockjsonld() // ProductStockjsonld | The updated ProductStock resource
 };
-apiInstance.putProductItem(id, opts).then((data) => {
+apiInstance.putProductStockItem(id, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -261,11 +261,11 @@ apiInstance.putProductItem(id, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
- **productjsonld** | [**Productjsonld**](Productjsonld.md)| The updated Product resource | [optional] 
+ **productStockjsonld** | [**ProductStockjsonld**](ProductStockjsonld.md)| The updated ProductStock resource | [optional] 
 
 ### Return type
 
-[**Productjsonld**](Productjsonld.md)
+[**ProductStockjsonld**](ProductStockjsonld.md)
 
 ### Authorization
 

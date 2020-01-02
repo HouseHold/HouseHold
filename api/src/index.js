@@ -28,14 +28,14 @@ import ProductCollection from './model/ProductCollection';
 import ProductCollectionjsonld from './model/ProductCollectionjsonld';
 import ProductLocation from './model/ProductLocation';
 import ProductLocationjsonld from './model/ProductLocationjsonld';
+import ProductStock from './model/ProductStock';
+import ProductStockjsonld from './model/ProductStockjsonld';
 import Productjsonld from './model/Productjsonld';
-import Stock from './model/Stock';
-import Stockjsonld from './model/Stockjsonld';
 import ProductApi from './api/ProductApi';
 import ProductCategoryApi from './api/ProductCategoryApi';
 import ProductCollectionApi from './api/ProductCollectionApi';
 import ProductLocationApi from './api/ProductLocationApi';
-import StockApi from './api/StockApi';
+import ProductStockApi from './api/ProductStockApi';
 
 
 /**
@@ -167,22 +167,22 @@ export {
     ProductLocationjsonld,
 
     /**
+     * The ProductStock model constructor.
+     * @property {module:model/ProductStock}
+     */
+    ProductStock,
+
+    /**
+     * The ProductStockjsonld model constructor.
+     * @property {module:model/ProductStockjsonld}
+     */
+    ProductStockjsonld,
+
+    /**
      * The Productjsonld model constructor.
      * @property {module:model/Productjsonld}
      */
     Productjsonld,
-
-    /**
-     * The Stock model constructor.
-     * @property {module:model/Stock}
-     */
-    Stock,
-
-    /**
-     * The Stockjsonld model constructor.
-     * @property {module:model/Stockjsonld}
-     */
-    Stockjsonld,
 
     /**
     * The ProductApi service constructor.
@@ -209,8 +209,8 @@ export {
     ProductLocationApi,
 
     /**
-    * The StockApi service constructor.
-    * @property {module:api/StockApi}
+    * The ProductStockApi service constructor.
+    * @property {module:api/ProductStockApi}
     */
-    StockApi
+    ProductStockApi
 };

@@ -14,7 +14,7 @@
 import ApiClient from '../ApiClient';
 import InlineResponse200HydraSearch from './InlineResponse200HydraSearch';
 import InlineResponse200HydraView from './InlineResponse200HydraView';
-import Stockjsonld from './Stockjsonld';
+import Productjsonld from './Productjsonld';
 
 /**
  * The InlineResponse2004 model module.
@@ -25,7 +25,7 @@ class InlineResponse2004 {
     /**
      * Constructs a new <code>InlineResponse2004</code>.
      * @alias module:model/InlineResponse2004
-     * @param hydramember {Array.<module:model/Stockjsonld>} 
+     * @param hydramember {Array.<module:model/Productjsonld>} 
      */
     constructor(hydramember) { 
         
@@ -53,7 +53,7 @@ class InlineResponse2004 {
             obj = obj || new InlineResponse2004();
 
             if (data.hasOwnProperty('hydra:member')) {
-                obj['hydra:member'] = ApiClient.convertToType(data['hydra:member'], [Stockjsonld]);
+                obj['hydra:member'] = ApiClient.convertToType(data['hydra:member'], [Productjsonld]);
             }
             if (data.hasOwnProperty('hydra:totalItems')) {
                 obj['hydra:totalItems'] = ApiClient.convertToType(data['hydra:totalItems'], 'Number');
@@ -72,7 +72,7 @@ class InlineResponse2004 {
 }
 
 /**
- * @member {Array.<module:model/Stockjsonld>} hydra:member
+ * @member {Array.<module:model/Productjsonld>} hydra:member
  */
 InlineResponse2004.prototype['hydra:member'] = undefined;
 
