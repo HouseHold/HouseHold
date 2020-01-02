@@ -40,7 +40,7 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "api": "openapi-generator generate -i http://localhost/api/docs.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec"
+        "api": "bin/console api:openapi:export -o api.json && openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec; rm -f api.json"
     },
     "browserslist": [
         "> 0.5%",
