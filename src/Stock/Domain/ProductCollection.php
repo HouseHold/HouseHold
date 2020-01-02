@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 /**
  *
- * Household 2019 — NOTICE OF LICENSE
+ * Household 2020 — NOTICE OF LICENSE
  * This source file is released under commercial license by copyright holders.
  *
- * @copyright 2017-2019 (c) Niko Granö (https://granö.fi)
- * @copyright 2014-2019 (c) IronLions (https://ironlions.fi)
+ * @copyright 2017-2020 (c) Niko Granö (https://granö.fi)
+ * @copyright 2014-2020 (c) IronLions (https://ironlions.fi)
  *
  */
 
@@ -32,12 +32,14 @@ class ProductCollection
      */private string $id;
     /**
      * @ORM\Column(type="string")
+     *
      * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
     public $name;
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
      * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
+     *
      * @var ProductCategory Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
     public $category;
