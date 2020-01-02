@@ -46,8 +46,8 @@ class ProductLocation
     public $products;
 
     /**
-     * @var Stock
-     * @ORM\OneToOne(targetEntity="Stock", mappedBy="location")
+     * @var ProductStock
+     * @ORM\OneToOne(targetEntity="ProductStock", mappedBy="location")
      */
     public $stock;
 
