@@ -24,7 +24,7 @@ use Doctrine\ORM\PersistentCollection;
  * @ORM\Table(name="stock_inventory")
  * @ApiResource
  */
-class Stock
+class ProductStock
 {
     /**
      * @ORM\Id
@@ -50,4 +50,12 @@ class Stock
      * @ORM\Column(type="integer")
      */
     public int $quantity = 0;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

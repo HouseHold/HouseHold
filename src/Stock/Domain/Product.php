@@ -31,38 +31,44 @@ class Product
      */
     private string $id;
     /**
+     * @var string
      * @ORM\Column(type="string")
      */
-    public string $name;
+    public $name;
     /**
-     * @ORM\Column(type="string")
+     * @var array
+     * @ORM\Column(type="json_array")
      */
-    public array $ean;
+    public $ean;
     /**
+     * @var float
      * @ORM\Column(type="float")
      */
-    public string $price;
+    public $price;
     /**
+     * @var bool
      * @ORM\Column(type="boolean")
      */
-    public bool $expiring;
+    public $expiring;
     /**
-     * @ORM\Column(type="string")
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
-    public \DateTime $bestBefore;
+    public $bestBefore;
     /**
+     * @var ProductCollection
      * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
      */
-    public ProductCollection $collection;
+    public $collection;
     /**
      * @var ProductLocation
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
      * @ORM\JoinColumn(name="productLocation_id", referencedColumnName="id")
      */
-    public ProductLocation $location;
+    public $location;
     /**
-     * @var Stock[]
-     * @ORM\OneToMany(targetEntity="Stock", mappedBy="product")
+     * @var ProductStock[]
+     * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
      */
     public $stocks;
 
