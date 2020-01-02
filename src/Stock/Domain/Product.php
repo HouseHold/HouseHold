@@ -26,9 +26,10 @@ class Product
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     */private string $id;
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
+     */
+    private string $id;
     /**
      * @ORM\Column(type="string")
      */
@@ -59,6 +60,11 @@ class Product
      * @ORM\JoinColumn(name="productLocation_id", referencedColumnName="id")
      */
     public ProductLocation $location;
+    /**
+     * @var Stock[]
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="product")
+     */
+    public $stocks;
 
     public function getId(): string
     {
