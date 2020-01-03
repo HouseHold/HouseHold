@@ -15,6 +15,7 @@ const Widgets = () => import('../views/widgets/Widgets');
 
 // Views - Stock
 const StockOverview = () => import('../views/stock/Overview');
+const StockPurchase = () => import('../views/stock/Purchase');
 
 // Views - Components
 const Cards = () => import('../views/base/Cards');
@@ -91,6 +92,11 @@ function configRoutes() {
                             path: 'overview',
                             name: 'Overview',
                             component: StockOverview
+                        },
+                        {
+                            path: 'purchase',
+                            name: 'Purchase',
+                            component: StockPurchase
                         }
                     ]
                 },

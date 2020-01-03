@@ -129,10 +129,10 @@
                                 results.push(result);
                             });
                         });
-                    });
-
-                this.items = results || [];
-                this.loading = false;
+                    }).then(() => {
+                    this.items = results || [];
+                    this.loading = false;
+                });
             }
         }
     }
