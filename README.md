@@ -13,7 +13,7 @@ food supplies and many other. Any ideas are welcome in form of issue.
 
 ## Background
 
-At this stage this is fork [Grocy](https://github.com/grocy/grocy.
+At this stage this is fork [Grocy](https://github.com/grocy/grocy).
 To be exact, this started due Grocy code being a mess according to me
 and it doesnt support any other database than sqlite at time of writing this.
 
@@ -63,4 +63,4 @@ Now it should be running somewhere.
 - Run `bin/console doctrine:migrations:migrate`
 
 # License
-GPLv3. Commercial licensing and support available on request.
+Plese see LICENSE -file for details. Commercial licensing and support available on request.
