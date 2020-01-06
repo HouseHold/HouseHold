@@ -12,7 +12,7 @@ api_platform:
     swagger:
         versions: [3]
     graphql:
-        default_ide: graphql-playground
+        #default_ide: graphql-playground
         graphiql:
             enabled: true
 
@@ -20,8 +20,10 @@ api_platform:
     formats:
         jsonld:
             mime_types: ['application/ld+json']
-        #html:
-        #    mime_types: ['text/html']
+        json:
+            mime_types: ['application/json']
+        html:
+            mime_types: ['text/html']
 
     error_formats:
         jsonproblem:

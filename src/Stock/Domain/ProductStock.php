@@ -39,7 +39,7 @@ class ProductStock
 
     /**
      * @var ProductLocation
-     * @ORM\OneToOne(targetEntity="ProductLocation", inversedBy="stock")
+     * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="stocks")
      */
     public $location;
 

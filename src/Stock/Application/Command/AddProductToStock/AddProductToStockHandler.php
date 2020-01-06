@@ -12,12 +12,13 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Core\Domain\Shared\Exception;
+namespace App\Stock\Application\Command\AddProductToStock;
 
-class DateTimeException extends Exception
+use App\Core\Application\Command\CommandHandlerInterface;
+
+final class AddProductToStockHandler implements CommandHandlerInterface
 {
-    public function __construct(\Exception $e)
+    public function __invoke(AddProductToStockCommand $command): void
     {
-        parent::__construct('Datetime Malformed or not valid', 500, $e);
     }
 }

@@ -17,24 +17,42 @@ namespace App\Core\Infrastructure\Share\Query\Repository;
 use App\Core\Domain\Shared\Query\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class MysqlRepository
+abstract class DatabaseRepository
 {
+    /** @var string */
+    protected string $class;
+
+    /** @var EntityRepository */
+    protected EntityRepository $repository;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $em;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->em = $entityManager;
+        $this->setRepository($this->class);
+    }
+
     public function register($model): void
     {
-        $this->entityManager->persist($model);
+        $this->em->persist($model);
         $this->apply();
     }
 
     public function apply(): void
     {
-        $this->entityManager->flush();
+        $this->em->flush();
     }
 
     /**
      * @throws NotFoundException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     protected function oneOrException(QueryBuilder $queryBuilder)
     {
@@ -53,24 +71,7 @@ abstract class MysqlRepository
     private function setRepository(string $model): void
     {
         /** @var EntityRepository $objectRepository */
-        $objectRepository = $this->entityManager->getRepository($model);
+        $objectRepository = $this->em->getRepository($model);
         $this->repository = $objectRepository;
     }
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-        $this->setRepository($this->class);
-    }
-
-    /** @var string */
-    protected $class;
-
-    /** @var EntityRepository */
-    protected $repository;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
 }

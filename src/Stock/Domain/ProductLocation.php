@@ -47,10 +47,10 @@ class ProductLocation
     public $products;
 
     /**
-     * @var ProductStock
-     * @ORM\OneToOne(targetEntity="ProductStock", mappedBy="location")
+     * @var ProductStock[]
+     * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="location")
      */
-    public $stock;
+    public $stocks;
 
     public function __construct()
     {

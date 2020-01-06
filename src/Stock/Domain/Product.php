@@ -14,13 +14,16 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_product")
  * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={"name": "start"})
  */
 class Product
 {
@@ -32,7 +35,7 @@ class Product
     private string $id;
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     public $name;
     /**

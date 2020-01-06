@@ -12,6 +12,11 @@ services:
       tags:
         - { name: tactician.handler, typehints: true, bus: query }
 
+  # Tactician
+  App\:
+    resource: "%kernel.project_dir%/src/**/Application/Command/**/*Handler.php"
+    tags: [{name: tactician.handler, typehints: true}]
+
   ### UI
   App\Core\UI\Cli\Command\:
     resource: '../../UI/Cli/Command'

@@ -12,12 +12,10 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Core\Domain\Shared\Exception;
+namespace App\Stock\Domain\Product\Exception;
 
-class DateTimeException extends Exception
+use App\Stock\Domain\Exception\Exception;
+
+final class ProductNotFoundByNameException extends Exception
 {
-    public function __construct(\Exception $e)
-    {
-        parent::__construct('Datetime Malformed or not valid', 500, $e);
-    }
 }
