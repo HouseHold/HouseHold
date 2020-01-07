@@ -1,22 +1,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 services:
-  _instanceof:
-    App\Core\Application\Command\CommandHandlerInterface:
-      public: true
-      tags:
-        - { name: tactician.handler, typehints: true, bus: command }
-
-    App\Core\Application\Query\QueryHandlerInterface:
-      public: true
-      tags:
-        - { name: tactician.handler, typehints: true, bus: query }
-
-  # Tactician
-  App\:
-    resource: "%kernel.project_dir%/src/**/Application/Command/**/*Handler.php"
-    tags: [{name: tactician.handler, typehints: true}]
-
   ### UI
   App\Core\UI\Cli\Command\:
     resource: '../../UI/Cli/Command'

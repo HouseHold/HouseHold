@@ -22,6 +22,16 @@ services:
       $eventProducer: '@old_sound_rabbit_mq.events_producer'
 
   _instanceof:
+    App\Core\Application\Command\CommandHandlerInterface:
+      public: true
+      tags:
+        - { name: tactician.handler, typehints: true, bus: command }
+
+    App\Core\Application\Query\QueryHandlerInterface:
+      public: true
+      tags:
+        - { name: tactician.handler, typehints: true, bus: query }
+
     Broadway\EventHandling\EventListener:
       public: true
       tags:
