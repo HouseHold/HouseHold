@@ -64,12 +64,6 @@ class Product
      */
     public $collection;
     /**
-     * @var ProductLocation
-     * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="products")
-     * @ORM\JoinColumn(name="productLocation_id", referencedColumnName="id")
-     */
-    public $location;
-    /**
      * @var ProductStock[]
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
      */

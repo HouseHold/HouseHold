@@ -41,12 +41,6 @@ class ProductLocation
     public $name;
 
     /**
-     * @var Product[]|PersistentCollection|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="location")
-     */
-    public $products;
-
-    /**
      * @var ProductStock[]
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="location")
      */
