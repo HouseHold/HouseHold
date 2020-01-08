@@ -21,3 +21,8 @@ services:
   App\Core\UI\Http\Rest\EventSubscriber\JsonBodyParserSubscriber:
     tags:
       - { name: 'kernel.event_listener', event: 'kernel.request', method: 'onKernelRequest', priority: 100 }
+
+  app_user_metadata_enricher:
+    class: App\Core\Infrastructure\Share\Event\Metadata\UserMetadata
+    tags:
+      - { name: 'broadway.metadata_enricher' }
