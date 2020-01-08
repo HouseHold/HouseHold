@@ -22,11 +22,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class DatabaseProductLocationReadModelRepository extends DatabaseRepository implements GetProductLocationByName
 {
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->class = ProductLocation::class;
-        parent::__construct($entityManager);
-    }
+    protected string $class = ProductLocation::class;
 
     /**
      * {@inheritdoc}
