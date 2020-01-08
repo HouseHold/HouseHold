@@ -49,6 +49,13 @@ class ProductStock
      */
     public int $quantity = 0;
 
+    public function __construct(Product $product, ProductLocation $location, int $quantity = 0)
+    {
+        $this->product = $product;
+        $this->location = $location;
+        $this->quantity = $quantity;
+    }
+
     public function getId(): string
     {
         return $this->id;
