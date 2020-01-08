@@ -3,16 +3,3 @@ doctrine:
         types:
           datetime_immutable: App\Core\Infrastructure\Share\Doctrine\DateTimeType
 #    orm:
-#        mappings:
-#            Domain:
-#                is_bundle: false
-#                type: xml
-#                dir: '%kernel.project_dir%/config/mapping/orm/domain'
-#                prefix: 'App\Core\Domain'
-#                alias: Domain
-#            Projections:
-#                is_bundle: false
-#                type: xml
-#                dir: '%kernel.project_dir%/config/mapping/orm/projections'
-#                prefix: 'App\Core\Infrastructure'
-#                alias: Projections
