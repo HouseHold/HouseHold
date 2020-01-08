@@ -2,4 +2,4 @@ doctrine:
     dbal:
         types:
           datetime_immutable: App\Core\Infrastructure\Share\Doctrine\DateTimeType
-#    orm:
+          datetime_micro: App\Core\Infrastructure\Share\Doctrine\DateTimeMicrosecondsType
