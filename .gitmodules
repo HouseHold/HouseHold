@@ -1,0 +1,6 @@
+[submodule "ui"]
+	path = ui
+	url = git@github.com:HouseHold/Frontend.git
+[submodule "api"]
+	path = api
+	url = git@github.com:HouseHold/Node-API-Client.git
