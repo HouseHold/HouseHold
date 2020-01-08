@@ -1,5 +1,5 @@
 .PHONY: start
-start: erase build up db ## clean current environment, recreate dependencies and spin up again
+start: erase build up db ## Clean environment, recreate dependencies and start.
 
 .PHONY: stop
 stop: ## stop environment
@@ -14,36 +14,32 @@ erase: ## stop and delete containers, clean volumes.
 		docker-compose rm -v -f
 
 .PHONY: build
-build: ## build environment and initialize composer and project dependencies
+build: ## Build environment and run composer install.
 		docker-compose build
 		docker-compose run --rm php sh -lc 'xoff;COMPOSER_MEMORY_LIMIT=-1 composer install'
 
 .PHONY: artifact
-artifact: ## build production artifact
+artifact: ## Build production artifact
 		docker-compose -f docker-compose.prod.yml build
 
 .PHONY: composer-update
 composer-update: ## Update project dependencies
-		docker-compose run --rm php sh -lc 'xoff;COMPOSER_MEMORY_LIMIT=-1 composer update'
+		docker-compose run --rm php sh -lc 'COMPOSER_MEMORY_LIMIT=-1 composer update'
 
 .PHONY: up
-up: ## spin up environment
+up: ## Spin up environment
 		docker-compose up -d
 
 .PHONY: phpunit
-phpunit: db ## execute project unit tests
+phpunit: db ## Execute project unit tests
 		docker-compose exec php sh -lc "./vendor/bin/phpunit $(conf)"
 
-.PHONY: style
-style: ## executes php analizers
-		docker-compose run --rm php sh -lc './vendor/bin/phpstan analyse -l 6 -c phpstan.neon src tests'
-
 .PHONY: cs
-cs: ## executes php cs fixer
+cs: ## Executes php cs fixer
 		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction --diff -v fix'
 
 .PHONY: cs-check
-cs-check: ## executes php cs fixer in dry run mode
+cs-check: ## Executes php cs fixer in dry run mode
 		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction --dry-run --diff -v fix'
 
 .PHONY: layer
@@ -51,28 +47,32 @@ layer: ## Check issues with layers
 		docker-compose run --rm php sh -lc 'php bin/deptrac.phar analyze --formatter-graphviz=0'
 
 .PHONY: db
-db: ## recreate database
+db: ## Recreate database
 		docker-compose exec php sh -lc './bin/console d:d:d --force'
 		docker-compose exec php sh -lc './bin/console d:d:c'
 		docker-compose exec php sh -lc './bin/console d:m:m -n'
+
 .PHONY: schema-validate
-schema-validate: ## validate database schema
+schema-validate: ## Validate database schema
 		docker-compose exec php sh -lc './bin/console d:s:v'
 
-.PHONY: xon
-xon: ## activate xdebug simlink
-		docker-compose exec php sh -lc 'xon'
+.PHONY: api
+api: ## Re-Generate Javascript API-Client
+		docker-compose exec php sh -lc 'bin/console api:openapi:export -o api.json'
+		openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec
+		docker-compose exec php sh -lc 'rm -f api.json'
 
-.PHONY: xoff
-xoff: ## deactivate xdebug
-		docker-compose exec php sh -lc 'xoff'
 
 .PHONY: sh
-sh: ## gets inside a container, use 's' variable to select a service. make s=php sh
+sh: ## Open shell terminal inside container. Example: make s=php sh
 		docker-compose exec $(s) sh -l
 
+.PHONY: fish
+fish: ## Open fish terminal inside php container.
+		docker-compose exec php fish -l
+
 .PHONY: logs
-logs: ## look for 's' service logs, make s=php logs
+logs: ## Look for 's' service logs, make s=php logs
 		docker-compose logs -f $(s)
 
 .PHONY: wait-for-elastic
