@@ -14,13 +14,12 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock\Repository;
 
-use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\ProductStockAggregateRoot;
 use Ramsey\Uuid\UuidInterface;
 
 interface ProductStockStoreRepository
 {
-    public function get(UuidInterface $id): ProductStock;
+    public function get(UuidInterface $id): ProductStockAggregateRoot;
 
     public function store(ProductStockAggregateRoot $stock): void;
 }

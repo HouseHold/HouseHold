@@ -39,9 +39,9 @@ final class ProductStockStore extends EventSourcingRepository implements Product
     /**
      * {@inheritdoc}
      *
-     * @return ProductStock|AggregateRoot
+     * @return ProductStockAggregateRoot|AggregateRoot
      */
-    public function get(UuidInterface $id): ProductStock
+    public function get(UuidInterface $id): ProductStockAggregateRoot
     {
         return $this->load($id->toString());
     }

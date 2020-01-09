@@ -15,57 +15,21 @@ declare(strict_types=1);
 namespace App\Stock\Application\Command\AddProductToStock;
 
 use App\Core\Domain\Shared\ValueObject\DateTime;
-use App\Stock\Domain\Product;
-use App\Stock\Domain\ProductLocation;
+use App\Stock\Domain\ProductStock;
 
 final class AddProductToStockCommand
 {
-    /**
-     * @var Product
-     */
-    private Product $product;
-    /**
-     * @var DateTime
-     */
-    private DateTime $bestBefore;
-    /**
-     * @var int
-     */
-    private int $amount;
-    /**
-     * @var ProductLocation
-     */
-    private ProductLocation $location;
+    public ProductStock $stock;
+    public DateTime $bestBefore;
+    public int $amount;
 
     public function __construct(
-        Product $product,
+        ProductStock $stock,
         DateTime $bestBefore,
-        int $amount,
-        ProductLocation $location
+        int $amount
     ) {
-        $this->product = $product;
         $this->bestBefore = $bestBefore;
         $this->amount = $amount;
-        $this->location = $location;
-    }
-
-    public function getProduct(): Product
-    {
-        return $this->product;
-    }
-
-    public function getBestBefore(): DateTime
-    {
-        return $this->bestBefore;
-    }
-
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    public function getLocation(): ProductLocation
-    {
-        return $this->location;
+        $this->stock = $stock;
     }
 }

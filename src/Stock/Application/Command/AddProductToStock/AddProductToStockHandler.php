@@ -22,58 +22,26 @@ use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\Exception\Handler\ProductStockEventStreamIsNotCreatedException;
 use App\Stock\Domain\ProductStock\Exception\ProductStockNotFoundByNameAndLocationException;
-use App\Stock\Domain\ProductStock\Repository\GetProductStockByProductAndLocation;
+use App\Stock\Domain\ProductStock\Repository\ProductStockRepository;
+use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
 use Broadway\Domain\DomainEventStream;
 use Broadway\EventStore\EventStreamNotFoundException;
+use Ramsey\Uuid\Uuid;
 
 final class AddProductToStockHandler implements CommandHandlerInterface
 {
-    /**
-     * @var DbEventStore
-     */
-    private DbEventStore $stockInventoryEventStore;
-    /**
-     * @var GetProductStockByProductAndLocation
-     */
-    private GetProductStockByProductAndLocation $repo;
+    private ProductStockStoreRepository $repository;
 
-    public function __construct(
-        DbEventStore $stockInventoryEventStore,
-        GetProductStockByProductAndLocation $repo
-    ) {
-        $this->stockInventoryEventStore = $stockInventoryEventStore;
-        $this->repo = $repo;
+    public function __construct(ProductStockStoreRepository $repository) {
+        $this->repository = $repository;
     }
 
-    /**
-     * @throws ProductStockNotFoundByNameAndLocationException
-     * @throws ProductStockEventStreamIsNotCreatedException
-     */
     public function __invoke(AddProductToStockCommand $command): void
     {
-        $stock = $this->getStock($command->getProduct(), $command->getLocation());
-        $eventStream = $this->getEventStream($stock);
-        var_dump($stock->quantity);
-        die;
-    }
+        $stock = $this->repository->get(Uuid::fromString($command->stock->getId()));
+        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount));
+        $this->repository->store($stock);
 
-    /**
-     * @throws ProductStockEventStreamIsNotCreatedException
-     */
-    private function getEventStream(ProductStock $stock): DomainEventStream
-    {
-        try {
-            return $this->stockInventoryEventStore->load($stock->getId());
-        } catch (EventStreamNotFoundException $e) {
-            throw new ProductStockEventStreamIsNotCreatedException('Please run '.Init::class.' first!');
-        }
+        var_dump($stock);
     }
-
-    /**
-     * @throws ProductStockNotFoundByNameAndLocationException
-     */
-    private function getStock(Product $product, ProductLocation $productLocation): ProductStock
-    {
-        return $this->repo->getProductStockByProductAndLocation($product, $productLocation);
     }
-}

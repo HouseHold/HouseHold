@@ -22,29 +22,11 @@ use Broadway\Serializer\Serializable;
 
 final class ProductAddedToStock implements Serializable
 {
-    /**
-     * @var Product
-     */
-    public Product $product;
-    /**
-     * @var ProductLocation
-     */
-    public ProductLocation $location;
-    /**
-     * @var int
-     */
-    public int $amount;
-    /**
-     * @var string
-     */
-    public string $id;
+    public int $quantity;
 
-    public function __construct(string $id, Product $product, ProductLocation $location, int $amount)
+    public function __construct(int $quantity)
     {
-        $this->product = $product;
-        $this->location = $location;
-        $this->amount = $amount;
-        $this->id = $id;
+        $this->quantity = $quantity;
     }
 
     /**
@@ -54,17 +36,9 @@ final class ProductAddedToStock implements Serializable
      */
     public static function deserialize(array $data)
     {
-        Assertion::keyExists($data, 'id');
-        Assertion::keyExists($data, 'location');
-        Assertion::keyExists($data, 'product');
-        Assertion::keyExists($data, 'amount');
+        Assertion::keyExists($data, 'quantity');
 
-        return new self(
-            $data['data'],
-            $data['location'],
-            $data['product'],
-            $data['amount']
-        );
+        return new self($data['quantity']);
     }
 
     /**
@@ -73,10 +47,7 @@ final class ProductAddedToStock implements Serializable
     public function serialize(): array
     {
         return [
-            'data'     => $this->location,
-            'location' => $this->location,
-            'product'  => $this->product,
-            'amount'   => $this->amount,
+            'quantity' => $this->quantity,
         ];
     }
 }

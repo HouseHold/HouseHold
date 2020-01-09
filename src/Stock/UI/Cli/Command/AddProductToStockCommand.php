@@ -25,7 +25,9 @@ use App\Stock\Domain\Product\Repository\GetProductByName;
 use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductLocation\Exception\ProductLocationNotFoundByNameException;
 use App\Stock\Domain\ProductLocation\Repository\GetProductLocationByName;
+use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\Exception\ProductStockNotFoundByNameAndLocationException;
+use App\Stock\Domain\ProductStock\Repository\GetProductStockByProductAndLocation;
 use League\Tactician\CommandBus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -34,32 +36,25 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class AddProductToStockCommand extends Command
 {
-    /**
-     * @var CommandBus
-     */
     private CommandBus $commandBus;
-    /**
-     * @var GetProductByName
-     */
     private GetProductByName $productRepo;
-    /**
-     * @var GetProductLocationByName
-     */
     private GetProductLocationByName $locationRepo;
-
     private ProductLocation $productLocation;
-
+    private ProductStock $stock;
     private Product $product;
+    private GetProductStockByProductAndLocation $stockRepo;
 
     public function __construct(
         CommandBus $commandBus,
         GetProductByName $productRepo,
-        GetProductLocationByName $locationRepo
+        GetProductLocationByName $locationRepo,
+        GetProductStockByProductAndLocation $stockRepo
     ) {
         parent::__construct();
         $this->commandBus = $commandBus;
         $this->productRepo = $productRepo;
         $this->locationRepo = $locationRepo;
+        $this->stockRepo = $stockRepo;
     }
 
     protected function configure(): void
@@ -80,17 +75,24 @@ final class AddProductToStockCommand extends Command
      * @throws ProductLocationNotFoundByNameException
      * @throws InputValidationException
      * @throws DateTimeException
+     * @throws ProductStockNotFoundByNameAndLocationException
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->product = $this->productRepo->getProductByName($input->getArgument('product'));
         $this->productLocation = $this->locationRepo->getProductLocationByName($input->getArgument('location'));
 
+        // Try find stock. If not found, create and retry. If fails, let it fail.
         try {
-            $this->commandBus->handle($this->getAddCommand($input));
+            $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         } catch (ProductStockNotFoundByNameAndLocationException $e) {
+            $output->writeln('Stock not found. Creating one...', OutputInterface::VERBOSITY_VERBOSE);
+            $output->writeln('If you get exception after this, persist failed.', OutputInterface::VERBOSITY_DEBUG);
             $this->commandBus->handle($this->getInitCommand());
+            $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         }
+
+        $this->commandBus->handle($this->getAddCommand($input));
     }
 
     /**
@@ -98,8 +100,6 @@ final class AddProductToStockCommand extends Command
      *
      * @throws DateTimeException
      * @throws InputValidationException
-     * @throws ProductLocationNotFoundByNameException
-     * @throws ProductNotFoundByNameException
      */
     private function getAddCommand(InputInterface $input): AddCommand
     {
@@ -109,10 +109,9 @@ final class AddProductToStockCommand extends Command
         }
 
         return new AddCommand(
-            $this->product,
+            $this->stock,
             DateTime::fromString($input->getArgument('best-before')),
-            $amount,
-            $this->productLocation
+            $amount
         );
     }
 

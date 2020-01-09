@@ -16,6 +16,7 @@ namespace App\Stock\Domain\ProductStock;
 
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation;
+use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Event\ProductInitializedStock;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Ramsey\Uuid\Uuid;
@@ -24,11 +25,11 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 {
     private string $id;
 
-    public Product $product;
+    protected Product $product;
 
-    public ProductLocation $location;
+    protected ProductLocation $location;
 
-    public int $quantity;
+    protected int $quantity;
 
     public static function create(string $id, Product $product, ProductLocation $location, int $amount = 0): self
     {
@@ -38,6 +39,11 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         );
 
         return $stock;
+    }
+
+    protected function applyProductAddedToStock(ProductAddedToStock $event): void
+    {
+        $this->quantity =+ $event->quantity;
     }
 
     protected function applyProductInitializedStock(ProductInitializedStock $event): void
