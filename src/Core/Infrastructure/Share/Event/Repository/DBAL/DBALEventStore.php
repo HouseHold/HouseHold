@@ -12,7 +12,7 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Core\Infrastructure\Share\Event\Repository;
+namespace App\Core\Infrastructure\Share\Event\Repository\DBAL;
 
 use App\Core\Infrastructure\Share\Doctrine\DateTimeMicrosecondsType;
 use Broadway\Domain\DateTime;

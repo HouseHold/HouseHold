@@ -12,13 +12,14 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Core\Infrastructure\Share\Event\Repository;
+namespace App\Core\Infrastructure\Share\Event\Repository\DBAL;
 
+use App\Core\Infrastructure\Share\Event\Repository\DbEventStore;
 use Broadway\Serializer\SimpleInterfaceSerializer;
 use Broadway\UuidGenerator\Converter\BinaryUuidConverter;
 use Doctrine\DBAL\Connection;
 
-abstract class AbstractDbEventStore extends DBALEventStore implements DbEventStore
+abstract class AbstractDBALEventStore extends DBALEventStore implements DbEventStore
 {
     protected string $table = '';
 
