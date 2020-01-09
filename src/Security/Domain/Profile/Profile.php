@@ -15,11 +15,14 @@ declare(strict_types=1);
 namespace App\Security\Domain\Profile;
 
 use App\Security\Domain\User\User;
+use DH\DoctrineAuditBundle\Annotation\Auditable;
+use DH\DoctrineAuditBundle\Annotation\Ignore;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="security_profile")
+ * @Auditable()
  */
 class Profile
 {
@@ -27,6 +30,7 @@ class Profile
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Ignore()
      */
     private int $id;
 
@@ -82,6 +86,7 @@ class Profile
      * @var User
      * @ORM\OneToOne(targetEntity="App\Security\Domain\User\User", inversedBy="profile")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Ignore()
      */
     public User $user;
 

@@ -15,12 +15,15 @@ declare(strict_types=1);
 namespace App\Security\Domain\User;
 
 use App\Security\Domain\Profile\Profile;
+use DH\DoctrineAuditBundle\Annotation\Auditable;
+use DH\DoctrineAuditBundle\Annotation\Ignore;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="security_users")
+ * @Auditable()
  */
 class User implements UserInterface
 {
@@ -30,6 +33,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Ignore()
      */
     private int $id;
 
