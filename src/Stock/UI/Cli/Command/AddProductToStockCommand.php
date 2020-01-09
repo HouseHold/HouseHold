@@ -17,11 +17,15 @@ namespace App\Stock\UI\Cli\Command;
 use App\Core\Domain\Shared\Exception\Cli\InputValidationException;
 use App\Core\Domain\Shared\Exception\DateTimeException;
 use App\Core\Domain\Shared\ValueObject\DateTime;
-use App\Stock\Application\Command\AddProductToStock\AddProductToStockCommand as BusCommand;
+use App\Stock\Application\Command\AddProductToStock\AddProductToStockCommand as AddCommand;
+use App\Stock\Application\Command\InitializeProductStock\InitializeProductStockCommand as InitCommand;
+use App\Stock\Domain\Product;
 use App\Stock\Domain\Product\Exception\ProductNotFoundByNameException;
 use App\Stock\Domain\Product\Repository\GetProductByName;
+use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductLocation\Exception\ProductLocationNotFoundByNameException;
 use App\Stock\Domain\ProductLocation\Repository\GetProductLocationByName;
+use App\Stock\Domain\ProductStock\Exception\ProductStockNotFoundByNameAndLocationException;
 use League\Tactician\CommandBus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -42,6 +46,10 @@ final class AddProductToStockCommand extends Command
      * @var GetProductLocationByName
      */
     private GetProductLocationByName $locationRepo;
+
+    private ProductLocation $productLocation;
+
+    private Product $product;
 
     public function __construct(
         CommandBus $commandBus,
@@ -75,18 +83,44 @@ final class AddProductToStockCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
+        $this->product = $this->productRepo->getProductByName($input->getArgument('product'));
+        $this->productLocation = $this->locationRepo->getProductLocationByName($input->getArgument('location'));
+
+        try {
+            $this->commandBus->handle($this->getAddCommand($input));
+        } catch (ProductStockNotFoundByNameAndLocationException $e) {
+            $this->commandBus->handle($this->getInitCommand());
+        }
+    }
+
+    /**
+     * @param int $amount
+     *
+     * @throws DateTimeException
+     * @throws InputValidationException
+     * @throws ProductLocationNotFoundByNameException
+     * @throws ProductNotFoundByNameException
+     */
+    private function getAddCommand(InputInterface $input): AddCommand
+    {
         $amount = (int) $input->getArgument('amount');
         if ($amount < 0) {
             throw new InputValidationException('Amount must be number and > 0.');
         }
 
-        $command = new BusCommand(
-            $this->productRepo->getProductByName($input->getArgument('product')),
+        return new AddCommand(
+            $this->product,
             DateTime::fromString($input->getArgument('best-before')),
             $amount,
-            $this->locationRepo->getProductLocationByName($input->getArgument('location'))
+            $this->productLocation
         );
+    }
 
-        $this->commandBus->handle($command);
+    private function getInitCommand()
+    {
+        return new InitCommand(
+            $this->product,
+            $this->productLocation
+        );
     }
 }
