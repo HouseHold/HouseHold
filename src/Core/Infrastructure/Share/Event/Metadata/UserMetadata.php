@@ -18,7 +18,6 @@ use App\Security\Domain\User\User;
 use Broadway\Domain\Metadata;
 use Broadway\EventSourcing\MetadataEnrichment\MetadataEnricher;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
 
 final class UserMetadata implements MetadataEnricher
@@ -43,18 +42,19 @@ final class UserMetadata implements MetadataEnricher
      */
     public function enrich(Metadata $metadata): Metadata
     {
-        if (PHP_SAPI === 'cli') {
+        if (\PHP_SAPI === 'cli') {
             $user = $this->em->getRepository(User::class)->findOneBy(['id' => User::ADMIN_ID]);
+
             return $metadata->merge(new Metadata([
                 'user' => [
-                    'id' => $user->getId(),
+                    'id'       => $user->getId(),
                     'username' => $user->username,
-                    'roles' => $user->roles,
-                ]
+                    'roles'    => array_merge($user->roles, ['cli']),
+                ],
             ]));
         }
 
-        if ($this->security->getUser() === null && $this->security->getToken() === null && PHP_SAPI !== 'cli') {
+        if (null === $this->security->getUser() && null === $this->security->getToken() && \PHP_SAPI !== 'cli') {
             throw new \LogicException('Smells like a bug and hacking at same time.'); // Should never happen.
         }
 
