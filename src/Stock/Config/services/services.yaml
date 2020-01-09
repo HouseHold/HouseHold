@@ -1,0 +1,6 @@
+services:
+  event.store.stock.inventory:
+    public: true
+    alias: App\Stock\Infrastructure\Share\Event\Repository\StockInventoryEventStore
+
+  App\Core\Infrastructure\Share\Event\Repository\DbEventStore $stockInventoryEventStore: '@event.store.stock.inventory'
