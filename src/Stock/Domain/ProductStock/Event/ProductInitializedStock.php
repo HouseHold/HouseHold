@@ -19,6 +19,7 @@ use App\Stock\Domain\ProductLocation;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Broadway\Serializer\Serializable;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 final class ProductInitializedStock implements Serializable
@@ -58,9 +59,9 @@ final class ProductInitializedStock implements Serializable
         Assertion::keyExists($data, 'quantity');
 
         return new self(
-            $data['id'],
-            $data['product'],
-            $data['location'],
+            Uuid::fromString($data['id']),
+            unserialize($data['product'], ['allowed_classes' => [Product::class]]),
+            unserialize($data['location'], ['allowed_classes' => [ProductLocation::class]]),
             $data['quantity']
         );
     }
@@ -71,9 +72,9 @@ final class ProductInitializedStock implements Serializable
     public function serialize(): array
     {
         return [
-            'id'       => $this->id,
-            'location' => $this->location,
-            'product'  => $this->product,
+            'id'       => $this->id->toString(),
+            'location' => serialize($this->location),
+            'product'  => serialize($this->product),
             'quantity' => $this->quantity,
         ];
     }
