@@ -12,13 +12,10 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Stock\Domain\ProductStock\Repository;
+namespace App\Stock\Domain\ProductStock\Exception\Handler;
 
-use App\Stock\Domain\ProductStock;
+use App\Stock\Domain\Exception\Exception;
 
-interface ProductStockRepository
+final class ProductStockEventStreamIsNotCreatedException extends Exception
 {
-    public function store(ProductStock $stock): void;
-
-    public function apply(): void;
 }
