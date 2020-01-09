@@ -1,6 +1,6 @@
 {
     "type": "project",
-    "license": "MIT",
+    "license": "BSL 1.1",
     "require": {
         "php": "^7.4",
         "ext-iconv": "*",

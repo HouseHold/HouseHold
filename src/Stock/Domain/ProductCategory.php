@@ -25,6 +25,11 @@ use Doctrine\ORM\PersistentCollection;
  */
 class ProductCategory
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string")
+     */
     private string $id;
     /**
      * @ORM\Column(type="string")
