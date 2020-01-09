@@ -14,7 +14,7 @@ doctrine:
         user:     "%env(DATABASE_USER)%"
         password: "%env(DATABASE_PASS)%"
         charset:  UTF8
-        server_version: '10.4'
+        server_version: 'mariadb-10.4.11'
         types:
           uuid_binary: Ramsey\Uuid\Doctrine\UuidBinaryType
         mapping_types:
