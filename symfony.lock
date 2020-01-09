@@ -196,6 +196,9 @@
             "config/packages/knpu_oauth2_client.yaml"
         ]
     },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.1"
+    },
     "lcobucci/jwt": {
         "version": "3.2.3"
     },
@@ -590,6 +593,9 @@
     },
     "twig/twig": {
         "version": "v2.4.4"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.0"
     },
     "webmozart/assert": {
         "version": "1.2.0"
