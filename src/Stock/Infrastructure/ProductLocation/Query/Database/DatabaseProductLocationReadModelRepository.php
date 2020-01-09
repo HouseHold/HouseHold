@@ -18,7 +18,6 @@ use App\Core\Infrastructure\Share\Query\Repository\DatabaseRepository;
 use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductLocation\Exception\ProductLocationNotFoundByNameException;
 use App\Stock\Domain\ProductLocation\Repository\GetProductLocationByName;
-use Doctrine\ORM\EntityManagerInterface;
 
 final class DatabaseProductLocationReadModelRepository extends DatabaseRepository implements GetProductLocationByName
 {
