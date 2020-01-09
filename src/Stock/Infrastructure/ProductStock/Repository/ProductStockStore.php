@@ -14,26 +14,25 @@ declare(strict_types=1);
 
 namespace App\Stock\Infrastructure\ProductStock\Repository;
 
+use App\Core\Infrastructure\Share\Event\Metadata\MetadataCollection;
+use App\Core\Infrastructure\Share\Event\Repository\DbEventStore;
+use App\Core\Infrastructure\Share\Event\Repository\EventSourcingRepository;
 use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\ProductStockAggregateRoot;
-use App\Stock\Domain\ProductStock\Repository\ProductStockRepository;
+use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
 use Broadway\Domain\AggregateRoot;
 use Broadway\EventHandling\EventBus;
-use Broadway\EventSourcing\AggregateFactory\PublicConstructorAggregateFactory;
-use Broadway\EventSourcing\EventSourcingRepository;
-use Broadway\EventStore\EventStore;
 use Ramsey\Uuid\UuidInterface;
 
-final class ProductStockStore extends EventSourcingRepository implements ProductStockRepository
+final class ProductStockStore extends EventSourcingRepository implements ProductStockStoreRepository
 {
-    public function __construct(EventStore $eventStore, EventBus $eventBus, array $eventStreamDecorators = [])
+    public function __construct(DbEventStore $stockInventoryEventStore, EventBus $eventBus, MetadataCollection $collection)
     {
         parent::__construct(
-            $eventStore,
+            $stockInventoryEventStore,
             $eventBus,
             ProductStockAggregateRoot::class,
-            new PublicConstructorAggregateFactory(),
-            $eventStreamDecorators
+            $collection
         );
     }
 
@@ -47,7 +46,7 @@ final class ProductStockStore extends EventSourcingRepository implements Product
         return $this->load($id->toString());
     }
 
-    public function store(ProductStock $stock): void
+    public function store(ProductStockAggregateRoot $stock): void
     {
         $this->save($stock);
     }
