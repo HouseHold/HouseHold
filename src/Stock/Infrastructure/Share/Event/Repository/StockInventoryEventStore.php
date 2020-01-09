@@ -14,10 +14,12 @@ declare(strict_types=1);
 
 namespace App\Stock\Infrastructure\Share\Event\Repository;
 
-use App\Core\Infrastructure\Share\Event\Repository\AbstractDbEventStore;
 use App\Core\Infrastructure\Share\Event\Repository\DbEventStore;
+use App\Core\Infrastructure\Share\Event\Repository\ORM\ORMEventStore;
+use App\Stock\Domain\ProductStock\ProductStockEvent;
 
-final class StockInventoryEventStore extends AbstractDbEventStore implements DbEventStore
+final class StockInventoryEventStore extends ORMEventStore implements DbEventStore
 {
+    protected string $entityClass = ProductStockEvent::class;
     protected string $table = 'stock_inventory_event';
 }

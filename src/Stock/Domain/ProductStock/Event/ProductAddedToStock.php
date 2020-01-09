@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock\Event;
 
-use App\Stock\Domain\Product;
-use App\Stock\Domain\ProductLocation;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Broadway\Serializer\Serializable;

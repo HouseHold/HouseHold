@@ -17,7 +17,6 @@ namespace App\Stock\Infrastructure\ProductStock\Repository;
 use App\Core\Infrastructure\Share\Event\Metadata\MetadataCollection;
 use App\Core\Infrastructure\Share\Event\Repository\DbEventStore;
 use App\Core\Infrastructure\Share\Event\Repository\EventSourcingRepository;
-use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\ProductStockAggregateRoot;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
 use Broadway\Domain\AggregateRoot;

@@ -15,24 +15,16 @@ declare(strict_types=1);
 namespace App\Stock\Application\Command\AddProductToStock;
 
 use App\Core\Application\Command\CommandHandlerInterface;
-use App\Core\Infrastructure\Share\Event\Repository\DbEventStore;
-use App\Stock\Application\Command\InitializeProductStock\InitializeProductStockCommand as Init;
-use App\Stock\Domain\Product;
-use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductStock;
-use App\Stock\Domain\ProductStock\Exception\Handler\ProductStockEventStreamIsNotCreatedException;
-use App\Stock\Domain\ProductStock\Exception\ProductStockNotFoundByNameAndLocationException;
-use App\Stock\Domain\ProductStock\Repository\ProductStockRepository;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
-use Broadway\Domain\DomainEventStream;
-use Broadway\EventStore\EventStreamNotFoundException;
 use Ramsey\Uuid\Uuid;
 
 final class AddProductToStockHandler implements CommandHandlerInterface
 {
     private ProductStockStoreRepository $repository;
 
-    public function __construct(ProductStockStoreRepository $repository) {
+    public function __construct(ProductStockStoreRepository $repository)
+    {
         $this->repository = $repository;
     }
 
@@ -44,4 +36,4 @@ final class AddProductToStockHandler implements CommandHandlerInterface
 
         var_dump($stock);
     }
-    }
+}

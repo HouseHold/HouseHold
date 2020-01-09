@@ -43,7 +43,7 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
     {
-        $this->quantity =+ $event->quantity;
+        $this->quantity = +$event->quantity;
     }
 
     protected function applyProductInitializedStock(ProductInitializedStock $event): void

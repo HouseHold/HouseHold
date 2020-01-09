@@ -12,9 +12,15 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Core\Infrastructure\Share\Event\Repository;
+namespace App\Stock\Domain\ProductStock;
 
-final class CoreEventStoreAbstract extends AbstractDbEventStore implements DbEventStore
+use App\Core\Infrastructure\Share\Event\Repository\ORM\AbstractEventStoreEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="stock_inventory_events")
+ */
+class ProductStockEvent extends AbstractEventStoreEntity
 {
-    protected string $table = 'core_events';
 }
