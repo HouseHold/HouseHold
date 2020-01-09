@@ -58,6 +58,18 @@
             "ref": "56eaa387b5e48ebcc7c95a893b47dfa1ad51449c"
         }
     },
+    "damienharper/doctrine-audit-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "ab8b371ee4206c79a144f3617d8eef3d6e7b87be"
+        },
+        "files": [
+            "config/packages/dh_doctrine_audit.yaml"
+        ]
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -423,6 +435,9 @@
     },
     "symfony/intl": {
         "version": "v4.3.4"
+    },
+    "symfony/lock": {
+        "version": "v4.4.2"
     },
     "symfony/mime": {
         "version": "v4.3.0"

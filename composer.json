@@ -9,6 +9,7 @@
         "beberlei/assert": "^3.2",
         "broadway/broadway-bundle": "^0.4",
         "broadway/event-store-dbal": "^0.3",
+        "damienharper/doctrine-audit-bundle": "^3.2",
         "elasticsearch/elasticsearch": "^7.4",
         "flagception/flagception-bundle": "^3.4",
         "kevinpapst/adminlte-bundle": "^3.0",

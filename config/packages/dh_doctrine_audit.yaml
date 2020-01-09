@@ -1,0 +1,7 @@
+dh_doctrine_audit:
+    # Configuration reference available at:
+    # https://github.com/DamienHarper/DoctrineAuditBundle#configuration
+
+    table_suffix: '_audit'
+    timezone: 'Europe/London'
+
