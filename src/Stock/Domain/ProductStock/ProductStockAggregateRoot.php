@@ -14,19 +14,23 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock;
 
+use App\Core\Infrastructure\Singletons\EvenDispatcherSingleton;
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Event\ProductInitializedStock;
+use App\Stock\Domain\ProductStock\Event\ProductStockEventApplied;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Ramsey\Uuid\Uuid;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-class ProductStockAggregateRoot extends EventSourcedAggregateRoot
+final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 {
     private string $id;
-    public string $product;
-    public string $location;
-    public int $quantity;
+    private string $product;
+    private string $location;
+    private int $quantity;
+    private EventDispatcherInterface $eventDispatcher;
 
     public static function create(string $id, Product $product, ProductLocation $location, int $amount = 0): self
     {
@@ -36,6 +40,12 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         );
 
         return $stock;
+    }
+
+    public function apply($event): void
+    {
+        EvenDispatcherSingleton::get()->dispatch(new ProductStockEventApplied($this));
+        parent::apply($event);
     }
 
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
@@ -57,5 +67,20 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
     public function getAggregateRootId(): string
     {
         return $this->id;
+    }
+
+    public function getProduct(): string
+    {
+        return $this->product;
+    }
+
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
     }
 }
