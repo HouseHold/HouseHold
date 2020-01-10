@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
@@ -34,21 +34,14 @@ class ProductLocation
 
     /**
      * @ORM\Column(type="string")
-     *
-     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public $name;
+    public string $name;
 
     /**
-     * @var ProductStock[]
+     * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="location")
      */
-    public $stocks;
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
+    public PersistentCollection $stocks;
 
     public function getId(): string
     {
