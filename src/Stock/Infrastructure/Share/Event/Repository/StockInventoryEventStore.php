@@ -21,5 +21,4 @@ use App\Stock\Domain\ProductStock\ProductStockEvent;
 final class StockInventoryEventStore extends ORMEventStore implements DbEventStore
 {
     protected string $entityClass = ProductStockEvent::class;
-    protected string $table = 'stock_inventory_event';
 }
