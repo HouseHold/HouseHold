@@ -20,10 +20,10 @@ final class EvenDispatcherSingleton
 {
     private static EventDispatcherInterface $eventDispatcher;
 
-    public static function register(EventDispatcherInterface $eventDispatcher)
+    public static function register(EventDispatcherInterface $eventDispatcher): void
     {
         if (isset(static::$eventDispatcher)) {
-            throw new \LogicException('Cannot set EventDispatcher twice.');
+            return;
         }
 
         static::$eventDispatcher = $eventDispatcher;

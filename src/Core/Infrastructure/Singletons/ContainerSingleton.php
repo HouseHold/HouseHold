@@ -20,10 +20,10 @@ final class ContainerSingleton
 {
     private static ContainerInterface $container;
 
-    public static function register(ContainerInterface $container)
+    public static function register(ContainerInterface $container): void
     {
         if (isset(static::$container)) {
-            throw new \LogicException('Cannot set Container twice.');
+            return;
         }
 
         static::$container = $container;
