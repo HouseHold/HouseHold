@@ -29,25 +29,22 @@ class ProductCollection
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="string")
-     */private string $id;
+     */
+    private string $id;
     /**
      * @ORM\Column(type="string")
-     *
-     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public $name;
+    public string $name;
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
      * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
-     *
-     * @var ProductCategory Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public $category;
+    public ProductCategory $category;
     /**
      * @var Product[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
      */
-    public $products;
+    public PersistentCollection $products;
 
     public function getId(): string
     {

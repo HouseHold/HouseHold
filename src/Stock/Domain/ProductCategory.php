@@ -33,15 +33,13 @@ class ProductCategory
     private string $id;
     /**
      * @ORM\Column(type="string")
-     *
-     * @var string Please solve https://github.com/doctrine/common/issues/881 before adding strict type.
      */
-    public $name;
+    public string $name;
     /**
      * @var ProductCollection[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    public $collections;
+    public PersistentCollection $collections;
 
     public function getId(): string
     {

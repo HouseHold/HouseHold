@@ -119,19 +119,16 @@ class ProductStock
     private string $id;
 
     /**
-     * @var Product
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="stocks")
      */
-    public $product;
+    public Product $product;
 
     /**
-     * @var ProductLocation
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="stocks")
      */
-    public $location;
+    public ProductLocation $location;
 
     /**
-     * @var int
      * @ORM\Column(type="integer")
      * @Groups("add")
      */

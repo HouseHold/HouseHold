@@ -34,40 +34,34 @@ class Product
      */
     private string $id;
     /**
-     * @var string
      * @ORM\Column(type="string", unique=true)
      */
-    public $name;
+    public string $name;
     /**
-     * @var array
      * @ORM\Column(type="json_array")
      */
-    public $ean;
+    public array $ean;
     /**
-     * @var float
      * @ORM\Column(type="float")
      */
-    public $price;
+    public float $price;
     /**
-     * @var bool
      * @ORM\Column(type="boolean")
      */
-    public $expiring;
+    public bool $expiring;
     /**
-     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    public $bestBefore;
+    public \DateTime $bestBefore;
     /**
-     * @var ProductCollection
      * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
      */
-    public $collection;
+    public ProductCollection $collection;
     /**
      * @var ProductStock[]
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
      */
-    public $stocks;
+    public array $stocks;
 
     public function getId(): string
     {
