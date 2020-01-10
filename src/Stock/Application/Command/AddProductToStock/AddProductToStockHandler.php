@@ -33,7 +33,5 @@ final class AddProductToStockHandler implements CommandHandlerInterface
         $stock = $this->repository->get(Uuid::fromString($command->stock->getId()));
         $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount));
         $this->repository->store($stock);
-
-        var_dump($stock);
     }
 }
