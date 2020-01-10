@@ -20,9 +20,6 @@ class DateTime
 {
     const FORMAT = 'Y-m-d\TH:i:s.uP';
 
-    /**
-     * @throws DateTimeException
-     */
     public static function now(): self
     {
         return self::create();
