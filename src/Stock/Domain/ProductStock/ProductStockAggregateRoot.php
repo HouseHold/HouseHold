@@ -44,8 +44,8 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 
     public function apply($event): void
     {
-        EvenDispatcherSingleton::get()->dispatch(new ProductStockEventApplied($this));
         parent::apply($event);
+        EvenDispatcherSingleton::get()->dispatch(new ProductStockEventApplied($this));
     }
 
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
