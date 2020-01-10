@@ -55,20 +55,18 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         $file = $controller[1] ?? 'index';
         $module = explode('\\', static::class)[1];
 
-        /** @noinspection PhpTemplateMissingInspection */
+        // @noinspection PhpTemplateMissingInspection
         return $this->render("@$module/$folder/$file.twig", $params, $response);
     }
 
     /**
-     * @param int $depth
-     * @return array
      * @throws FailedToDecodeBodyException
      */
     protected function decodeBody(int $depth = 2): array
     {
         try {
             return json_decode($this->requestStack->getCurrentRequest()->getContent(), true, $depth, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e)  {
+        } catch (\JsonException $e) {
             throw new FailedToDecodeBodyException($e);
         }
     }
