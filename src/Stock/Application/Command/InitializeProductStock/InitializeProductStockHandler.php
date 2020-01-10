@@ -53,5 +53,6 @@ final class InitializeProductStockHandler implements CommandHandlerInterface
         );
 
         $this->storeRepository->store($root);
+        null === $command->stockCallback ?: ($command->stockCallback)($stock);
     }
 }
