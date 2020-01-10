@@ -14,17 +14,27 @@ declare(strict_types=1);
 
 namespace App\Core\UI\Http\Web\Controller;
 
+use App\Core\Domain\Shared\Exception\FailedToDecodeBodyException;
 use App\Core\Infrastructure\CoreExtension;
+use Doctrine\Persistence\ObjectRepository;
 use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private CommandBus $commandBus;
+
+    private CommandBus $queryBus;
+
+    private RequestStack $requestStack;
+
+    public function __construct(CommandBus $commandBus, CommandBus $queryBus, RequestStack $requestStack)
+    {
+        $this->commandBus = $commandBus;
+        $this->queryBus = $queryBus;
+        $this->requestStack = $requestStack;
+    }
 
     protected function run(object $command): void
     {
@@ -36,13 +46,6 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         return $this->queryBus->handle($query);
     }
 
-    public function __construct(CommandBus $commandBus, CommandBus $queryBus, RequestStack $requestStack)
-    {
-        $this->commandBus = $commandBus;
-        $this->queryBus = $queryBus;
-        $this->requestStack = $requestStack;
-    }
-
     protected function returnView(array $params = [], ?Response $response = null): Response
     {
         $controller = explode('\\', $this->requestStack->getCurrentRequest()->attributes->get('_controller'));
@@ -52,8 +55,42 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         $file = $controller[1] ?? 'index';
         $module = explode('\\', static::class)[1];
 
-        // @noinspection PhpTemplateMissingInspection
+        /** @noinspection PhpTemplateMissingInspection */
         return $this->render("@$module/$folder/$file.twig", $params, $response);
+    }
+
+    /**
+     * @param int $depth
+     * @return array
+     * @throws FailedToDecodeBodyException
+     */
+    protected function decodeBody(int $depth = 2): array
+    {
+        try {
+            return json_decode($this->requestStack->getCurrentRequest()->getContent(), true, $depth, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e)  {
+            throw new FailedToDecodeBodyException($e);
+        }
+    }
+
+    protected function returnForException(\Throwable $e, int $code = 400, string $body = '', bool $setHeader = true): Response
+    {
+        return new Response($body, $code, ['x-debug' => $setHeader ? $e->getMessage() : 'disabled']);
+    }
+
+    protected function getRepository(string $class): ObjectRepository
+    {
+        return $this->getDoctrine()->getRepository($class);
+    }
+
+    protected function findOneBy(string $class, $value, string $key = 'id'): ?object
+    {
+        return $this->getRepository($class)->findOneBy([$key => $value]);
+    }
+
+    protected function getIdFromIRI(string $iri): string
+    {
+        return substr($iri, strrpos($iri, '/') + 1);
     }
 
     protected function getConfig(string $key = '', $default = null)
@@ -83,14 +120,4 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
 
         return isset($data[$key]) ? $data[$key] : $default;
     }
-
-    /**
-     * @var CommandBus
-     */
-    private $commandBus;
-
-    /**
-     * @var CommandBus
-     */
-    private $queryBus;
 }
