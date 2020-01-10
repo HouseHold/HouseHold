@@ -27,10 +27,15 @@ final class InitializeProductStockCommand
      * @var ProductLocation
      */
     public ProductLocation $productLocation;
+    /**
+     * @var callable
+     */
+    public $stockCallback;
 
-    public function __construct(Product $product, ProductLocation $productLocation)
+    public function __construct(Product $product, ProductLocation $productLocation, ?callable $stockCallback = null)
     {
         $this->product = $product;
         $this->productLocation = $productLocation;
+        $this->stockCallback = $stockCallback;
     }
 }
