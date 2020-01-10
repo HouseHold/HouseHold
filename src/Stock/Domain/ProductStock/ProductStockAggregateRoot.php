@@ -24,12 +24,9 @@ use Ramsey\Uuid\Uuid;
 class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 {
     private string $id;
-
-    protected Product $product;
-
-    protected ProductLocation $location;
-
-    protected int $quantity;
+    public string $product;
+    public string $location;
+    public int $quantity;
 
     public static function create(string $id, Product $product, ProductLocation $location, int $amount = 0): self
     {
@@ -43,14 +40,14 @@ class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
     {
-        $this->quantity = +$event->quantity;
+        $this->quantity += $event->quantity;
     }
 
     protected function applyProductInitializedStock(ProductInitializedStock $event): void
     {
         $this->id = $event->id->toString();
-        $this->product = $event->product;
-        $this->location = $event->location;
+        $this->product = $event->product->getId();
+        $this->location = $event->location->getId();
         $this->quantity = $event->quantity;
     }
 

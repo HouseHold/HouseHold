@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="stock_inventory_events")
+ * @ORM\Table(name="stock_inventory_event")
  */
 class ProductStockEvent extends AbstractEventStoreEntity
 {
