@@ -87,7 +87,6 @@ final class AddProductToStockCommand extends Command
             $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         } catch (ProductStockNotFoundByNameAndLocationException $e) {
             $output->writeln('Stock not found. Creating one...', OutputInterface::VERBOSITY_VERBOSE);
-            $output->writeln('If you get exception after this, persist failed.', OutputInterface::VERBOSITY_DEBUG);
             $this->commandBus->handle($this->getInitCommand());
             $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         }
