@@ -54,10 +54,18 @@ final class UserMetadata implements MetadataEnricher
             ]));
         }
 
-        if (null === $this->security->getUser() && null === $this->security->getToken() && \PHP_SAPI !== 'cli') {
+        if (null === $this->security->getUser() && null === $this->security->getToken()) {
             throw new \LogicException('Smells like a bug and hacking at same time.'); // Should never happen.
         }
 
-        throw new \LogicException('No logic implemented, please do so.'); //TODO: Check exception.
+        $user = $this->security->getUser();
+
+        return $metadata->merge(new Metadata([
+            'user' => [
+                'id'       => $user->getId(),
+                'username' => $user->getUsername(),
+                'roles'    => $user->getRoles(),
+            ],
+        ]));
     }
 }
