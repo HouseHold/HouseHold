@@ -14,7 +14,9 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Share\Event\Repository\ORM;
 
+use App\Core\Domain\Shared\ValueObject\DateTime as DT;
 use App\Core\Infrastructure\Share\Event\Repository\ORM\AbstractEventStoreEntity as Entity;
+use Broadway\Domain\DateTime;
 use Broadway\Domain\DomainEventStream;
 use Broadway\Domain\DomainMessage;
 use Broadway\Serializer\SimpleInterfaceSerializer;
@@ -48,9 +50,14 @@ final class ORMEventStoreStaticHelpers
             if (!($event instanceof Entity)) {
                 throw new \LogicException(sprintf('Only %s can be processed.', Entity::class));
             }
-            $result = $event->toArray();
-            $result['payload'] = self::deSerializeData($result['payload']);
-            $result['metadata'] = self::deSerializeData($result['metadata']);
+            // @noinspection PhpParamsInspection
+            $results[] = new DomainMessage(
+                $event->getId(),
+                $event->getPlayHead(),
+                self::deSerializeData($event->getMetadata()),
+                self::deSerializeData($event->getPayload()),
+                DateTime::fromString($event->getRecorded()->format(DT::FORMAT))
+            );
         }
 
         return $results;

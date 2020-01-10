@@ -26,7 +26,12 @@ abstract class AbstractEventStoreEntity
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid_binary")
+     */
+    protected UuidInterface $id;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="`index`")
      */
     protected int $index;
     /**
