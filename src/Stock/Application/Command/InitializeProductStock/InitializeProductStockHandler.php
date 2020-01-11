@@ -48,8 +48,8 @@ final class InitializeProductStockHandler implements CommandHandlerInterface
 
         $root = ProductStockAggregateRoot::create(
             $stock->getId(),
-            $command->product,
-            $command->productLocation
+            $command->product->getId(),
+            $command->productLocation->getId()
         );
 
         $this->storeRepository->store($root);

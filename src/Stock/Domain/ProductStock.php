@@ -16,6 +16,7 @@ namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface as Id;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -113,10 +114,11 @@ class ProductStock
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\Column(type="uuid_binary")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private string $id;
+    private Id $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="stocks")
@@ -141,7 +143,7 @@ class ProductStock
         $this->quantity = $quantity;
     }
 
-    public function getId(): string
+    public function getId(): Id
     {
         return $this->id;
     }

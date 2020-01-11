@@ -29,11 +29,11 @@ use Doctrine\Persistence\ObjectRepository;
 class ORMEventStore implements EventStore, EventStoreManagement
 {
     protected string $entityClass = AbstractEventStoreEntity::class;
-    private EntityManagerInterface $em;
+    protected EntityManagerInterface $em;
     /**
      * @var ObjectRepository|Selectable
      */
-    private ObjectRepository $repo;
+    protected ObjectRepository $repo;
 
     public function __construct(EntityManagerInterface $em)
     {

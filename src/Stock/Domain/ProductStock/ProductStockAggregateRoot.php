@@ -15,29 +15,23 @@ declare(strict_types=1);
 namespace App\Stock\Domain\ProductStock;
 
 use App\Core\Infrastructure\Singletons\EvenDispatcherSingleton;
-use App\Stock\Domain\Product;
-use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Event\ProductInitializedStock;
 use App\Stock\Domain\ProductStock\Event\ProductStockEventApplied;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
-use Ramsey\Uuid\Uuid;
-use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Ramsey\Uuid\UuidInterface as Id;
 
 final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 {
-    private string $id;
-    private string $product;
-    private string $location;
+    private Id $id;
+    private Id $product;
+    private Id $location;
     private int $quantity;
-    private EventDispatcherInterface $eventDispatcher;
 
-    public static function create(string $id, Product $product, ProductLocation $location, int $amount = 0): self
+    public static function create(Id $id, Id $product, Id $location, int $amount = 0): self
     {
         $stock = new static();
-        $stock->apply(
-            new ProductInitializedStock(Uuid::fromString($id), $product, $location, $amount)
-        );
+        $stock->apply(new ProductInitializedStock($id, $product, $location, $amount));
 
         return $stock;
     }
@@ -55,9 +49,9 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 
     protected function applyProductInitializedStock(ProductInitializedStock $event): void
     {
-        $this->id = $event->id->toString();
-        $this->product = $event->product->getId();
-        $this->location = $event->location->getId();
+        $this->id = $event->id;
+        $this->product = $event->product;
+        $this->location = $event->location;
         $this->quantity = $event->quantity;
     }
 
@@ -66,15 +60,15 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
      */
     public function getAggregateRootId(): string
     {
-        return $this->id;
+        return $this->id->toString();
     }
 
-    public function getProduct(): string
+    public function getProduct(): Id
     {
         return $this->product;
     }
 
-    public function getLocation(): string
+    public function getLocation(): Id
     {
         return $this->location;
     }
