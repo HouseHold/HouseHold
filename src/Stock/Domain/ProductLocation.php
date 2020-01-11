@@ -17,6 +17,7 @@ namespace App\Stock\Domain;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
@@ -27,10 +28,11 @@ class ProductLocation
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\Column(type="uuid_binary")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private string $id;
+    private UuidInterface $id;
 
     /**
      * @ORM\Column(type="string")
@@ -43,7 +45,12 @@ class ProductLocation
      */
     public PersistentCollection $stocks;
 
-    public function getId(): string
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getId(): UuidInterface
     {
         return $this->id;
     }

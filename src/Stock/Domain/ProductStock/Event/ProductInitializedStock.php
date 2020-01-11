@@ -14,31 +14,26 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock\Event;
 
-use App\Stock\Domain\Product;
-use App\Stock\Domain\ProductLocation;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Broadway\Serializer\Serializable;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\UuidInterface as Id;
 
 final class ProductInitializedStock implements Serializable
 {
-    public Product $product;
+    public Id $product;
 
-    /**
-     * @var ProductLocation
-     */
-    public ProductLocation $location;
+    public Id $location;
 
     public int $quantity;
 
-    public UuidInterface $id;
+    public Id $id;
 
     /**
      * ProductAddedToStock constructor.
      */
-    public function __construct(UuidInterface $id, Product $product, ProductLocation $location, int $quantity)
+    public function __construct(Id $id, Id $product, Id $location, int $quantity)
     {
         $this->product = $product;
         $this->location = $location;
@@ -60,8 +55,8 @@ final class ProductInitializedStock implements Serializable
 
         return new self(
             Uuid::fromString($data['id']),
-            unserialize($data['product'], ['allowed_classes' => [Product::class]]),
-            unserialize($data['location'], ['allowed_classes' => [ProductLocation::class]]),
+            Uuid::fromString($data['product']),
+            Uuid::fromString($data['location']),
             $data['quantity']
         );
     }
@@ -73,8 +68,8 @@ final class ProductInitializedStock implements Serializable
     {
         return [
             'id'       => $this->id->toString(),
-            'location' => serialize($this->location),
-            'product'  => serialize($this->product),
+            'location' => $this->location->toString(),
+            'product'  => $this->product->toString(),
             'quantity' => $this->quantity,
         ];
     }

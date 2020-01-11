@@ -17,6 +17,7 @@ namespace App\Stock\Domain;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
+use Ramsey\Uuid\UuidInterface as Id;
 
 /**
  * @ORM\Entity
@@ -27,10 +28,11 @@ class ProductCollection
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\Column(type="uuid_binary")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private string $id;
+    private Id $id;
     /**
      * @ORM\Column(type="string")
      */
@@ -46,7 +48,13 @@ class ProductCollection
      */
     public PersistentCollection $products;
 
-    public function getId(): string
+    public function __construct(string $name, ProductCategory $category)
+    {
+        $this->name = $name;
+        $this->category = $category;
+    }
+
+    public function getId(): Id
     {
         return $this->id;
     }

@@ -19,13 +19,7 @@ use App\Stock\Domain\ProductLocation;
 
 final class InitializeProductStockCommand
 {
-    /**
-     * @var Product
-     */
     public Product $product;
-    /**
-     * @var ProductLocation
-     */
     public ProductLocation $productLocation;
     /**
      * @var callable

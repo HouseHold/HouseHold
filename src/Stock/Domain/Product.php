@@ -18,6 +18,8 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Ramsey\Uuid\UuidInterface as Id;
 
 /**
  * @ORM\Entity
@@ -29,10 +31,11 @@ class Product
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @ORM\Column(type="uuid_binary")
      */
-    private string $id;
+    private Id $id;
     /**
      * @ORM\Column(type="string", unique=true)
      */
@@ -58,12 +61,28 @@ class Product
      */
     public ProductCollection $collection;
     /**
-     * @var ProductStock[]
+     * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
      */
-    public array $stocks;
+    public PersistentCollection $stocks;
 
-    public function getId(): string
+    public function __construct(
+        string $name,
+        array $ean,
+        float $price,
+        bool $expiring,
+        \DateTime $bestBefore,
+        ProductCollection $collection
+    ) {
+        $this->name = $name;
+        $this->ean = $ean;
+        $this->price = $price;
+        $this->expiring = $expiring;
+        $this->bestBefore = $bestBefore;
+        $this->collection = $collection;
+    }
+
+    public function getId(): Id
     {
         return $this->id;
     }
