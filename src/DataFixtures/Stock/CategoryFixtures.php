@@ -17,8 +17,10 @@ namespace App\DataFixtures\Stock;
 use App\Stock\Domain\ProductCategory;
 use Doctrine\Common\Persistence\ObjectManager;
 
-final class CategoryFixtures extends AbstractStockFixture
+final class CategoryFixtures extends AbstractDependentFixture
 {
+    public const DEPS = [StockCleanupBeforeFixtures::class];
+
     public const NAME_1 = 'Sweets';
     public const NAME_2 = 'Alcohol';
     public const NAME_3 = 'Drinks';

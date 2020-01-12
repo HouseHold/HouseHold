@@ -22,7 +22,7 @@ use App\Stock\Domain\ProductStock;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class AAA_StockCleanupBeforeFixtures extends AbstractStockFixture
+final class StockCleanupBeforeFixtures extends AbstractStockFixture
 {
     /**
      * @var EntityManagerInterface
