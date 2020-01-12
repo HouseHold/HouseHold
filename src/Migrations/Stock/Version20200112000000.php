@@ -17,9 +17,6 @@ namespace App\Migrations\Stock;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20200112000000 extends AbstractMigration
 {
     public function getDescription(): string
@@ -29,7 +26,6 @@ final class Version20200112000000 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE stock_product (id BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid_binary)\', collection_id BINARY(16) DEFAULT NULL COMMENT \'(DC2Type:uuid_binary)\', name VARCHAR(255) NOT NULL, ean LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\', price DOUBLE PRECISION NOT NULL, expiring TINYINT(1) NOT NULL, best_before DATETIME NOT NULL, UNIQUE INDEX UNIQ_CAEC140E5E237E06 (name), INDEX IDX_CAEC140E514956FD (collection_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
@@ -46,7 +42,6 @@ final class Version20200112000000 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE stock_inventory DROP FOREIGN KEY FK_29B0ACDE4584665A');
