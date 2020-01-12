@@ -17,9 +17,6 @@ namespace App\Migrations\Security;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20200109000000 extends AbstractMigration
 {
     public function getDescription(): string
@@ -29,7 +26,6 @@ final class Version20200109000000 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE security_profile_audit (id INT UNSIGNED AUTO_INCREMENT NOT NULL, type VARCHAR(10) NOT NULL, object_id VARCHAR(255) NOT NULL, discriminator VARCHAR(255) DEFAULT NULL, transaction_hash VARCHAR(40) DEFAULT NULL, diffs JSON DEFAULT NULL, blame_id VARCHAR(255) DEFAULT NULL, blame_user VARCHAR(255) DEFAULT NULL, blame_user_fqdn VARCHAR(255) DEFAULT NULL, blame_user_firewall VARCHAR(100) DEFAULT NULL, ip VARCHAR(45) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX type_5b8479dec0fcd919bd53ebb9a033cf8e_idx (type), INDEX object_id_5b8479dec0fcd919bd53ebb9a033cf8e_idx (object_id), INDEX discriminator_5b8479dec0fcd919bd53ebb9a033cf8e_idx (discriminator), INDEX transaction_hash_5b8479dec0fcd919bd53ebb9a033cf8e_idx (transaction_hash), INDEX blame_id_5b8479dec0fcd919bd53ebb9a033cf8e_idx (blame_id), INDEX created_at_5b8479dec0fcd919bd53ebb9a033cf8e_idx (created_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
@@ -38,7 +34,6 @@ final class Version20200109000000 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE security_profile_audit');

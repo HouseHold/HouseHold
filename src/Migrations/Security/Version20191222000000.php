@@ -26,7 +26,6 @@ final class Version20191222000000 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE security_profile CHANGE user_id user_id INT DEFAULT NULL, CHANGE state state VARCHAR(255) DEFAULT NULL');
@@ -36,7 +35,6 @@ final class Version20191222000000 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE security_profile DROP FOREIGN KEY FK_ECBCA112A76ED395');
