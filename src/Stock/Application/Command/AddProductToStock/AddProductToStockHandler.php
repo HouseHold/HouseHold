@@ -31,7 +31,7 @@ final class AddProductToStockHandler implements CommandHandlerInterface
     public function __invoke(AddProductToStockCommand $command): void
     {
         $stock = $this->repository->get(Uuid::fromString($command->stock->getId()));
-        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount));
+        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount, $command->bestBefore->toNative()));
         $this->repository->store($stock);
     }
 }

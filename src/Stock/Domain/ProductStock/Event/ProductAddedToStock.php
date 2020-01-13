@@ -21,10 +21,12 @@ use Broadway\Serializer\Serializable;
 final class ProductAddedToStock implements Serializable
 {
     public int $quantity;
+    public \DateTimeImmutable $bestBefore;
 
-    public function __construct(int $quantity)
+    public function __construct(int $quantity, \DateTimeImmutable $bestBefore)
     {
         $this->quantity = $quantity;
+        $this->bestBefore = $bestBefore;
     }
 
     /**
@@ -35,8 +37,9 @@ final class ProductAddedToStock implements Serializable
     public static function deserialize(array $data)
     {
         Assertion::keyExists($data, 'quantity');
+        Assertion::keyExists($data, 'bestBefore');
 
-        return new self($data['quantity']);
+        return new self($data['quantity'], new \DateTimeImmutable($data['bestBefore']));
     }
 
     /**
@@ -45,7 +48,8 @@ final class ProductAddedToStock implements Serializable
     public function serialize(): array
     {
         return [
-            'quantity' => $this->quantity,
+            'quantity'   => $this->quantity,
+            'bestBefore' => $this->bestBefore->format(DATE_ATOM),
         ];
     }
 }
