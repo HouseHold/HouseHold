@@ -16,6 +16,7 @@ namespace App\Stock\Domain\ProductStock;
 
 use App\Core\Infrastructure\Singletons\EvenDispatcherSingleton;
 use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
+use App\Stock\Domain\ProductStock\Event\ProductConsumedStock;
 use App\Stock\Domain\ProductStock\Event\ProductInitializedStock;
 use App\Stock\Domain\ProductStock\Event\ProductStockEventApplied;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
@@ -42,17 +43,25 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         EvenDispatcherSingleton::get()->dispatch(new ProductStockEventApplied($this));
     }
 
+    /** @noinspection PhpUnused */
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
     {
         $this->quantity += $event->quantity;
     }
 
+    /** @noinspection PhpUnused */
     protected function applyProductInitializedStock(ProductInitializedStock $event): void
     {
         $this->id = $event->id;
         $this->product = $event->product;
         $this->location = $event->location;
         $this->quantity = $event->quantity;
+    }
+
+    /** @noinspection PhpUnused */
+    protected function applyProductConsumedStock(ProductConsumedStock $event): void
+    {
+        $this->quantity -= $event->quantity;
     }
 
     /**
