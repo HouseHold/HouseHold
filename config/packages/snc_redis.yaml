@@ -1,0 +1,29 @@
+snc_redis:
+    clients:
+        default:
+            type: phpredis
+            alias: default
+            dsn: 'redis://%env(REDIS_HOST)%:%env(REDIS_PORT)%/%env(REDIS_INDEX)%'
+            logging: '%kernel.debug%'
+    session:
+        client: default
+        prefix: sess_
+        ttl: '%env(APP_SESSION_TTL)%'
+    doctrine:
+        metadata_cache:
+            client: default
+            entity_manager: default
+            document_manager: default
+            namespace: 'dmc_'
+        result_cache:
+            client: default
+            entity_manager: [default, read]
+            namespace: 'drc_'
+        query_cache:
+            client: default
+            entity_manager: default
+            namespace: 'dqc_'
+        second_level_cache:
+            client: default
+            entity_manager: default
+            namespace: 'dsl2c_'

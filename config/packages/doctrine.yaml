@@ -21,5 +21,12 @@ doctrine:
           uuid_binary: binary
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                second_level_cache:
+                    region_cache_driver:
+                        type: service
+                        id: cache.doctrine.redis
+                    enabled: true

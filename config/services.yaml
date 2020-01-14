@@ -37,6 +37,16 @@ services:
       tags:
         - { name: broadway.domain.event_listener }
 
+  cache.doctrine.redis:
+    class: '%snc_redis.doctrine_cache_phpredis.class%'
+    arguments:
+      - '@snc_redis.default'
+
+  cache.session.redis:
+    class: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
+    arguments:
+      ['@snc_redis.default']
+
   App\:
     resource: '../src/**/*'
     exclude: '../src/**/**/{Migrations}'

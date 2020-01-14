@@ -1,15 +1,20 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #default_locale: en
-    #csrf_protection: ~
-    #http_method_override: true
+    default_locale: en
 
-    # uncomment this entire section to enable sessions
+    cache:
+        prefix_seed: "HH"
+        app: cache.adapter.redis
+        system: cache.adapter.redis
+        default_redis_provider: "redis://%env(REDIS_HOST)%:%env(REDIS_PORT)%/%env(REDIS_INDEX)%"
+
     session:
-        handler_id: ~
+        handler_id: snc_redis.session.handler
+        name: "HOUSEHOLD"
 
-    #esi: ~
-    #fragments: ~
+    #annotations:
+    #    cache: cache.adapter.redis_native
+
     php_errors:
         log: true
     router:
