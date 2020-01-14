@@ -25,10 +25,10 @@ services:
       - rmq
 
   workers:
-    image: jorge07/alpine-php:7.3.5-dev
+    build: ./etc/dev/php
     volumes:
       - .:/app
-    command: ['/app/bin/console', 'rabbitmq:multiple-consumer', 'events']
+    command: ['/app/bin/console', 'messenger:consume-messages', 'async']
 
   db:
     image: mariadb:10.4
@@ -42,6 +42,11 @@ services:
       - MYSQL_DATABASE=household
     volumes:
       - db_data:/var/lib/mysql
+
+  redis:
+    image: redis:5-alpine
+    ports:
+    - "6379:6379"
 
   pma:
     image: phpmyadmin/phpmyadmin
@@ -64,14 +69,14 @@ services:
       - "5672:5672"
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.6.1
+    image: docker.elastic.co/kibana/kibana:7.5.1
     ports:
       - 5601:5601
     volumes:
       - "$PWD/etc/dev/kibana/config:/usr/share/kibana/config/kibana.yml"
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     environment:
       - "discovery.type=single-node"
     ports:

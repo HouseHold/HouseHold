@@ -14,10 +14,11 @@ declare(strict_types=1);
 
 namespace App\Stock\Application\Command\AddProductToStock;
 
+use App\Core\Application\Command\SyncCommand;
 use App\Core\Domain\Shared\ValueObject\DateTime;
 use App\Stock\Domain\ProductStock;
 
-final class AddProductToStockCommand
+final class AddProductToStockCommand implements SyncCommand
 {
     public ProductStock $stock;
     public DateTime $bestBefore;

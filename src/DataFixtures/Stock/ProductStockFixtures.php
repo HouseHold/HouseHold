@@ -22,7 +22,7 @@ use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation as PL;
 use App\Stock\Domain\ProductStock;
 use Doctrine\Common\Persistence\ObjectManager;
-use League\Tactician\CommandBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class ProductStockFixtures extends AbstractDependentFixture
 {
@@ -34,12 +34,9 @@ final class ProductStockFixtures extends AbstractDependentFixture
             ProductLocationFixtures::class,
         ];
 
-    /**
-     * @var CommandBus
-     */
-    private CommandBus $commandBus;
+    private MessageBusInterface $commandBus;
 
-    public function __construct(CommandBus $commandBus)
+    public function __construct(MessageBusInterface $commandBus)
     {
         $this->commandBus = $commandBus;
     }
@@ -59,12 +56,12 @@ final class ProductStockFixtures extends AbstractDependentFixture
                     $product = $manager->getRepository(Product::class)->findOneBy(['name' => $product]);
                     $location = $manager->getRepository(PL::class)->findOneBy(['name' => PLF::ALL[rand(0, 4)]]);
                     $stock = null;
-                    $this->commandBus->handle(new InitializeProductStockCommand(
+                    $this->commandBus->dispatch(new InitializeProductStockCommand(
                         $product,
                         $location,
                         function (ProductStock $s) use (&$stock) {$stock = $s; }
                     ));
-                    $this->commandBus->handle(new AddProductToStockCommand(
+                    $this->commandBus->dispatch(new AddProductToStockCommand(
                         $stock,
                         DateTime::fromString($product->bestBefore->format(DATE_ATOM)),
                         rand(1, 20)

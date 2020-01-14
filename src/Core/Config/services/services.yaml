@@ -1,10 +1,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 services:
-  ### UI
-  App\Core\UI\Cli\Command\:
-    resource: '../../UI/Cli/Command'
-
   App\Core\UI\Http\Rest\Controller\:
     resource: '../../UI/Http/Rest/Controller/*'
     tags: [ 'controller.service_arguments' ]

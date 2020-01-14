@@ -28,15 +28,15 @@ use App\Stock\Domain\ProductLocation\Repository\GetProductLocationByName;
 use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\Exception\ProductStockNotFoundByNameAndLocationException;
 use App\Stock\Domain\ProductStock\Repository\GetProductStockByProductAndLocation;
-use League\Tactician\CommandBus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class AddProductToStockCommand extends Command
 {
-    private CommandBus $commandBus;
+    private MessageBusInterface $commandBus;
     private GetProductByName $productRepo;
     private GetProductLocationByName $locationRepo;
     private ProductLocation $productLocation;
@@ -45,7 +45,7 @@ final class AddProductToStockCommand extends Command
     private GetProductStockByProductAndLocation $stockRepo;
 
     public function __construct(
-        CommandBus $commandBus,
+        MessageBusInterface $commandBus,
         GetProductByName $productRepo,
         GetProductLocationByName $locationRepo,
         GetProductStockByProductAndLocation $stockRepo
@@ -87,11 +87,11 @@ final class AddProductToStockCommand extends Command
             $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         } catch (ProductStockNotFoundByNameAndLocationException $e) {
             $output->writeln('Stock not found. Creating one...', OutputInterface::VERBOSITY_VERBOSE);
-            $this->commandBus->handle($this->getInitCommand());
+            $this->commandBus->dispatch($this->getInitCommand());
             $this->stock = $this->stockRepo->getProductStockByProductAndLocation($this->product, $this->productLocation);
         }
 
-        $this->commandBus->handle($this->getAddCommand($input));
+        $this->commandBus->dispatch($this->getAddCommand($input));
     }
 
     /**

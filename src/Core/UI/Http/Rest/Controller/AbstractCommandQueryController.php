@@ -15,24 +15,25 @@ declare(strict_types=1);
 namespace App\Core\UI\Http\Rest\Controller;
 
 use App\Core\UI\Http\Rest\Response\JsonApiFormatter;
-use League\Tactician\CommandBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 abstract class AbstractCommandQueryController extends AbstractQueryController
 {
-    protected function exec($command): void
-    {
-        $this->commandBus->handle($command);
-    }
+    private MessageBusInterface $commandBus;
 
-    public function __construct(CommandBus $commandBus, CommandBus $queryBus, JsonApiFormatter $formatter, UrlGeneratorInterface $router)
-    {
+    public function __construct(
+        MessageBusInterface $commandBus,
+        MessageBusInterface $queryBus,
+        JsonApiFormatter $formatter,
+        UrlGeneratorInterface $router
+    ) {
         parent::__construct($queryBus, $formatter, $router);
         $this->commandBus = $commandBus;
     }
 
-    /**
-     * @var CommandBus
-     */
-    private $commandBus;
+    protected function exec($command): void
+    {
+        $this->commandBus->dispatch($command);
+    }
 }

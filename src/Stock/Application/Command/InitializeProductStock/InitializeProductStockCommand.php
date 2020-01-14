@@ -14,10 +14,11 @@ declare(strict_types=1);
 
 namespace App\Stock\Application\Command\InitializeProductStock;
 
+use App\Core\Application\Command\SyncCommand;
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation;
 
-final class InitializeProductStockCommand
+final class InitializeProductStockCommand implements SyncCommand
 {
     public Product $product;
     public ProductLocation $productLocation;
