@@ -90,6 +90,6 @@
             "require": "^4.4"
         }
     },
-    "name": "niko9911/household",
+    "name": "household/household",
     "description": "Household management for home."
 }
