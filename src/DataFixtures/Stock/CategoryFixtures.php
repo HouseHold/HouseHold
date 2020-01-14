@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Stock;
 
 use App\Stock\Domain\ProductCategory;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 final class CategoryFixtures extends AbstractDependentFixture
 {

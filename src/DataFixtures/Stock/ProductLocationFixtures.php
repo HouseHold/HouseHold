@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Stock;
 
 use App\Stock\Domain\ProductLocation;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 final class ProductLocationFixtures extends AbstractStockFixture
 {

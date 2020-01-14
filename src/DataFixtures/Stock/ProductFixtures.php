@@ -16,7 +16,7 @@ namespace App\DataFixtures\Stock;
 
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductCollection;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 final class ProductFixtures extends AbstractDependentFixture

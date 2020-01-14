@@ -21,7 +21,7 @@ use App\Stock\Application\Command\InitializeProductStock\InitializeProductStockC
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation as PL;
 use App\Stock\Domain\ProductStock;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class ProductStockFixtures extends AbstractDependentFixture
