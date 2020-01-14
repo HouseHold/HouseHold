@@ -16,7 +16,7 @@ namespace App\DataFixtures\Stock;
 
 use App\Stock\Domain\ProductCategory;
 use App\Stock\Domain\ProductCollection;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 final class CollectionFixtures extends AbstractDependentFixture
 {

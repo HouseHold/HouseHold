@@ -19,7 +19,7 @@ use App\Stock\Domain\ProductCategory;
 use App\Stock\Domain\ProductCollection;
 use App\Stock\Domain\ProductLocation;
 use App\Stock\Domain\ProductStock;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class StockCleanupBeforeFixtures extends AbstractStockFixture
