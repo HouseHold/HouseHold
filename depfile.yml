@@ -2,6 +2,10 @@ paths:
   - ./src
 exclude_files:
 layers:
+  - name: Controller
+    collectors:
+      - type: className
+        regex: App\\*\\Ui\Http\Api\Controller\\.*Controller.*
   - name: Domain
     collectors:
       - type: className
@@ -15,10 +19,10 @@ layers:
       - type: className
         regex: App\\*\\Infrastructure\\.*
 ruleset:
+  Controller:
+    - Infrastructure
   Domain:
   Application:
-    - Domain
     - Infrastructure
   Infrastructure:
     - Domain
-    - Application
