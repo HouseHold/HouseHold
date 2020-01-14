@@ -4,7 +4,7 @@ snc_redis:
             type: phpredis
             alias: default
             dsn: 'redis://%env(REDIS_HOST)%:%env(REDIS_PORT)%/%env(REDIS_INDEX)%'
-            logging: '%kernel.debug%'
+            logging: false
     session:
         client: default
         prefix: sess_
