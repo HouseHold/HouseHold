@@ -17,19 +17,19 @@ namespace App\Core\UI\Http\Web\Controller;
 use App\Core\Domain\Shared\Exception\FailedToDecodeBodyException;
 use App\Core\Infrastructure\CoreExtension;
 use Doctrine\Persistence\ObjectRepository;
-use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
-    private CommandBus $commandBus;
+    private MessageBusInterface $commandBus;
 
-    private CommandBus $queryBus;
+    private MessageBusInterface $queryBus;
 
     private RequestStack $requestStack;
 
-    public function __construct(CommandBus $commandBus, CommandBus $queryBus, RequestStack $requestStack)
+    public function __construct(MessageBusInterface $commandBus, MessageBusInterface $queryBus, RequestStack $requestStack)
     {
         $this->commandBus = $commandBus;
         $this->queryBus = $queryBus;
@@ -38,12 +38,12 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
 
     protected function run(object $command): void
     {
-        $this->commandBus->handle($command);
+        $this->commandBus->dispatch($command);
     }
 
     protected function ask(object $query)
     {
-        return $this->queryBus->handle($query);
+        return $this->queryBus->dispatch($query);
     }
 
     protected function returnView(array $params = [], ?Response $response = null): Response

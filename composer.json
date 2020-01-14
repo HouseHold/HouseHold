@@ -3,6 +3,7 @@
     "license": "BSL 1.1",
     "require": {
         "php": "^7.4",
+        "ext-amqp": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "api-platform/api-pack": "^1.2",

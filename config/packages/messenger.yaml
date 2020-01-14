@@ -4,11 +4,19 @@ framework:
         # failure_transport: failed
 
         transports:
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+            async: "%env(MESSENGER_TRANSPORT_DSN)%"
+            sync: 'sync://'
+        default_bus: messenger.bus.command
+        buses:
+            messenger.bus.command:
+                middleware:
+                    - validation
+            messenger.bus.query:
+                middleware:
+                    - validation
+            messenger.bus.event:
+                default_middleware: allow_no_handlers
 
         routing:
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'App\Core\Application\Command\AsyncCommand': async
+            'App\Core\Application\Command\SyncCommand': sync

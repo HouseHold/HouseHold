@@ -17,17 +17,27 @@ namespace App\Core\UI\Http\Rest\Controller;
 use App\Core\Application\Query\Collection;
 use App\Core\Application\Query\Item;
 use App\Core\UI\Http\Rest\Response\JsonApiFormatter;
-use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 abstract class AbstractQueryController
 {
     private const CACHE_MAX_AGE = 31536000; // Year.
+    private JsonApiFormatter $formatter;
+    private MessageBusInterface  $queryBus;
+    private UrlGeneratorInterface $router;
+
+    public function __construct(MessageBusInterface $queryBus, JsonApiFormatter $formatter, UrlGeneratorInterface $router)
+    {
+        $this->queryBus = $queryBus;
+        $this->formatter = $formatter;
+        $this->router = $router;
+    }
 
     protected function ask($query)
     {
-        return $this->queryBus->handle($query);
+        return $this->queryBus->dispatch($query);
     }
 
     protected function jsonCollection(Collection $collection, bool $isImmutable = false): JsonResponse
@@ -57,26 +67,4 @@ abstract class AbstractQueryController
                 ->setSharedMaxAge(self::CACHE_MAX_AGE);
         }
     }
-
-    public function __construct(CommandBus $queryBus, JsonApiFormatter $formatter, UrlGeneratorInterface $router)
-    {
-        $this->queryBus = $queryBus;
-        $this->formatter = $formatter;
-        $this->router = $router;
-    }
-
-    /**
-     * @var JsonApiFormatter
-     */
-    private $formatter;
-
-    /**
-     * @var CommandBus
-     */
-    private $queryBus;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
 }

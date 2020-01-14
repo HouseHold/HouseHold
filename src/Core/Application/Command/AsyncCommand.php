@@ -12,10 +12,8 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Stock\Application\Command\ConsumeProductFromStock;
+namespace App\Core\Application\Command;
 
-use App\Core\Application\Command\SyncCommand;
-
-final class ConsumeProductFromStockCommand implements SyncCommand
+interface AsyncCommand
 {
 }
