@@ -1,17 +1,53 @@
-# Household
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![BSL License][license-shield]][license-url]
 
-## Notice 
-**UNDER HEAVY DEVELOPMENT**
-Check other branches to follow the development.
 
-To support this project, please leave a star!
+<br />
+<p align="center">
+  <!--
+  <a href="https://github.com/HouseHold/HouseHold">
+    <img src="logo.png" alt="Logo" width="80" height="80">
+  </a>
+  -->
 
-## About HouseHold
+  <h3 align="center">HouseHold</h3>
+
+  <p align="center">
+    HouseHold is self-hosted web-based application to manage your home.
+    <br />
+    <strong> HouseHold is in Alpha and expirencing heavy development></strong>
+    <!-- <a href="https://github.com/HouseHold/HouseHold"><strong>Explore the docs »</strong></a> -->
+    <br />
+    <br />
+    <!-- TODO: <a href="https://github.com/github_username/repo">View Demo</a> -->
+    <!-- · -->
+    <a href="https://github.com/HouseHold/HouseHold/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/HouseHold/HouseHold/issues">Request Feature</a>
+  </p>
+</p>
+
+
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+
+
+
+## About The Project
 
 HouseHold is a management system for home. Manage stock of your home
-food supplies and many other. Any ideas are welcome in form of issue.
-
-## Background
+food supplies and many other.
 
 At this stage this is fork [Grocy](https://github.com/grocy/grocy).
 To be exact, this started due Grocy code being a mess according to me
@@ -26,41 +62,110 @@ will separate HouseHold will start developing it own features. This meaning
 some features added to Grocy after HouseHold release 1.0 will not maybe
 added automatically into HouseHold.
 
-## Install
-**This is not recommended to be used in production yet**
+### Built With
 
-### Docker
-**TBD**
+* [PHP 7.4](https://php.net)
+* [Vue](https://vuejs.org/)
+* [Symfony ](https://symfony.com/)
 
-### Manual
-**TODO**
+## Getting Started
 
-This is just a draft. It might work or it might not. Please
-extend this guide as you see fit.
+This is not production ready. Do not use this is production, until 1.0.0 is released.
+When 1.0.0 is released, there will be docker package available. For now there is nothing.
 
-#### Requirements
-- MariaDB 10.4
-- PHP 7.4
+### Prerequisites
 
-#### Steps
-Basically follow these steps with your own knowledge.
-- Clone repository from `master`.
-- Run `composer install`
-- Run `yarn install`
-- Edit `.env`
-- Run `yarn encore production`
-- Run `bin/console doctrine:migrations:migrate`
+Please make sure following packages are installed:
+* make
+* docker
+* docker-compose
+```sh
+sudo apt-get install make docker docker-compose -y
+== OR ==
+sudo yum install make docker docker-compose -y
+== OR ==
+sudo apk add make docker docker-compose
+```
 
-Now it should be running somewhere.
+### Installation
+ 
+1. Clone the repo
+```sh
+git clone --recurse-submodules -j8 https://github.com/HouseHold/HouseHold.git
+```
+2. Install dependencies.
+```sh
+make start
+```
 
-#### Update
+<strong> Notice: </strong> This is development guide and might not be up-to-date.
 
-- Run `git pull origin master`
-- Run `rm -rf vendor node_modules`
-- Run `composer install`
-- Run `yarn install`
-- Run `yarn encore production`
-- Run `bin/console doctrine:migrations:migrate`
+## Roadmap
 
-# License
-Plese see LICENSE -file for details. Commercial licensing and support available on request.
+See the [open issues](https://github.com/HouseHold/HouseHold/issues) for a list of proposed features (and known issues).
+
+For now development progress can be seen here in simple steps.
+
+- [x] Create CQRS, DDD, EventSourcing Core.
+- [x] Setup Vue frontend.
+- [ ] Stock Management Backend (API).
+- [ ] Stock Management Frontend.
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. However, please follow following rules to contribute so we can keep code clean.
+
+### Obtainign a copy
+
+In order to submit a pull request, you will need to fork the project and obtain a fresh copy of the source code.
+
+### Choosing the branch
+
+- I am submitting a bugfix for a stavle release.
+  - Please target lowest possible active stable branch.
+- I am submitting a new feature.
+  - Please target master branch.
+- I am submitting a BC change.
+  - Please target master branch.
+  - Please provide deprecation for lowest possible active stable branch.
+
+
+Please always create a new branch for your changes (i.e. do not commit directly into `master` in your fork), otherwise you would run into troubles with creating multiple pull requests.
+
+### Coding standard.
+
+Always follow the previous coding standard applied in the code. You will get it, if you just read it trough. Please also always run the phpcsfixer. Fixer can  be run with command `make cs`.
+
+### Tests
+
+Please always add tests for your changes.
+- If you are fixing a bug, create test file into `tests/{Functional,Unit,Integration}/Ticket/GHxxxxxTest.php`. 
+Part with `xxx` should be the ID of the ticket.
+- If you are adding a feature, please provide a tests to cover it fully.
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the BSL 1.1 License. See `LICENSE.md` for more information.
+
+<small>_License might be change in future, but for now it will go under BSL 1.1 to
+support single contributor effort develop the software._</small>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[activity-shield]: https://img.shields.io/github/commit-activity/m/HouseHold/HouseHold?label=commits
+[activity-link]: https://github.com/HouseHold/HouseHold/commits/master
+[contributors-shield]: https://img.shields.io/github/contributors/HouseHold/HouseHold.svg?style=flat-square
+[contributors-url]: https://github.com/HouseHold/HouseHold/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/HouseHold/HouseHold.svg?style=flat-square
+[forks-url]: https://github.com/HouseHold/HouseHold/network/members
+[stars-shield]: https://img.shields.io/github/stars/HouseHold/HouseHold.svg?style=flat-square
+[stars-url]: https://github.com/HouseHold/HouseHold/stargazers
+[issues-shield]: https://img.shields.io/github/issues/HouseHold/HouseHold.svg?style=flat-square
+[issues-url]: https://github.com/HouseHold/HouseHold/issues
+[license-shield]: https://img.shields.io/badge/License-BSL%201.1-brightgreen.svg?style=flat-square
+[license-url]: https://github.com/HouseHold/HouseHold/blob/master/LICENSE.txt
+[product-screenshot]: images/screenshot.png
