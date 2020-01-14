@@ -59,11 +59,13 @@ class Product
     public \DateTime $bestBefore;
     /**
      * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
+     * @ORM\Cache
      */
     public ProductCollection $collection;
     /**
      * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
+     * @ORM\Cache
      */
     public PersistentCollection $stocks;
 

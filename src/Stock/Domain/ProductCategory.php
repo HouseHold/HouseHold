@@ -41,6 +41,7 @@ class ProductCategory
     /**
      * @var ProductCollection[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\Cache
      */
     public PersistentCollection $collections;
 
