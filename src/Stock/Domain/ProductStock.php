@@ -123,11 +123,13 @@ class ProductStock
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="stocks")
+     * @ORM\Cache
      */
     public Product $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="stocks")
+     * @ORM\Cache
      */
     public ProductLocation $location;
 

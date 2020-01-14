@@ -43,6 +43,7 @@ class ProductLocation
     /**
      * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="location")
+     * @ORM\Cache
      */
     public PersistentCollection $stocks;
 

@@ -41,11 +41,13 @@ class ProductCollection
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
      * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
+     * @ORM\Cache
      */
     public ProductCategory $category;
     /**
      * @var Product[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
+     * @ORM\Cache
      */
     public PersistentCollection $products;
 
