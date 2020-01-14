@@ -21,6 +21,7 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity()
+ * @ORM\Cache(usage="READ_ONLY")
  */
 abstract class AbstractEventStoreEntity
 {
