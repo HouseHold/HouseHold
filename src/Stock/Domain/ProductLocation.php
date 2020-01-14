@@ -22,6 +22,7 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_location")
+ * @ORM\Cache(usage="READ_ONLY")
  * @ApiResource
  */
 class ProductLocation
