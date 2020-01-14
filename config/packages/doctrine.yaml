@@ -23,7 +23,7 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         entity_managers:
             default:
-                naming_strategy: doctrine.orm.naming_strategy.underscore
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
                 auto_mapping: true
                 second_level_cache:
                     region_cache_driver:
