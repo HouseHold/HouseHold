@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_inventory")
+ * @ORM\Cache(usage="READ_ONLY")
  * @ApiResource(itemOperations={
  *     "get",
  *     "stock_add"={

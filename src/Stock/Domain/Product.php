@@ -24,6 +24,7 @@ use Ramsey\Uuid\UuidInterface as Id;
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_product")
+ * @ORM\Cache(usage="READ_ONLY")
  * @ApiResource()
  * @ApiFilter(SearchFilter::class, properties={"name": "start"})
  */
