@@ -16,9 +16,12 @@ namespace App\Core\Domain\Shared\ValueObject;
 
 use App\Core\Domain\Shared\Exception\DateTimeException;
 
-class DateTime
+final class DateTime
 {
-    const FORMAT = 'Y-m-d\TH:i:s.uP';
+    // ISO8601 with microseconds.
+    public const FORMAT = 'Y-m-d\TH:i:s.uP';
+
+    private \DateTimeImmutable $dateTime;
 
     public static function now(): self
     {
@@ -49,9 +52,13 @@ class DateTime
         return $self;
     }
 
-    public function toString(): string
+    public function toString(string $format = ''): string
     {
-        return $this->dateTime->format(self::FORMAT);
+        if ('' === $format) {
+            $format = self::FORMAT;
+        }
+
+        return $this->dateTime->format($format);
     }
 
     public function toNative(): \DateTimeImmutable
@@ -59,8 +66,8 @@ class DateTime
         return $this->dateTime;
     }
 
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $dateTime;
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
 }
