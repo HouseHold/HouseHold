@@ -21,12 +21,12 @@ use App\Stock\Domain\ProductStock;
 final class AddProductToStockCommand implements SyncCommand
 {
     public ProductStock $stock;
-    public DateTime $bestBefore;
+    public ?DateTime $bestBefore;
     public int $amount;
 
     public function __construct(
         ProductStock $stock,
-        DateTime $bestBefore,
+        ?DateTime $bestBefore,
         int $amount
     ) {
         $this->bestBefore = $bestBefore;

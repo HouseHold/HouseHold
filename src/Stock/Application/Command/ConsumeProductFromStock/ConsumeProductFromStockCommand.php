@@ -15,7 +15,19 @@ declare(strict_types=1);
 namespace App\Stock\Application\Command\ConsumeProductFromStock;
 
 use App\Core\Application\Command\SyncCommand;
+use App\Core\Domain\Shared\ValueObject\DateTime;
+use App\Stock\Domain\ProductStock;
 
 final class ConsumeProductFromStockCommand implements SyncCommand
 {
+    public ProductStock $stock;
+    public ?DateTime $bestBefore;
+    public int $quantity;
+
+    public function __construct(ProductStock $stock, ?DateTime $bestBefore, int $quantity)
+    {
+        $this->stock = $stock;
+        $this->bestBefore = $bestBefore;
+        $this->quantity = $quantity;
+    }
 }

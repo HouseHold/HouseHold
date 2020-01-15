@@ -17,7 +17,6 @@ namespace App\Stock\Application\Command\AddProductToStock;
 use App\Core\Application\Command\CommandHandlerInterface;
 use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
-use Ramsey\Uuid\Uuid;
 
 final class AddProductToStockHandler implements CommandHandlerInterface
 {
@@ -30,8 +29,8 @@ final class AddProductToStockHandler implements CommandHandlerInterface
 
     public function __invoke(AddProductToStockCommand $command): void
     {
-        $stock = $this->repository->get(Uuid::fromString($command->stock->getId()));
-        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount, $command->bestBefore->toNative()));
+        $stock = $this->repository->get($command->stock->getId());
+        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount, $command->bestBefore));
         $this->repository->store($stock);
     }
 }
