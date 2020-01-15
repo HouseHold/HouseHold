@@ -31,16 +31,16 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
     private Id $id;
     private Id $product;
     private Id $location;
-    private int $quantity;
+    private int $quantity = 0;
     /**
      * @var DateTime[]
      */
     private array $bestBeforeDates = [];
 
-    public static function create(Id $id, Id $product, Id $location, int $amount = 0): self
+    public static function create(Id $id, Id $product, Id $location): self
     {
         $stock = new static();
-        $stock->apply(new ProductInitializedStock($id, $product, $location, $amount));
+        $stock->apply(new ProductInitializedStock($id, $product, $location));
 
         return $stock;
     }
@@ -70,7 +70,6 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         $this->id = $event->id;
         $this->product = $event->product;
         $this->location = $event->location;
-        $this->quantity = $event->quantity;
     }
 
     /** @noinspection PhpUnused */

@@ -23,21 +23,13 @@ use Ramsey\Uuid\UuidInterface as Id;
 final class ProductInitializedStock implements Serializable
 {
     public Id $product;
-
     public Id $location;
-
-    public int $quantity;
-
     public Id $id;
 
-    /**
-     * ProductAddedToStock constructor.
-     */
-    public function __construct(Id $id, Id $product, Id $location, int $quantity)
+    public function __construct(Id $id, Id $product, Id $location)
     {
         $this->product = $product;
         $this->location = $location;
-        $this->quantity = $quantity;
         $this->id = $id;
     }
 
@@ -51,13 +43,11 @@ final class ProductInitializedStock implements Serializable
         Assertion::keyExists($data, 'id');
         Assertion::keyExists($data, 'product');
         Assertion::keyExists($data, 'location');
-        Assertion::keyExists($data, 'quantity');
 
         return new self(
             Uuid::fromString($data['id']),
             Uuid::fromString($data['product']),
             Uuid::fromString($data['location']),
-            $data['quantity']
         );
     }
 
@@ -70,7 +60,6 @@ final class ProductInitializedStock implements Serializable
             'id'       => $this->id->toString(),
             'location' => $this->location->toString(),
             'product'  => $this->product->toString(),
-            'quantity' => $this->quantity,
         ];
     }
 }
