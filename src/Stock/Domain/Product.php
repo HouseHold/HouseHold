@@ -54,10 +54,6 @@ class Product
      */
     public bool $expiring;
     /**
-     * @ORM\Column(type="datetime")
-     */
-    public \DateTime $bestBefore;
-    /**
      * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
      * @ORM\Cache
      */
@@ -74,14 +70,12 @@ class Product
         array $ean,
         float $price,
         bool $expiring,
-        \DateTime $bestBefore,
         ProductCollection $collection
     ) {
         $this->name = $name;
         $this->ean = $ean;
         $this->price = $price;
         $this->expiring = $expiring;
-        $this->bestBefore = $bestBefore;
         $this->collection = $collection;
     }
 

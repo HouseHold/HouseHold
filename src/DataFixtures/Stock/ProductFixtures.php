@@ -293,7 +293,6 @@ final class ProductFixtures extends AbstractDependentFixture
                         [$f->ean8, $f->ean13],
                         $f->randomFloat(2, 0.5, 100),
                         $f->boolean(50),
-                        $f->dateTimeBetween('-3 months', '+9 months'),
                         $collection,
                     ));
                 }
