@@ -29,4 +29,11 @@ doctrine:
                     region_cache_driver:
                         type: service
                         id: cache.doctrine.redis
+                        pool: 'dl2_'
                     enabled: true
+                    regions:
+                        locking:
+                            lock_path: '%kernel.cache_dir%/doctrine/orm/lock'
+                            type: filelock
+
+
