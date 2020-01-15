@@ -22,6 +22,7 @@ use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductLocation as PL;
 use App\Stock\Domain\ProductStock;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class ProductStockFixtures extends AbstractDependentFixture
@@ -48,6 +49,7 @@ final class ProductStockFixtures extends AbstractDependentFixture
      */
     public function load(ObjectManager $manager)
     {
+        $f = Factory::create();
         foreach (ProductFixtures::ALL as $categoryName => $collections) {
             foreach ($collections as $collectionName => $products) {
                 foreach ($products as $product) {
@@ -61,9 +63,14 @@ final class ProductStockFixtures extends AbstractDependentFixture
                         $location,
                         function (ProductStock $s) use (&$stock) {$stock = $s; }
                     ));
+                    $manager->refresh($stock);
+                    $productBestBeforeOrNull = $product->expiring ? DateTime::fromString(
+                        $f->dateTimeBetween('-2 months', '+11 months')->format(DATE_ATOM)
+                    )
+                        : null;
                     $this->commandBus->dispatch(new AddProductToStockCommand(
                         $stock,
-                        DateTime::fromString($product->bestBefore->format(DATE_ATOM)),
+                        $productBestBeforeOrNull,
                         rand(1, 20)
                     ));
                 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock\Event;
 
+use App\Core\Domain\Shared\ValueObject\DateTime;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Broadway\Serializer\Serializable;
@@ -21,9 +22,9 @@ use Broadway\Serializer\Serializable;
 final class ProductAddedToStock implements Serializable
 {
     public int $quantity;
-    public \DateTimeImmutable $bestBefore;
+    public ?DateTime $bestBefore;
 
-    public function __construct(int $quantity, \DateTimeImmutable $bestBefore)
+    public function __construct(int $quantity, ?DateTime $bestBefore)
     {
         $this->quantity = $quantity;
         $this->bestBefore = $bestBefore;
@@ -33,13 +34,18 @@ final class ProductAddedToStock implements Serializable
      * {@inheritdoc}
      *
      * @throws AssertionFailedException
+     * @throws \App\Core\Domain\Shared\Exception\DateTimeException
      */
     public static function deserialize(array $data)
     {
         Assertion::keyExists($data, 'quantity');
         Assertion::keyExists($data, 'bestBefore');
 
-        return new self($data['quantity'], new \DateTimeImmutable($data['bestBefore']));
+        if (null === $data['bestBefore']) {
+            return new self($data['quantity'], null);
+        }
+
+        return new self($data['quantity'], DateTime::fromString($data['bestBefore']));
     }
 
     /**
@@ -49,7 +55,7 @@ final class ProductAddedToStock implements Serializable
     {
         return [
             'quantity'   => $this->quantity,
-            'bestBefore' => $this->bestBefore->format(DATE_ATOM),
+            'bestBefore' => null === $this->bestBefore ? null : $this->bestBefore->toString(),
         ];
     }
 }

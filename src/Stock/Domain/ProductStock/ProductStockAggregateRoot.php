@@ -14,20 +14,28 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain\ProductStock;
 
+use App\Core\Domain\Shared\ValueObject\DateTime;
 use App\Core\Infrastructure\Singletons\EvenDispatcherSingleton;
 use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Event\ProductConsumedStock;
 use App\Stock\Domain\ProductStock\Event\ProductInitializedStock;
 use App\Stock\Domain\ProductStock\Event\ProductStockEventApplied;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
+use LogicException as L;
 use Ramsey\Uuid\UuidInterface as Id;
 
 final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
 {
+    public const DATE_FORMAT = 'Y-m-d';
+
     private Id $id;
     private Id $product;
     private Id $location;
     private int $quantity;
+    /**
+     * @var DateTime[]
+     */
+    private array $bestBeforeDates = [];
 
     public static function create(Id $id, Id $product, Id $location, int $amount = 0): self
     {
@@ -47,6 +55,13 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
     protected function applyProductAddedToStock(ProductAddedToStock $event): void
     {
         $this->quantity += $event->quantity;
+
+        if (null !== $event->bestBefore) {
+            $key = $event->bestBefore->toString(self::DATE_FORMAT);
+            if (isset($this->bestBeforeDates[$key])) {
+                ++$this->bestBeforeDates[$key];
+            }
+        }
     }
 
     /** @noinspection PhpUnused */
@@ -62,6 +77,20 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
     protected function applyProductConsumedStock(ProductConsumedStock $event): void
     {
         $this->quantity -= $event->quantity;
+        if (null !== $event->bestBefore) {
+            $key = $event->bestBefore->toString(self::DATE_FORMAT);
+            if (isset($this->bestBeforeDates[$key])) {
+                if ($event->quantity > \count($this->bestBeforeDates[$key])) {
+                    throw new L('Tried to remove more than in stock with given date.');
+                }
+                $this->bestBeforeDates[$key] -= $event->quantity;
+                if ($this->bestBeforeDates[$key] <= 0) {
+                    unset($this->bestBeforeDates[$key]);
+                }
+            } else {
+                throw new L('This is a bug. You should never be able to consume empty stock. Please report this!');
+            }
+        }
     }
 
     /**

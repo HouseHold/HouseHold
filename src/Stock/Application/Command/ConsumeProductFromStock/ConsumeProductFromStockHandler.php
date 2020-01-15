@@ -12,13 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace App\Stock\Application\Command\AddProductToStock;
+namespace App\Stock\Application\Command\ConsumeProductFromStock;
 
 use App\Core\Application\Command\CommandHandlerInterface;
-use App\Stock\Application\Command\ConsumeProductFromStock\ConsumeProductFromStockCommand;
-use App\Stock\Domain\ProductStock;
+use App\Stock\Domain\ProductStock\Event\ProductConsumedStock;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
-use Ramsey\Uuid\Uuid;
 
 final class ConsumeProductFromStockHandler implements CommandHandlerInterface
 {
@@ -31,8 +29,8 @@ final class ConsumeProductFromStockHandler implements CommandHandlerInterface
 
     public function __invoke(ConsumeProductFromStockCommand $command): void
     {
-        $stock = $this->repository->get(Uuid::fromString($command->stock->getId()));
-        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount, $command->bestBefore->toNative()));
+        $stock = $this->repository->get($command->stock->getId());
+        $stock->apply(new ProductConsumedStock($command->quantity, $command->bestBefore));
         $this->repository->store($stock);
     }
 }
