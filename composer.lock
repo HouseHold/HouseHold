@@ -1573,16 +1573,16 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "1.3.4",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "ff7e08b0f814be2cd20c52dc3c8a262579376b94"
+                "reference": "be70c016fdcd44a428405ee062ebcdd01a6867cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/ff7e08b0f814be2cd20c52dc3c8a262579376b94",
-                "reference": "ff7e08b0f814be2cd20c52dc3c8a262579376b94",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/be70c016fdcd44a428405ee062ebcdd01a6867cd",
+                "reference": "be70c016fdcd44a428405ee062ebcdd01a6867cd",
                 "shasum": ""
             },
             "require": {
@@ -1652,7 +1652,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2020-01-09T19:49:17+00:00"
+            "time": "2020-01-14T18:44:12+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -2367,16 +2367,16 @@
         },
         {
             "name": "kevinpapst/adminlte-bundle",
-            "version": "3.0.4",
+            "version": "3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kevinpapst/AdminLTEBundle.git",
-                "reference": "92adcca485481b0c6b24f725f932cc49eb9e63e4"
+                "reference": "f5a450bda4a871af28ec4e50077a86ce9866c7a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kevinpapst/AdminLTEBundle/zipball/92adcca485481b0c6b24f725f932cc49eb9e63e4",
-                "reference": "92adcca485481b0c6b24f725f932cc49eb9e63e4",
+                "url": "https://api.github.com/repos/kevinpapst/AdminLTEBundle/zipball/f5a450bda4a871af28ec4e50077a86ce9866c7a2",
+                "reference": "f5a450bda4a871af28ec4e50077a86ce9866c7a2",
                 "shasum": ""
             },
             "require": {
@@ -2428,7 +2428,7 @@
                 }
             ],
             "description": "Admin theme bundle for Symfony 4 based on AdminLTE 2.4.8 with FOSUserBundle support",
-            "time": "2019-12-09T09:54:29+00:00"
+            "time": "2020-01-14T14:17:28+00:00"
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
@@ -2833,16 +2833,16 @@
         },
         {
             "name": "league/tactician-bundle",
-            "version": "v1.1.18",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/tactician-bundle.git",
-                "reference": "555850cdaafe551b6ffd426a4a6e006c86ecf559"
+                "reference": "66b97472915290b93654e60610295660f597ad4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/tactician-bundle/zipball/555850cdaafe551b6ffd426a4a6e006c86ecf559",
-                "reference": "555850cdaafe551b6ffd426a4a6e006c86ecf559",
+                "url": "https://api.github.com/repos/thephpleague/tactician-bundle/zipball/66b97472915290b93654e60610295660f597ad4e",
+                "reference": "66b97472915290b93654e60610295660f597ad4e",
                 "shasum": ""
             },
             "require": {
@@ -2912,7 +2912,7 @@
                 "symfony",
                 "tactician"
             ],
-            "time": "2019-12-31T10:05:46+00:00"
+            "time": "2020-01-14T17:22:35+00:00"
         },
         {
             "name": "league/tactician-container",
