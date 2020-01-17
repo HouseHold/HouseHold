@@ -20,6 +20,7 @@ use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
@@ -41,9 +42,14 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         $this->commandBus->dispatch($command);
     }
 
-    protected function ask(object $query)
+    protected function ask(object $query, bool $resolveReturn = true)
     {
-        return $this->queryBus->dispatch($query);
+        $return = $this->queryBus->dispatch($query);
+        if (true === $resolveReturn) {
+            return $return->last(HandledStamp::class)->getResult();
+        }
+
+        return $return;
     }
 
     protected function returnView(array $params = [], ?Response $response = null): Response
