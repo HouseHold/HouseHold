@@ -59,7 +59,9 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         if (null !== $event->bestBefore) {
             $key = $event->bestBefore->toString(self::DATE_FORMAT);
             if (isset($this->bestBeforeDates[$key])) {
-                ++$this->bestBeforeDates[$key];
+                $this->bestBeforeDates[$key] += $event->quantity;
+            } else {
+                $this->bestBeforeDates[$key] = $event->quantity;
             }
         }
     }
@@ -113,5 +115,10 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getBestBefore(): array
+    {
+        return $this->bestBeforeDates;
     }
 }
