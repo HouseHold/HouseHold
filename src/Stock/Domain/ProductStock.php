@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as Id;
@@ -24,7 +25,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="stock_inventory")
  * @ORM\Cache(usage="READ_WRITE", region="locking")
  * @ApiResource(itemOperations={
- *     "get",
+ *     "stock_read"={
+ *         "read"=false,
+ *         "method"="GET",
+ *         "path"="/product/stocks/{id}",
+ *         "controller"="App\Stock\UI\Http\Api\Controller\ProductStock\GetStockById",
+ *         "normalization_context"={"groups"={"read_item"}},
+ *     },
  *     "stock_add"={
  *         "method"="POST",
  *         "path"="/product/stocks/{id}/add",
@@ -118,6 +125,7 @@ class ProductStock
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\Column(type="uuid_binary")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @Groups({"read_item"})
      */
     private Id $id;
 
@@ -135,9 +143,18 @@ class ProductStock
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups("add")
+     * @Groups({"add", "read_item"})
      */
     public int $quantity = 0;
+
+    /**
+     * @var array array in format where first YYYY-MM-DD and then quantity products on that date
+     * @Groups("read_item")
+     * @ApiProperty(writable=false, readable=true)
+     *
+     * @internal To be used only API output. Values are fetched in controller.
+     */
+    public array $bestBefore = [];
 
     public function __construct(Product $product, ProductLocation $location, int $quantity = 0)
     {
