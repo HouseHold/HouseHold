@@ -16,8 +16,11 @@ namespace App\Stock\Domain;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Core\Infrastructure\Singletons\MessengerSingleton;
+use App\Stock\Application\Query\GetStockBestBefore\GetStockBestBeforeQuery;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as Id;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -25,13 +28,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="stock_inventory")
  * @ORM\Cache(usage="READ_WRITE", region="locking")
  * @ApiResource(itemOperations={
- *     "stock_read"={
- *         "read"=false,
- *         "method"="GET",
- *         "path"="/product/stocks/{id}",
- *         "controller"="App\Stock\UI\Http\Api\Controller\ProductStock\GetStockById",
- *         "normalization_context"={"groups"={"read_item"}},
- *     },
+ *     "get",
  *     "stock_add"={
  *         "method"="POST",
  *         "path"="/product/stocks/{id}/add",
@@ -148,19 +145,27 @@ class ProductStock
     public int $quantity = 0;
 
     /**
-     * @var array array in format where first YYYY-MM-DD and then quantity products on that date
+     * @var array Array in format where first YYYY-MM-DD and then quantity products on that date
      * @Groups("read_item")
      * @ApiProperty(writable=false, readable=true)
      *
      * @internal To be used only API output. Values are fetched in controller.
      */
-    public array $bestBefore = [];
+    private array $bestBefore = [];
 
     public function __construct(Product $product, ProductLocation $location, int $quantity = 0)
     {
         $this->product = $product;
         $this->location = $location;
         $this->quantity = $quantity;
+    }
+
+    public function getBestBefore(): array
+    {
+        // Fetching bestBefore is done here, only to achieve GraphQL support.
+        return  MessengerSingleton::ask(new GetStockBestBeforeQuery($this->id))
+            ->last(HandledStamp::class)
+            ->getResult();
     }
 
     public function getId(): Id
