@@ -328,9 +328,6 @@
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
     },
-    "phpseclib/phpseclib": {
-        "version": "2.0.23"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
