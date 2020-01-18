@@ -22,10 +22,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 final class OAuth implements UserProviderInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * User constructor.

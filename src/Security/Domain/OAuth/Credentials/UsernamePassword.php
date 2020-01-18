@@ -19,13 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class UsernamePassword
 {
-    /**
-     * @var string
-     */
     private string $username;
-    /**
-     * @var string
-     */
     private string $password;
 
     public function __construct(string $username, string $password)

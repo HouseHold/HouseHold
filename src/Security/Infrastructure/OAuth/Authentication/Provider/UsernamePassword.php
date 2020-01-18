@@ -14,10 +14,7 @@ declare(strict_types=1);
 
 namespace App\Security\Infrastructure\OAuth\Authentication\Provider;
 
-use function base64_decode;
-use function json_decode;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\ResponseInterface;
@@ -47,8 +44,6 @@ final class UsernamePassword extends AbstractProvider
 
     /**
      * Get provider url to fetch user details.
-     *
-     * @throws IdentityProviderException
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
@@ -67,31 +62,17 @@ final class UsernamePassword extends AbstractProvider
      * Check a provider response for errors.
      *
      * @param array|string $data
-     *
-     * @throws IdentityProviderException
      */
     protected function checkResponse(ResponseInterface $response, $data): void
     {
+        throw new \LogicException('Not implemented.');
     }
 
     /**
      * Generate a user object from a successful user details request.
-     *
-     * @throws IdentityProviderException
      */
     protected function createResourceOwner(array $response, AccessToken $token): ResourceOwnerInterface
     {
-        $payload = json_decode(base64_decode(explode('.', $token->getToken())[1], true), true, 512, JSON_THROW_ON_ERROR);
-        $response['data']['session'] =
-            [
-                'expiry' => $payload['exp'],
-                'roles'  => $payload['scopes'],
-                'token'  => $token->getToken(),
-                'refresh'=> $token->getRefreshToken(),
-            ];
-
-        $response['data']['profile'] = $this->fetchResourceOwnerDcDetails($token)['data'];
-
-        return new \App\Security\Domain\OAuth\Resource\Drupal($response);
+        throw new \LogicException('Not implemented.');
     }
 }

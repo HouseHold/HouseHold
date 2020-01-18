@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace App\Security\UI\Http\Web\Controller\Connect;
 
 use App\Core\UI\Http\Web\Controller\AbstractController;
+use App\Security\Infrastructure\OAuth\Authentication\Exception\Logic\NoGuardsLogicException;
 use Flagception\Bundle\FlagceptionBundle\Annotations\Feature;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\HttpFoundation\Response;
