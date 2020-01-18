@@ -64,15 +64,17 @@ final class ProductStockFixtures extends AbstractDependentFixture
                         function (ProductStock $s) use (&$stock) {$stock = $s; }
                     ));
                     $manager->refresh($stock);
-                    $productBestBeforeOrNull = $product->expiring ? DateTime::fromString(
-                        $f->dateTimeBetween('-2 months', '+11 months')->format(DATE_ATOM)
-                    )
-                        : null;
-                    $this->commandBus->dispatch(new AddProductToStockCommand(
-                        $stock,
-                        $productBestBeforeOrNull,
-                        rand(1, 20)
-                    ));
+                    $for = rand(1, 4);
+                    for ($i = 0; $i < $for; ++$i) {
+                        $productBestBeforeOrNull = $product->expiring
+                            ? DateTime::fromString($f->dateTimeBetween('-2 months', '+11 months')->format(DATE_ATOM))
+                            : null;
+                        $this->commandBus->dispatch(new AddProductToStockCommand(
+                            $stock,
+                            $productBestBeforeOrNull,
+                            rand(1, 10)
+                        ));
+                    }
                 }
             }
         }
