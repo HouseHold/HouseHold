@@ -12,6 +12,6 @@ RUN wget https://getcomposer.org/composer-stable.phar \
     && mv composer-stable.phar composer \
     && chmod +x composer \
     && mv composer /bin
-RUN apk add --no-cache fish nano rabbitmq-c
+RUN apk add --no-cache fish nano rabbitmq-c yarn nodejs npm
 
 WORKDIR /app
