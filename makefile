@@ -16,7 +16,7 @@ erase: ## stop and delete containers, clean volumes.
 .PHONY: build
 build: ## Build environment and run composer install.
 		docker-compose build
-		docker-compose run --rm php sh -lc 'xoff;COMPOSER_MEMORY_LIMIT=-1 composer install'
+		docker-compose run --rm php sh -lc 'COMPOSER_MEMORY_LIMIT=-1 composer install'
 
 .PHONY: artifact
 artifact: ## Build production artifact
@@ -38,6 +38,14 @@ phpunit: db ## Execute project unit tests
 cs: ## Executes php cs fixer
 		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction --diff -v fix'
 
+.PHONY: api-export
+api-export: ## Exports api schema as api.json
+		docker-compose run --rm php sh -lc './bin/console api:openapi:export -o api.json'
+
+.PHONY: api-export
+gql-export: ## Exports GraphQL api schema as gql.json
+		docker-compose run --rm php sh -lc './bin/console api:graphql:export -o schema.graphql'
+
 .PHONY: cs-check
 cs-check: ## Executes php cs fixer in dry run mode
 		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction --dry-run --diff -v fix'
@@ -56,12 +64,15 @@ db: ## Recreate database
 schema-validate: ## Validate database schema
 		docker-compose exec php sh -lc './bin/console d:s:v'
 
+.PHONY: redis-clear
+redis-clear: ## Clear Redis Cache from DB 0
+		docker-compose exec php sh -lc 'redis-cli -h redis -n 0 flushdb'
+
 .PHONY: api
 api: ## Re-Generate Javascript API-Client
-		docker-compose exec php sh -lc 'bin/console api:openapi:export -o api.json'
-		openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec
-		docker-compose exec php sh -lc 'rm -f api.json'
-
+		docker-compose exec php sh -lc 'bin/console api:openapi:export -o api.json && yarn install'
+		docker-compose exec php sh -lc 'yarn openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec'
+		docker-compose exec php sh -lc 'rm -rf api.json node_modules'
 
 .PHONY: sh
 sh: ## Open shell terminal inside container. Example: make s=php sh
