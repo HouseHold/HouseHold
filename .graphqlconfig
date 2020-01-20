@@ -1,10 +1,10 @@
 {
-  "name": "Untitled GraphQL Schema",
+  "name": "HouseHold GraphQL Schema",
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://localhost:8080/graphql",
+        "url": "http://localhost/api/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },

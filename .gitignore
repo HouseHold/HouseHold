@@ -13,6 +13,7 @@
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
 
+schema.graphql
 build/
 .phpunit.result.cache
 .deptrac.cache
