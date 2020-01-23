@@ -69,7 +69,7 @@ redis-clear: ## Clear Redis Cache from DB 0
 		docker-compose exec php sh -lc 'redis-cli -h redis -n 0 flushdb'
 
 .PHONY: api
-api: ## Re-Generate Javascript API-Client
+api: redis-clear ## Re-Generate Javascript API-Client
 		docker-compose exec php sh -lc 'bin/console api:openapi:export -o api.json && yarn install'
 		docker-compose exec php sh -lc 'yarn openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec'
 		docker-compose exec php sh -lc 'rm -rf api.json node_modules'
