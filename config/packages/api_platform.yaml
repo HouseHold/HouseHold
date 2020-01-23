@@ -1,7 +1,7 @@
 api_platform:
     title: 'HouseHold'
     description: 'HouseHold API'
-    version: '0.0.4'
+    version: '0.0.5'
     show_webby: false
 
     mapping:

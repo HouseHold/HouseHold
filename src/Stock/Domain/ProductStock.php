@@ -139,6 +139,7 @@ class ProductStock
     public ProductLocation $location;
 
     /**
+     * @var int Quantity of products in stock. Cannot be updated directly.
      * @ORM\Column(type="integer")
      * @Groups({"add", "read_item"})
      */
@@ -147,7 +148,11 @@ class ProductStock
     /**
      * @var array Array in format where first YYYY-MM-DD and then quantity products on that date
      * @Groups("read_item")
-     * @ApiProperty(writable=false, readable=true)
+     * @ApiProperty(writable=false, readable=true, openapiContext={
+     *     "type"="object",
+     *     "items"={},
+     *     "additionalProperties"={"type"="date"}
+     * })
      *
      * @internal To be used only API output. Values are fetched in controller.
      */
