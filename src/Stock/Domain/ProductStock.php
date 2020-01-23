@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace App\Stock\Domain;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Core\Infrastructure\Singletons\MessengerSingleton;
@@ -22,11 +23,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as Id;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Core\Infrastructure\Api\Filter\BinaryUuidAwareSearchFilter;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_inventory")
  * @ORM\Cache(usage="READ_WRITE", region="locking")
+ * @ApiFilter(SearchFilter::class, properties={"quantity"="exact"})
+ * @ApiFilter(BinaryUuidAwareSearchFilter::class, properties={"location"="exact", "product"="exact"})
  * @ApiResource(itemOperations={
  *     "get",
  *     "stock_add"={
