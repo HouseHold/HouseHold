@@ -108,7 +108,7 @@ For now development progress can be seen here in simple steps.
 
 - [x] Create CQRS, DDD, EventSourcing Core.
 - [x] Setup Vue frontend.
-- [ ] Stock Management Backend (API).
+- [x] Stock Management Backend (API).
 - [ ] Stock Management Frontend.
 
 
