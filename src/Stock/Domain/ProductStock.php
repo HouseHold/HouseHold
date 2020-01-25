@@ -17,14 +17,14 @@ namespace App\Stock\Domain;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Core\Infrastructure\Api\Filter\BinaryUuidAwareSearchFilter;
 use App\Core\Infrastructure\Singletons\MessengerSingleton;
 use App\Stock\Application\Query\GetStockBestBefore\GetStockBestBeforeQuery;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface as Id;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use App\Core\Infrastructure\Api\Filter\BinaryUuidAwareSearchFilter;
 
 /**
  * @ORM\Entity
@@ -62,6 +62,48 @@ use App\Core\Infrastructure\Api\Filter\BinaryUuidAwareSearchFilter;
  *                              "properties"={
  *                                 "quantity"={
  *                                     "type"="integer",
+ *                                 },
+ *                             },
+ *                         },
+ *                     },
+ *                 },
+ *             },
+ *         },
+ *     },
+ *     "stock_consume"={
+ *         "method"="POST",
+ *         "path"="/product/stocks/{id}/consume",
+ *         "controller"="App\Stock\UI\Http\Api\Controller\ProductStock\ConsumeFromStock",
+ *         "normalization_context"={"groups"={"consume"}},
+ *         "openapi_context"={
+ *             "summary"="Consume product from stock.",
+ *             "description"="Consume specific amount of specific product from stock.",
+ *             "responses"={
+ *                 "204"={
+ *                     "description"="Given quantity of product consumed from the stock.",
+ *                 },
+ *                 "400"={
+ *                     "description"="Invalid input",
+ *                 },
+ *                 "404"={
+ *                     "description"="Resource not found",
+ *                 },
+ *             },
+ *             "requestBody"={
+ *                 "content"={
+ *                     "application/ld+json"={
+ *                         "schema"={
+ *                             "type"="object",
+ *                              "description"="",
+ *                              "properties"={
+ *                                 "quantity"={
+ *                                     "type"="integer",
+ *                                 },
+ *                                 "bestBefore"={
+ *                                     "type"="string",
+ *                                     "description"="YYYY-MM-DD date or null, if product is set not expiring.",
+ *                                     "pattern"="/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/",
+ *                                     "nullable"=true,
  *                                 },
  *                             },
  *                         },
