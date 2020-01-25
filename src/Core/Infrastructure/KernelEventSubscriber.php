@@ -47,8 +47,7 @@ final class KernelEventSubscriber implements EventSubscriberInterface
         EventDispatcherInterface $eventDispatcher,
         MessageBusInterface $commandBus,
         MessageBusInterface $queryBus
-    )
-    {
+    ) {
         $this->container = $container;
         $this->eventDispatcher = $eventDispatcher;
         $this->commandBus = $commandBus;
