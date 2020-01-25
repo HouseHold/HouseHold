@@ -81,7 +81,7 @@ final class ProductStockAggregateRoot extends EventSourcedAggregateRoot
         if (null !== $event->bestBefore) {
             $key = $event->bestBefore->toString(self::DATE_FORMAT);
             if (isset($this->bestBeforeDates[$key])) {
-                if ($event->quantity > \count($this->bestBeforeDates[$key])) {
+                if ($event->quantity > $this->bestBeforeDates[$key]) {
                     throw new L('Tried to remove more than in stock with given date.');
                 }
                 $this->bestBeforeDates[$key] -= $event->quantity;
