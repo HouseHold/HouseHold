@@ -36,7 +36,7 @@ phpunit: db ## Execute project unit tests
 
 .PHONY: cs
 cs: ## Executes php cs fixer
-		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction --diff -v fix'
+		docker-compose run --rm php sh -lc './vendor/bin/php-cs-fixer --no-interaction -vvvv fix'
 
 .PHONY: api-export
 api-export: ## Exports api schema as api.json
