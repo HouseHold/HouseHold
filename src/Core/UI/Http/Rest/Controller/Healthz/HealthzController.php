@@ -27,16 +27,7 @@ final class HealthzController extends AbstractCommandQueryController
      *     name="healthz",
      *     methods={"GET"}
      * )
-     * @SWG\Response(
-     *     response=200,
-     *     description="OK"
-     * )
-     * @SWG\Response(
-     *     response=500,
-     *     description="Something not ok"
-     * )
      *
-     * @SWG\Tag(name="Healthz")
      */
     public function __invoke(): JsonResponse
     {

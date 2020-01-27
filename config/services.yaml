@@ -18,7 +18,6 @@ services:
       $queryBus: '@messenger.bus.query'
       $commandBus: '@messenger.bus.command'
       $eventBus: '@broadway.event_handling.event_bus'
-      $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
       $eventProducer: '@old_sound_rabbit_mq.events_producer'
 
   _instanceof:
@@ -51,15 +50,3 @@ services:
     resource: '../src/**/*'
     exclude: '../src/**/**/{Migrations}'
     #exclude: '../src/**/**/{Migrations,EventSubscriber}'
-
-  ### Event Store
-
-  Broadway\EventStore\Dbal\DBALEventStore:
-    public: true
-    arguments:
-      - '@doctrine.dbal.default_connection'
-      - '@broadway.serializer.payload'
-      - '@broadway.serializer.metadata'
-      - 'events'
-      - true
-      - '@broadway.uuid.converter'

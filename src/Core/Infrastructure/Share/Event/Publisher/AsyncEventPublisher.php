@@ -16,7 +16,6 @@ namespace App\Core\Infrastructure\Share\Event\Publisher;
 
 use Broadway\Domain\DomainMessage;
 use Broadway\EventHandling\EventListener;
-use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -47,9 +46,9 @@ final class AsyncEventPublisher implements EventPublisher, EventSubscriberInterf
         ];
     }
 
-    public function __construct(ProducerInterface $eventProducer)
+    public function __construct()
     {
-        $this->eventProducer = $eventProducer;
+        //$this->eventProducer = $eventProducer;
     }
 
     /**
