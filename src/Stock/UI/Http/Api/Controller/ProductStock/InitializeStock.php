@@ -64,12 +64,12 @@ final class InitializeStock extends AbstractController
         $stock = null;
         $this->run(
             new InitializeProductStockCommand(
-            $product,
-            $location,
-            function (ProductStock $s) use (&$stock): void {
-                $stock = $s;
-            }
-        )
+                $product,
+                $location,
+                function (ProductStock $s) use (&$stock): void {
+                    $stock = $s;
+                }
+            )
         );
 
         return $stock;
