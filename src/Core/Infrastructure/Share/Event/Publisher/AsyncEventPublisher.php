@@ -40,10 +40,11 @@ final class AsyncEventPublisher implements EventPublisher, EventSubscriberInterf
 
     public static function getSubscribedEvents()
     {
-        return [
-            KernelEvents::TERMINATE  => 'publish',
-            ConsoleEvents::TERMINATE => 'publish',
-        ];
+        return [];
+        //return [
+        //    KernelEvents::TERMINATE  => 'publish',
+        //    ConsoleEvents::TERMINATE => 'publish',
+        //];
     }
 
     public function __construct()
