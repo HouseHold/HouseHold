@@ -56,24 +56,30 @@ final class ProductStockFixtures extends AbstractDependentFixture
                     /** @var $location PL */
                     /** @var $product Product */
                     $product = $manager->getRepository(Product::class)->findOneBy(['name' => $product]);
-                    $location = $manager->getRepository(PL::class)->findOneBy(['name' => PLF::ALL[rand(0, 4)]]);
-                    $stock = null;
-                    $this->commandBus->dispatch(new InitializeProductStockCommand(
-                        $product,
-                        $location,
-                        function (ProductStock $s) use (&$stock) {$stock = $s; }
-                    ));
-                    $manager->refresh($stock);
-                    $for = rand(1, 4);
-                    for ($i = 0; $i < $for; ++$i) {
-                        $productBestBeforeOrNull = $product->expiring
-                            ? DateTime::fromString($f->dateTimeBetween('-2 months', '+11 months')->format(DATE_ATOM))
-                            : null;
-                        $this->commandBus->dispatch(new AddProductToStockCommand(
-                            $stock,
-                            $productBestBeforeOrNull,
-                            rand(1, 10)
+                    $tRand = rand(1, 4);
+                    $locationNames = PLF::ALL;
+                    for ($t = 0; $t < $tRand; ++$t) {
+                        $locationName = $locationNames[rand(0, (\count($locationNames) - 1))];
+                        unset($locationNames[$locationName]);
+                        $location = $manager->getRepository(PL::class)->findOneBy(['name' => $locationName]);
+                        $stock = null;
+                        $this->commandBus->dispatch(new InitializeProductStockCommand(
+                            $product,
+                            $location,
+                            function (ProductStock $s) use (&$stock) {$stock = $s; }
                         ));
+                        $manager->refresh($stock);
+                        $for = rand(1, 3);
+                        for ($i = 0; $i < $for; ++$i) {
+                            $productBestBeforeOrNull = $product->expiring
+                                ? DateTime::fromString($f->dateTimeBetween('-2 months', '+11 months')->format(DATE_ATOM))
+                                : null;
+                            $this->commandBus->dispatch(new AddProductToStockCommand(
+                                $stock,
+                                $productBestBeforeOrNull,
+                                rand(1, 10)
+                            ));
+                        }
                     }
                 }
             }
