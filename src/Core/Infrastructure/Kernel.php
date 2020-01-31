@@ -28,6 +28,11 @@ final class Kernel extends BaseKernel
 
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
+    public function getProjectDir()
+    {
+        return \dirname(__DIR__, 3);
+    }
+
     public function registerBundles()
     {
         $contents = require $this->getProjectDir().'/config/bundles.php';

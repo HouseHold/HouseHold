@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace App\Core\UI\Http\Rest\Controller\Healthz;
 
 use App\Core\UI\Http\Rest\Controller\AbstractCommandQueryController;
-use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,7 +26,6 @@ final class HealthzController extends AbstractCommandQueryController
      *     name="healthz",
      *     methods={"GET"}
      * )
-     *
      */
     public function __invoke(): JsonResponse
     {

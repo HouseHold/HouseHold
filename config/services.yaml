@@ -48,5 +48,4 @@ services:
 
   App\:
     resource: '../src/**/*'
-    exclude: '../src/**/**/{Migrations}'
-    #exclude: '../src/**/**/{Migrations,EventSubscriber}'
+    exclude: '../src/Migrations'
