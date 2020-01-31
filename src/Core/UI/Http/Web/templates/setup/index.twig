@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> HouseHold - Setup </title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//unpkg.com/vuetify/dist/vuetify.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <style>
+        .spinning {
+            animation-name: spin;
+            animation-duration: 5000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes spin {
+            from {
+                transform:rotate(0deg);
+            }
+            to {
+                transform:rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="input">
+        <v-app id="setup">
+            <v-content>
+                <v-container class="fill-height" fluid>
+                    <v-row align="center" justify="center">
+                        <v-col cols="12" sm="8" md="4">
+                            <v-card class="elevation-12">
+                                <v-toolbar color="primary" dark flat>
+                                    <v-toolbar-title>HouseHold Setup</v-toolbar-title>
+                                </v-toolbar>
+                                <router-view></router-view>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+</div>
+<script src="//unpkg.com/moment/min/moment.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="//unpkg.com/vuetify/dist/vuetify.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<!--suppress ES6ModulesDependencies -->
+<script>
+    const Check = {
+        template: `
+        <div id="check-update">
+            <v-card-text>
+                <v-form>
+                    <p>{{"{{ state }}"}}</p>
+                    <div v-if="available">
+                        <v-list>
+                            <v-list-item v-for="(item, i) in items" :key="i">
+                                <v-list-item-avatar v-if="item.done">
+                                    <v-icon color="green">check_circle_outline</v-icon>
+                                </v-list-item-avatar>
+                                <v-list-item-avatar v-else>
+                                    <template v-if="item.active">
+                                        <v-icon class="spinning" color="orange">autorenew</v-icon>
+                                    </template>
+                                    <template v-else>
+                                        <v-icon color="orange">autorenew</v-icon>
+                                    </template>
+                                </v-list-item-avatar>
+                                <v-list-item-content>
+                                    <v-list-item-title v-html="item.title"></v-list-item-title>
+                                    <v-list-item-subtitle v-html="item.desc"></v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list>
+                    </div>
+                </v-form>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer/>
+                <v-btn color="danger" v-if="updateButton" @click="onUpdateClick()" :disabled="loading" :loading="loading">Update</v-btn>
+            </v-card-actions>
+        </div>
+        `,
+        data() {
+            return {
+                state: "Checking...",
+                available: false,
+                updateButton: false,
+                items: null,
+                loading: false,
+            }
+        },
+        created() {
+            let available = JSON.parse('{{ available|raw }}');
+            let total = Object.keys(available).length;
+            if (total === 0) {
+                this.state = 'No updates available.';
+            } else {
+                let items = {};
+                Object.keys(available).forEach((key) => {
+                    items[key] = {
+                        id: key,
+                        desc: available[key],
+                        title: moment(key, 'YYYYMMDDhhmmss').format('YYYY-MM-DD hh:mm:ss'),
+                        done: false,
+                        active: false,
+                    };
+                });
+                this.items = items;
+                this.state = 'Updates ('+total+') available! Press "UPDATE" to run them.';
+                this.available = true;
+                this.updateButton = true;
+            }
+        },
+        methods: {
+            onUpdateClick: async function() {
+                this.loading = true;
+                for (item of Object.values(this.items)) {
+                    this.items[item.id].active = true;
+                    await axios.post('/setup', {version: item.id});
+                    this.items[item.id].active = false;
+                    this.items[item.id].done = true;
+                }
+                this.loading = true;
+                this.updateButton = false;
+                this.state = "Update success. Please return back to front page."
+            }
+        }
+    };
+    Vue.use(VueRouter);
+    const router = new VueRouter({
+        mode: "hash",
+        routes: [
+            {path: '', component: Check},
+        ]
+    });
+
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify({icons: { iconfont: 'md' }}),
+        router: router,
+        components: {
+            Check
+        },
+        data: {},
+        methods: {}
+    });
+</script>
+</body>
+</html>

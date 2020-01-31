@@ -5,10 +5,6 @@ services:
     resource: '../../UI/Http/Rest/Controller/*'
     tags: [ 'controller.service_arguments' ]
 
-  App\Core\UI\Http\Web\Controller\:
-    resource: '../../UI/Http/Web/Controller/*'
-    tags: [ 'controller.service_arguments' ]
-
   ### UI Listeners
   App\Core\UI\Http\Rest\EventSubscriber\ExceptionSubscriber:
     tags:

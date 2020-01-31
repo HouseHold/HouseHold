@@ -30,4 +30,5 @@ security:
     - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/connect,        roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api/docs.json,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/setup,          roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/,               roles: IS_AUTHENTICATED_FULLY }
