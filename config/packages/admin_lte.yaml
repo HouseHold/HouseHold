@@ -14,10 +14,6 @@ admin_lte:
         collapsed_sidebar: false
         mini_sidebar: false
 
-    knp_menu:
-        enable: true
-        breadcrumb_menu: true
-
     routes:
         adminlte_welcome: home
         adminlte_login: login
