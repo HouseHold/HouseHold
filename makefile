@@ -13,6 +13,10 @@ erase: ## stop and delete containers, clean volumes.
 		docker-compose stop
 		docker-compose rm -v -f
 
+.PHONY: fixtures
+fixtures: ## Creates development fixtures. Aka demo data.
+		docker-compose run --rm php sh -lc 'bin/console doctrine:fixtures:load --append'
+
 .PHONY: build
 build: ## Build environment and run composer install.
 		docker-compose build
