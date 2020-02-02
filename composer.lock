@@ -2262,16 +2262,16 @@
         },
         {
             "name": "kevinpapst/adminlte-bundle",
-            "version": "3.1.2",
+            "version": "3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kevinpapst/AdminLTEBundle.git",
-                "reference": "ef9b9bec1ffcc47ab8cde30e705c08e82262fd53"
+                "reference": "a09115b9ff6e42f989000bfaedca1f06872f72a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kevinpapst/AdminLTEBundle/zipball/ef9b9bec1ffcc47ab8cde30e705c08e82262fd53",
-                "reference": "ef9b9bec1ffcc47ab8cde30e705c08e82262fd53",
+                "url": "https://api.github.com/repos/kevinpapst/AdminLTEBundle/zipball/a09115b9ff6e42f989000bfaedca1f06872f72a3",
+                "reference": "a09115b9ff6e42f989000bfaedca1f06872f72a3",
                 "shasum": ""
             },
             "require": {
@@ -2323,7 +2323,7 @@
                 }
             ],
             "description": "Admin theme bundle for Symfony 4 based on AdminLTE 2.4.8 with FOSUserBundle support",
-            "time": "2020-01-27T09:56:40+00:00"
+            "time": "2020-01-31T13:45:56+00:00"
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
@@ -7345,16 +7345,16 @@
         },
         {
             "name": "symfony/webpack-encore-bundle",
-            "version": "v1.7.2",
+            "version": "v1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/webpack-encore-bundle.git",
-                "reference": "787c2fdedde57788013339f05719c82ce07b6058"
+                "reference": "5c0f659eceae87271cce54bbdfb05ed8ec9007bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/787c2fdedde57788013339f05719c82ce07b6058",
-                "reference": "787c2fdedde57788013339f05719c82ce07b6058",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/5c0f659eceae87271cce54bbdfb05ed8ec9007bd",
+                "reference": "5c0f659eceae87271cce54bbdfb05ed8ec9007bd",
                 "shasum": ""
             },
             "require": {
@@ -7394,7 +7394,7 @@
                 }
             ],
             "description": "Integration with your Symfony app & Webpack Encore!",
-            "time": "2019-11-26T14:48:41+00:00"
+            "time": "2020-01-31T15:31:59+00:00"
         },
         {
             "name": "symfony/yaml",
