@@ -1,9 +1,12 @@
 api_platform:
     title: 'HouseHold'
     description: 'HouseHold API'
-    version: '0.0.6'
+    version: '0.0.7'
     show_webby: false
 
+    collection:
+        pagination:
+            items_per_page: 50
     mapping:
         paths:
           - '%kernel.project_dir%/src/Stock/Domain'
