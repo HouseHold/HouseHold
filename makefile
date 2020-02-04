@@ -75,7 +75,9 @@ redis-clear: ## Clear Redis Cache from DB 0
 .PHONY: api
 api: redis-clear ## Re-Generate Javascript API-Client
 		docker-compose exec php sh -lc 'bin/console api:openapi:export -o api.json && yarn install'
-		docker-compose exec php sh -lc 'yarn openapi-generator generate -i api.json -g javascript -o api --additional-properties appName=HouseHoldClient,usePromises=true,useES6=true --skip-validate-spec'
+		docker-compose exec php sh -lc 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write" \
+		    && yarn openapi-generator generate -i api.json -g typescript-axios -o api --enable-post-process-file \
+		    --additional-properties supportsES6=true --skip-validate-spec'
 		docker-compose exec php sh -lc 'rm -rf api.json node_modules'
 
 .PHONY: sh
