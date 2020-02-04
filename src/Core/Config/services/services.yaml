@@ -18,3 +18,8 @@ services:
     class: App\Core\Infrastructure\Share\Event\Metadata\UserMetadata
     tags:
       - { name: 'broadway.metadata_enricher' }
+
+  'App\Core\Application\Decorator\OasServerDecorator':
+    decorates: 'api_platform.swagger.normalizer.api_gateway'
+    arguments: [ '@App\Core\Application\Decorator\OasServerDecorator.inner', '@request_stack' ]
+    autoconfigure: false
