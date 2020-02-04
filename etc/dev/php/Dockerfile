@@ -13,5 +13,6 @@ RUN wget https://getcomposer.org/composer-stable.phar \
     && chmod +x composer \
     && mv composer /bin
 RUN apk add --no-cache fish nano rabbitmq-c redis yarn nodejs npm openjdk11-jre
+RUN yarn add prettier
 
 WORKDIR /app
