@@ -198,7 +198,7 @@ class ProductStock
      * @ApiProperty(writable=false, readable=true, openapiContext={
      *     "type"="object",
      *     "items"={},
-     *     "additionalProperties"={"type"="date"}
+     *     "additionalProperties"={"type"="string"}
      * })
      *
      * @internal To be used only API output. Values are fetched in controller.
