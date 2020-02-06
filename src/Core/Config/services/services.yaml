@@ -23,3 +23,8 @@ services:
     decorates: 'api_platform.swagger.normalizer.api_gateway'
     arguments: [ '@App\Core\Application\Decorator\OasServerDecorator.inner', '@request_stack' ]
     autoconfigure: false
+
+  'App\Core\Application\Decorator\RequiredPropertyDecorator':
+    decorates: 'api_platform.swagger.normalizer.api_gateway'
+    arguments: [ '@App\Core\Application\Decorator\OasServerDecorator.inner' ]
+    autoconfigure: false
