@@ -105,4 +105,31 @@ class ORMEventStore implements EventStore, EventStoreManagement
 
         throw new \LogicException('Please implement this. I have no idea.');
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function loadFromPlayheadToPlayhead($id, int $fromPlayhead, int $toPlayhead): DomainEventStream
+    {
+        /** @var AbstractEventStoreEntity[] $events */
+        $events = $this->repo->matching(
+            (new ORMCriteria())
+                ->where(ORMCriteria::expr()->eq('id', Helper::convertIdToString($id)))
+                ->andWhere(ORMCriteria::expr()->gte('index', $fromPlayhead))
+                ->andWhere(ORMCriteria::expr()->lte('index', $toPlayhead))
+                ->orderBy(['index' => ORMCriteria::ASC])
+        );
+
+        return new DomainEventStream(Helper::deSerializeEntities($events));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function replay($id, int $fromPlayhead, ?int $toPlayhead = null): void
+    {
+        var_dump('Please implement this. I have no idea.');
+
+        throw new \LogicException('Please implement this. I have no idea.');
+    }
 }

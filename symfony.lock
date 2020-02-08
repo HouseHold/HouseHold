@@ -19,18 +19,6 @@
     "beberlei/assert": {
         "version": "v2.8.1"
     },
-    "broadway/broadway": {
-        "version": "2.0.1"
-    },
-    "broadway/broadway-bundle": {
-        "version": "0.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "0.4",
-            "ref": "a4ded8381c60e594474584599659eef9d931c872"
-        }
-    },
     "broadway/event-store-dbal": {
         "version": "0.1",
         "recipe": {
@@ -198,6 +186,12 @@
     },
     "guzzlehttp/streams": {
         "version": "3.0.0"
+    },
+    "household/broadway": {
+        "version": "2.2.0"
+    },
+    "household/broadway-bundle": {
+        "version": "0.5.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"

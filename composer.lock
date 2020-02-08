@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "938e98a597b043102adb9a115df34ce5",
+    "content-hash": "427b7180d1c6292de16e3bdac0875afa",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -256,173 +256,6 @@
             "time": "2019-12-19T17:51:41+00:00"
         },
         {
-            "name": "broadway/broadway",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/broadway/broadway.git",
-                "reference": "412ce1830c919277368cdd46abbeff7125248a6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/broadway/broadway/zipball/412ce1830c919277368cdd46abbeff7125248a6f",
-                "reference": "412ce1830c919277368cdd46abbeff7125248a6f",
-                "shasum": ""
-            },
-            "require": {
-                "beberlei/assert": "~3.0",
-                "broadway/uuid-generator": "~0.4.0",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.1",
-                "malukenho/docheader": "^0.1.7",
-                "monolog/monolog": "~1.8",
-                "phpunit/phpunit": "^6.0",
-                "ramsey/uuid": "^3.0"
-            },
-            "suggest": {
-                "broadway/broadway-bundle": "Symfony bundle for broadway/broadway",
-                "broadway/broadway-saga": "Saga component for Broadway",
-                "broadway/event-store-dbal": "Event store implementation using doctrine/dbal",
-                "broadway/read-model-elasticsearch": "Elasticsearch read model implementation",
-                "psr/log-implementation": "Implementation for PSR3, LoggerInterface"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Broadway\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "othillo",
-                    "email": "othillo@othillo.nl"
-                },
-                {
-                    "name": "Alexander",
-                    "email": "iam.asm89@gmail.com"
-                },
-                {
-                    "name": "Qandidate.com",
-                    "homepage": "http://labs.qandidate.com/"
-                },
-                {
-                    "name": "Willem-Jan",
-                    "email": "wjzijderveld@gmail.com"
-                },
-                {
-                    "name": "Emil",
-                    "email": "emil@broekmeulen.com"
-                },
-                {
-                    "name": "Fritsjan",
-                    "email": "fritsjan@qandidate.com"
-                }
-            ],
-            "description": "Infrastructure and testing helpers for creating CQRS and event sourced applications.",
-            "keywords": [
-                "cqrs",
-                "ddd",
-                "domain-driven design",
-                "event sourcing"
-            ],
-            "time": "2019-01-07T19:25:20+00:00"
-        },
-        {
-            "name": "broadway/broadway-bundle",
-            "version": "0.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/broadway/broadway-bundle.git",
-                "reference": "8198c5201ddb0915080fddd3cd5d55fd5e76a95b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/broadway/broadway-bundle/zipball/8198c5201ddb0915080fddd3cd5d55fd5e76a95b",
-                "reference": "8198c5201ddb0915080fddd3cd5d55fd5e76a95b",
-                "shasum": ""
-            },
-            "require": {
-                "broadway/broadway": "^2.0",
-                "php": ">=7.0",
-                "symfony/console": "^2.3||^3.0||^4.0",
-                "symfony/http-kernel": "^2.3||^3.0||^4.0"
-            },
-            "require-dev": {
-                "broadway/broadway-saga": "^0.3",
-                "matthiasnoback/symfony-config-test": "^2.0",
-                "matthiasnoback/symfony-dependency-injection-test": "^1.1",
-                "monolog/monolog": "~1.8",
-                "phpunit/phpunit": "^4.8||^5.0",
-                "symfony/framework-bundle": "^2.3||^3.0||^4.0",
-                "symfony/proxy-manager-bridge": "^2.3||^3.0||^4.0"
-            },
-            "suggest": {
-                "broadway/event-store-dbal": "Event store implementation using doctrine/dbal",
-                "broadway/read-model-elasticsearch": "Elasticsearch read model implementation using elastic/elasticsearch-php",
-                "psr/log-implementation": "Implementation for PSR3, LoggerInterface"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Broadway\\Bundle\\BroadwayBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "othillo",
-                    "email": "othillo@othillo.nl"
-                },
-                {
-                    "name": "Alexander",
-                    "email": "iam.asm89@gmail.com"
-                },
-                {
-                    "name": "Qandidate.com",
-                    "homepage": "http://labs.qandidate.com/"
-                },
-                {
-                    "name": "Willem-Jan",
-                    "email": "wjzijderveld@gmail.com"
-                },
-                {
-                    "name": "Emil",
-                    "email": "emil@broekmeulen.com"
-                },
-                {
-                    "name": "Fritsjan",
-                    "email": "fritsjan@qandidate.com"
-                }
-            ],
-            "description": "Symfony bundle for broadway/broadway.",
-            "keywords": [
-                "cqrs",
-                "ddd",
-                "domain-driven design",
-                "event sourcing"
-            ],
-            "time": "2019-03-27T13:36:38+00:00"
-        },
-        {
             "name": "broadway/uuid-generator",
             "version": "0.4.0",
             "source": {
@@ -461,16 +294,16 @@
         },
         {
             "name": "damienharper/doctrine-audit-bundle",
-            "version": "3.2.3",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DamienHarper/DoctrineAuditBundle.git",
-                "reference": "c85ba4b3b74cbfc1faa446efabd2891a270dc3e9"
+                "reference": "c72d4ccf938bd680508337da077d2beb5a35dc55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/c85ba4b3b74cbfc1faa446efabd2891a270dc3e9",
-                "reference": "c85ba4b3b74cbfc1faa446efabd2891a270dc3e9",
+                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/c72d4ccf938bd680508337da077d2beb5a35dc55",
+                "reference": "c72d4ccf938bd680508337da077d2beb5a35dc55",
                 "shasum": ""
             },
             "require": {
@@ -484,20 +317,29 @@
                 "symfony/translation": "^3.4|^4.0|^5.0",
                 "symfony/twig-bundle": "^3.4|^4.0|^5.0"
             },
+            "conflict": {
+                "doctrine/persistence": "<1.3"
+            },
             "require-dev": {
                 "doctrine/doctrine-migrations-bundle": "^1.3|^2.0",
                 "friendsofphp/php-cs-fixer": "^2.15",
                 "gedmo/doctrine-extensions": "^2.4",
+                "jwage/changelog-generator": "^1.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^3.1|^4.0",
-                "phpstan/phpstan-doctrine": "^0.11",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpstan/phpstan-strict-rules": "^0.11",
-                "phpstan/phpstan-symfony": "^0.11",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-doctrine": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpstan/phpstan-symfony": "^0.12",
                 "phpunit/phpunit": "^7.0|^8.0",
                 "symfony/var-dumper": "^4.2|^5.0",
                 "twig/extensions": "^1.5"
             },
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "DH\\DoctrineAuditBundle\\": "src/DoctrineAuditBundle"
@@ -520,7 +362,7 @@
                 "audit-trail",
                 "doctrine"
             ],
-            "time": "2019-12-05T22:49:54+00:00"
+            "time": "2020-02-07T09:30:28+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -2211,6 +2053,173 @@
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
+            "name": "household/broadway",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HouseHold/broadway.git",
+                "reference": "61d4cecddd4728667a72f0885e9d6059b797b5a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HouseHold/broadway/zipball/61d4cecddd4728667a72f0885e9d6059b797b5a2",
+                "reference": "61d4cecddd4728667a72f0885e9d6059b797b5a2",
+                "shasum": ""
+            },
+            "require": {
+                "beberlei/assert": "~3.0",
+                "broadway/uuid-generator": "~0.4.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.1",
+                "malukenho/docheader": "^0.1.7",
+                "monolog/monolog": "~1.8",
+                "phpunit/phpunit": "^8.0",
+                "ramsey/uuid": "^3.0"
+            },
+            "suggest": {
+                "broadway/broadway-bundle": "Symfony bundle for broadway/broadway",
+                "broadway/broadway-saga": "Saga component for Broadway",
+                "broadway/event-store-dbal": "Event store implementation using doctrine/dbal",
+                "broadway/read-model-elasticsearch": "Elasticsearch read model implementation",
+                "psr/log-implementation": "Implementation for PSR3, LoggerInterface"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Broadway\\": "src/Broadway/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                },
+                {
+                    "name": "Emil",
+                    "email": "emil@broekmeulen.com"
+                },
+                {
+                    "name": "Fritsjan",
+                    "email": "fritsjan@qandidate.com"
+                },
+                {
+                    "name": "othillo",
+                    "email": "othillo@othillo.nl"
+                },
+                {
+                    "name": "Willem-Jan",
+                    "email": "wjzijderveld@gmail.com"
+                },
+                {
+                    "name": "Qandidate.com",
+                    "homepage": "http://labs.qandidate.com/"
+                }
+            ],
+            "description": "Infrastructure and testing helpers for creating CQRS and event sourced applications.",
+            "keywords": [
+                "cqrs",
+                "ddd",
+                "domain-driven design",
+                "event sourcing"
+            ],
+            "time": "2020-02-08T17:35:35+00:00"
+        },
+        {
+            "name": "household/broadway-bundle",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HouseHold/broadway-bundle.git",
+                "reference": "94977c4b6b8094733d95607dfba3678cdaa450d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HouseHold/broadway-bundle/zipball/94977c4b6b8094733d95607dfba3678cdaa450d5",
+                "reference": "94977c4b6b8094733d95607dfba3678cdaa450d5",
+                "shasum": ""
+            },
+            "require": {
+                "household/broadway": "^2.2",
+                "php": ">=7.2",
+                "symfony/console": "^4.0||^5.0",
+                "symfony/http-kernel": "^4.0||^5.0"
+            },
+            "require-dev": {
+                "broadway/broadway-saga": "^0.3",
+                "matthiasnoback/symfony-config-test": "^2.0",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.1",
+                "monolog/monolog": "~1.8",
+                "phpunit/phpunit": "^4.8||^5.0||^6.0||^7.0||^8.0",
+                "symfony/framework-bundle": "^4.0||^5.0",
+                "symfony/proxy-manager-bridge": "^4.0||^5.0"
+            },
+            "suggest": {
+                "broadway/event-store-dbal": "Event store implementation using doctrine/dbal",
+                "broadway/read-model-elasticsearch": "Elasticsearch read model implementation using elastic/elasticsearch-php",
+                "psr/log-implementation": "Implementation for PSR3, LoggerInterface"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Broadway\\Bundle\\BroadwayBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                },
+                {
+                    "name": "Emil",
+                    "email": "emil@broekmeulen.com"
+                },
+                {
+                    "name": "Fritsjan",
+                    "email": "fritsjan@qandidate.com"
+                },
+                {
+                    "name": "othillo",
+                    "email": "othillo@othillo.nl"
+                },
+                {
+                    "name": "Willem-Jan",
+                    "email": "wjzijderveld@gmail.com"
+                },
+                {
+                    "name": "Qandidate.com",
+                    "homepage": "http://labs.qandidate.com/"
+                }
+            ],
+            "description": "Symfony bundle for broadway/broadway.",
+            "keywords": [
+                "cqrs",
+                "ddd",
+                "domain-driven design",
+                "event sourcing"
+            ],
+            "time": "2020-02-08T17:51:23+00:00"
+        },
+        {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -2327,16 +2336,16 @@
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knpuniversity/oauth2-client-bundle.git",
-                "reference": "825b0c4512e51615318c8fbd4a57c7e65a57216d"
+                "reference": "4f71b8a3e6696bc5aafccbb2ce51928e4d2d0794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/825b0c4512e51615318c8fbd4a57c7e65a57216d",
-                "reference": "825b0c4512e51615318c8fbd4a57c7e65a57216d",
+                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/4f71b8a3e6696bc5aafccbb2ce51928e4d2d0794",
+                "reference": "4f71b8a3e6696bc5aafccbb2ce51928e4d2d0794",
                 "shasum": ""
             },
             "require": {
@@ -2380,7 +2389,7 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2020-01-10T15:50:30+00:00"
+            "time": "2020-02-07T13:20:48+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -8208,12 +8217,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "af61943caaa512a4f00f1ee80e6e0cfec3fb63d1"
+                "reference": "7d271200b041d3e4be5927fdb03122508b9f8ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/af61943caaa512a4f00f1ee80e6e0cfec3fb63d1",
-                "reference": "af61943caaa512a4f00f1ee80e6e0cfec3fb63d1",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/7d271200b041d3e4be5927fdb03122508b9f8ebb",
+                "reference": "7d271200b041d3e4be5927fdb03122508b9f8ebb",
                 "shasum": ""
             },
             "conflict": {
@@ -8252,7 +8261,11 @@
                 "drupal/drupal": ">=7,<7.69|>=8,<8.7.11|>=8.8,<8.8.1",
                 "endroid/qr-code-bundle": "<3.4.2",
                 "erusev/parsedown": "<1.7.2",
-                "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.4",
+                "ezsystems/ezfind-ls": ">=5.3,<5.3.6.1|>=5.4,<5.4.11.1|>=2017.12,<2017.12.0.1",
+                "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
+                "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
+                "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2",
+                "ezsystems/ezplatform-user": ">=1,<1.0.1",
                 "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.13.1|>=6,<6.7.9.1|>=6.8,<6.13.5.1|>=7,<7.2.4.1|>=7.3,<7.3.2.1",
                 "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.12.3|>=2011,<2017.12.4.3|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
@@ -8433,7 +8446,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-02-05T14:02:42+00:00"
+            "time": "2020-02-06T16:34:55+00:00"
         },
         {
             "name": "sensiolabs-de/deptrac-shim",
