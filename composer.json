@@ -11,26 +11,26 @@
         "household/broadway-bundle": "^0.5",
         "damienharper/doctrine-audit-bundle": "^3.2",
         "elasticsearch/elasticsearch": "^7.5",
-        "flagception/flagception-bundle": "^3.4",
+        "flagception/flagception-bundle": "^4.0",
         "kevinpapst/adminlte-bundle": "^3.0",
         "knpuniversity/oauth2-client-bundle": "^1",
         "lexik/jwt-authentication-bundle": "^2.6",
         "ramsey/uuid-doctrine": "^1.5",
         "snc/redis-bundle": "^3.2",
-        "symfony/asset": "^4.4",
-        "symfony/cache": "^4.4",
-        "symfony/console": "^4.4",
-        "symfony/dotenv": "^4.4",
+        "symfony/asset": "^5.0",
+        "symfony/cache": "^5.0",
+        "symfony/console": "^5.0",
+        "symfony/dotenv": "^5.0",
         "symfony/flex": "^1.4",
-        "symfony/form": "^4.4",
-        "symfony/framework-bundle": "^4.4",
-        "symfony/lock": "^4.4",
-        "symfony/messenger": "^4.4",
+        "symfony/form": "^5.0",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/lock": "^5.0",
+        "symfony/messenger": "^5.0",
         "symfony/orm-pack": "^1.0",
-        "symfony/security-bundle": "^4.4",
-        "symfony/twig-bundle": "^4.4",
+        "symfony/security-bundle": "^5.0",
+        "symfony/twig-bundle": "^5.0",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "^4.4",
+        "symfony/yaml": "^5.0",
         "webonyx/graphql-php": "^0.13.8"
     },
     "require-dev": {
@@ -40,7 +40,7 @@
         "fzaninotto/faker": "^1.9",
         "roave/security-advisories": "dev-master",
         "sensiolabs-de/deptrac-shim": "^0.5.0",
-        "symfony/browser-kit": "^4.4",
+        "symfony/browser-kit": "^5.0",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
@@ -81,7 +81,7 @@
         "symfony": {
             "id": "01C1QKYZ4DSB74RHER7JCF8Q1K",
             "allow-contrib": "true",
-            "require": "^4.4"
+            "require": "^5.0"
         }
     },
     "name": "household/household",
