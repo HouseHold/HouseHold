@@ -19,6 +19,8 @@
     HouseHold is self-hosted web-based application to manage your home.
     <br />
     <strong> HouseHold is in Alpha and expirencing heavy development</strong>
+    <br />
+    <strong> Pre-Alpha coming 1st of April </strong>
     <!-- <a href="https://github.com/HouseHold/HouseHold"><strong>Explore the docs »</strong></a> -->
     <br />
     <br />
