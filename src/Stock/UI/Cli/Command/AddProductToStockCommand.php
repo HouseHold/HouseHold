@@ -104,13 +104,19 @@ final class AddProductToStockCommand extends Command
     {
         $quantity = (int) $input->getArgument('quantity');
         if ($quantity < 0) {
-            throw new InputValidationException('Amount must be number and > 0.');
+            throw new InputValidationException('Quantity must be number and > 0.');
+        }
+
+        $price = (float) $input->getArgument('price');
+        if ($price <= 0) {
+            throw new InputValidationException('Price must be float and cannot be negative.');
         }
 
         return new AddCommand(
             $this->stock,
             DateTime::fromString($input->getArgument('best-before')),
-            $quantity
+            $quantity,
+            $price
         );
     }
 
