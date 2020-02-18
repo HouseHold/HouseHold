@@ -38,7 +38,7 @@ final class RequiredPropertyDecorator implements NormalizerInterface
      *
      * @return array|string|int|float|bool|\ArrayObject|null
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = [])
     {
         $docs = $this->decorated->normalize($object, $format, $context);
         foreach ($docs['components']['schemas'] as $schemaName => &$schema) {
