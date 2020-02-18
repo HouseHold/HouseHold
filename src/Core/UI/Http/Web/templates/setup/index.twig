@@ -64,6 +64,9 @@
                                 <v-list-item-avatar v-if="item.done">
                                     <v-icon color="green">check_circle_outline</v-icon>
                                 </v-list-item-avatar>
+                                <v-list-item-avatar v-else-if="item.error">
+                                    <v-icon color="red">error</v-icon>
+                                </v-list-item-avatar>
                                 <v-list-item-avatar v-else>
                                     <template v-if="item.active">
                                         <v-icon class="spinning" color="orange">autorenew</v-icon>
@@ -83,6 +86,9 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer/>
+                <template v-if="errorMsg !== ''">
+                    <p>{{ '{{ errorMsg }}' }}</p>
+                </template>
                 <v-btn color="danger" v-if="updateButton" @click="onUpdateClick()" :disabled="loading" :loading="loading">Update</v-btn>
             </v-card-actions>
         </div>
@@ -94,6 +100,7 @@
                 updateButton: false,
                 items: null,
                 loading: false,
+                errorMsg: '',
             }
         },
         created() {
@@ -110,6 +117,7 @@
                         title: moment(key, 'YYYYMMDDhhmmss').format('YYYY-MM-DD hh:mm:ss'),
                         done: false,
                         active: false,
+                        error: false,
                     };
                 });
                 this.items = items;
@@ -123,7 +131,15 @@
                 this.loading = true;
                 for (item of Object.values(this.items)) {
                     this.items[item.id].active = true;
-                    await axios.post('/setup', {version: item.id});
+                    try {
+                        await axios.post('/setup', {version: item.id});
+                    } catch (e) {
+                        this.items[item.id].active = false;
+                        this.items[item.id].error = true;
+                        this.updateButton = false;
+                        this.errorMsg = 'Update failed: '+e.message;
+                        throw Error(e)
+                    }
                     this.items[item.id].active = false;
                     this.items[item.id].done = true;
                 }
