@@ -142,6 +142,12 @@
     "exsyst/swagger": {
         "version": "v0.4.1"
     },
+    "ezimuel/guzzlestreams": {
+        "version": "3.0.1"
+    },
+    "ezimuel/ringphp": {
+        "version": "1.1.2"
+    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -180,12 +186,6 @@
     },
     "guzzlehttp/psr7": {
         "version": "1.6.1"
-    },
-    "guzzlehttp/ringphp": {
-        "version": "1.1.0"
-    },
-    "guzzlehttp/streams": {
-        "version": "3.0.0"
     },
     "household/broadway": {
         "version": "2.2.0"
