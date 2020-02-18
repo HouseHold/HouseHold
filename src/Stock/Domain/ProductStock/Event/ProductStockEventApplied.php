@@ -20,9 +20,11 @@ use Symfony\Contracts\EventDispatcher\Event;
 final class ProductStockEventApplied extends Event
 {
     public ProductStockAggregateRoot $aggregateRoot;
+    public object $event;
 
-    public function __construct(ProductStockAggregateRoot $aggregateRoot)
+    public function __construct(ProductStockAggregateRoot $aggregateRoot, object $event)
     {
         $this->aggregateRoot = $aggregateRoot;
+        $this->event = $event;
     }
 }

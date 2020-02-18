@@ -77,7 +77,10 @@ final class ProductStockFixtures extends AbstractDependentFixture
                             $this->commandBus->dispatch(new AddProductToStockCommand(
                                 $stock,
                                 $productBestBeforeOrNull,
-                                rand(1, 10)
+                                rand(1, 10),
+                                rand(1, 10) <= 5 ?
+                                    $product->price - $f->randomFloat(2, 0, 5)
+                                    : $product->price + $f->randomFloat(2, 0, 5)
                             ));
                         }
                     }

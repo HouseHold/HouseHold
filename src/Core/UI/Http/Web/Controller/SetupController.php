@@ -76,11 +76,12 @@ final class SetupController extends AbstractController
             return $this->returnView(['available' => json_encode($migrations)]);
         }
 
+        $json = json_decode($request->getContent(), true) ?? [];
         try {
-            if (null === $request->get('version', null)) {
-                return JsonResponse::create([].Response::HTTP_BAD_REQUEST);
+            if (!isset($json['version'])) {
+                return JsonResponse::create(['error' => 'Missing param version.'], Response::HTTP_BAD_REQUEST);
             }
-            $migration->migrate($request->get('version'));
+            $migration->migrate($json['version']);
 
             return JsonResponse::create(['status' => Response::HTTP_ACCEPTED], Response::HTTP_ACCEPTED);
         } catch (MigrationException $e) {

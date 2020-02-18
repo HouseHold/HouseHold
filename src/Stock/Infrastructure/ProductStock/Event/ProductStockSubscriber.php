@@ -25,13 +25,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 final class ProductStockSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
-    /**
-     * @var StockFinder
-     */
     private StockFinder $stockFinder;
 
     public function __construct(EntityManagerInterface $em, StockFinder $stockFinder)

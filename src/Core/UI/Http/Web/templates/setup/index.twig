@@ -64,6 +64,9 @@
                                 <v-list-item-avatar v-if="item.done">
                                     <v-icon color="green">check_circle_outline</v-icon>
                                 </v-list-item-avatar>
+                                <v-list-item-avatar v-else-if="item.error">
+                                    <v-icon color="red">error</v-icon>
+                                </v-list-item-avatar>
                                 <v-list-item-avatar v-else>
                                     <template v-if="item.active">
                                         <v-icon class="spinning" color="orange">autorenew</v-icon>
@@ -85,6 +88,17 @@
                 <v-spacer/>
                 <v-btn color="danger" v-if="updateButton" @click="onUpdateClick()" :disabled="loading" :loading="loading">Update</v-btn>
             </v-card-actions>
+            <template v-if="errorMsg !== ''">
+                <v-card-text>
+                    <p>Update failed! Please <a href="https://github.com/HouseHold/HouseHold/issues">report</a> this!</p>
+                    <small>Please add what update failed and bellow error output.</small>
+                    <v-row align="center" justify="center">
+                        <v-col sm="12" md="12">
+                            <code>{{ '{{ errorMsg }}' }}</code>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </template>
         </div>
         `,
         data() {
@@ -94,6 +108,7 @@
                 updateButton: false,
                 items: null,
                 loading: false,
+                errorMsg: '',
             }
         },
         created() {
@@ -110,6 +125,7 @@
                         title: moment(key, 'YYYYMMDDhhmmss').format('YYYY-MM-DD hh:mm:ss'),
                         done: false,
                         active: false,
+                        error: false,
                     };
                 });
                 this.items = items;
@@ -123,7 +139,20 @@
                 this.loading = true;
                 for (item of Object.values(this.items)) {
                     this.items[item.id].active = true;
-                    await axios.post('/setup', {version: item.id});
+                    try {
+                        await axios.post('/setup', {version: item.id});
+                    } catch (e) {
+                        this.items[item.id].active = false;
+                        this.items[item.id].error = true;
+                        this.updateButton = false;
+                        if(e.response.data.error !== undefined) {
+                            console.log(e.response);
+                            this.errorMsg = `Message: ${e.response.data.error}\n Code: ${e.response.status}\n Status: ${e.response.statusText}`
+                        } else {
+                            this.errorMsg = e.message;
+                        }
+                        throw Error(e)
+                    }
                     this.items[item.id].active = false;
                     this.items[item.id].done = true;
                 }

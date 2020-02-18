@@ -64,7 +64,7 @@ final class AddProductToStockCommand extends Command
             ->setDescription('Add given amount of given product into stock.')
             ->addArgument('product', InputArgument::REQUIRED, 'Product Name')
             ->addArgument('best-before', InputArgument::REQUIRED, 'Best Before Date for product(s).')
-            ->addArgument('amount', InputArgument::REQUIRED, 'Total amount of products being added.')
+            ->addArgument('quantity', InputArgument::REQUIRED, 'Total quantity of products being added.')
             ->addArgument('price', InputArgument::REQUIRED, 'Price per product.')
             ->addArgument('location', InputArgument::REQUIRED, 'Location name.')
         ;
@@ -102,15 +102,21 @@ final class AddProductToStockCommand extends Command
      */
     private function getAddCommand(InputInterface $input): AddCommand
     {
-        $amount = (int) $input->getArgument('amount');
-        if ($amount < 0) {
-            throw new InputValidationException('Amount must be number and > 0.');
+        $quantity = (int) $input->getArgument('quantity');
+        if ($quantity < 0) {
+            throw new InputValidationException('Quantity must be number and > 0.');
+        }
+
+        $price = (float) $input->getArgument('price');
+        if ($price <= 0) {
+            throw new InputValidationException('Price must be float and cannot be negative.');
         }
 
         return new AddCommand(
             $this->stock,
             DateTime::fromString($input->getArgument('best-before')),
-            $amount
+            $quantity,
+            $price
         );
     }
 

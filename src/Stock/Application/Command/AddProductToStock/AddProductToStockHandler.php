@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace App\Stock\Application\Command\AddProductToStock;
 
 use App\Core\Application\Command\CommandHandlerInterface;
-use App\Stock\Domain\ProductStock;
+use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
 
 final class AddProductToStockHandler implements CommandHandlerInterface
@@ -30,7 +30,7 @@ final class AddProductToStockHandler implements CommandHandlerInterface
     public function __invoke(AddProductToStockCommand $command): void
     {
         $stock = $this->repository->get($command->stock->getId());
-        $stock->apply(new ProductStock\Event\ProductAddedToStock($command->amount, $command->bestBefore));
+        $stock->apply(new ProductAddedToStock($command->amount, $command->price, $command->bestBefore));
         $this->repository->store($stock);
     }
 }

@@ -63,6 +63,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                                 "quantity"={
  *                                     "type"="integer",
  *                                 },
+ *                                 "price"={
+ *                                     "type"="number",
+ *                                 },
  *                             },
  *                         },
  *                     },

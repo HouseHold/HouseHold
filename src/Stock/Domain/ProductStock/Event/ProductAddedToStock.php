@@ -22,12 +22,14 @@ use Broadway\Serializer\Serializable;
 final class ProductAddedToStock implements Serializable
 {
     public int $quantity;
+    public float $price;
     public ?DateTime $bestBefore;
 
-    public function __construct(int $quantity, ?DateTime $bestBefore)
+    public function __construct(int $quantity, float $price, ?DateTime $bestBefore)
     {
         $this->quantity = $quantity;
         $this->bestBefore = $bestBefore;
+        $this->price = $price;
     }
 
     /**
@@ -40,12 +42,13 @@ final class ProductAddedToStock implements Serializable
     {
         Assertion::keyExists($data, 'quantity');
         Assertion::keyExists($data, 'bestBefore');
+        Assertion::keyExists($data, 'price');
 
-        if (null === $data['bestBefore']) {
-            return new self($data['quantity'], null);
+        if (null !== $data['bestBefore']) {
+            $data['bestBefore'] = DateTime::fromString($data['bestBefore']);
         }
 
-        return new self($data['quantity'], DateTime::fromString($data['bestBefore']));
+        return new self($data['quantity'], $data['price'], $data['bestBefore']);
     }
 
     /**
@@ -55,6 +58,7 @@ final class ProductAddedToStock implements Serializable
     {
         return [
             'quantity'   => $this->quantity,
+            'price'      => $this->price,
             'bestBefore' => null === $this->bestBefore ? null : $this->bestBefore->toString(),
         ];
     }

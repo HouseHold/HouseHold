@@ -23,14 +23,17 @@ final class AddProductToStockCommand implements SyncCommand
     public ProductStock $stock;
     public ?DateTime $bestBefore;
     public int $amount;
+    public float $price;
 
     public function __construct(
         ProductStock $stock,
         ?DateTime $bestBefore,
-        int $amount
+        int $amount,
+        float $price
     ) {
         $this->bestBefore = $bestBefore;
         $this->amount = $amount;
         $this->stock = $stock;
+        $this->price = $price;
     }
 }
