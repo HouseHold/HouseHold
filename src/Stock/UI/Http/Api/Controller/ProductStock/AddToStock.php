@@ -38,6 +38,9 @@ final class AddToStock extends AbstractController
             Assertion::keyIsset($body, 'quantity', 'Quantity is not set in body.');
             Assertion::integer($body['quantity'], 0, 'Quantity must be integer.');
             Assertion::greaterThan($body['quantity'], 0, 'Quantity must be over 0.');
+            Assertion::keyIsset($body, 'price', 'Price is not set in body.');
+            Assertion::float($body['price'], 0, 'Price must be float.');
+            Assertion::greaterThan($body['price'], 0, 'Price must be over 0 or equal.');
         } catch (AssertionFailedException $e) {
             return new Response('', 400, ['x-debug' => $e->getMessage()]);
         }
@@ -48,7 +51,7 @@ final class AddToStock extends AbstractController
             return new Response('', 404);
         }
 
-        $this->run(new AddProductToStockCommand($stock, DateTime::now(), $body['quantity']));
+        $this->run(new AddProductToStockCommand($stock, DateTime::now(), $body['quantity'], $body['price']));
 
         return new Response('', 204);
     }
