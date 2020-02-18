@@ -86,11 +86,19 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer/>
-                <template v-if="errorMsg !== ''">
-                    <p>{{ '{{ errorMsg }}' }}</p>
-                </template>
                 <v-btn color="danger" v-if="updateButton" @click="onUpdateClick()" :disabled="loading" :loading="loading">Update</v-btn>
             </v-card-actions>
+            <template v-if="errorMsg !== ''">
+                <v-card-text>
+                    <p>Update failed! Please <a href="https://github.com/HouseHold/HouseHold/issues">report</a> this!</p>
+                    <small>Please add what update failed and bellow error output.</small>
+                    <v-row align="center" justify="center">
+                        <v-col sm="12" md="12">
+                            <code>{{ '{{ errorMsg }}' }}</code>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </template>
         </div>
         `,
         data() {
@@ -137,7 +145,12 @@
                         this.items[item.id].active = false;
                         this.items[item.id].error = true;
                         this.updateButton = false;
-                        this.errorMsg = 'Update failed: '+e.message;
+                        if(e.response.data.error !== undefined) {
+                            console.log(e.response);
+                            this.errorMsg = `Message: ${e.response.data.error}\n Code: ${e.response.status}\n Status: ${e.response.statusText}`
+                        } else {
+                            this.errorMsg = e.message;
+                        }
                         throw Error(e)
                     }
                     this.items[item.id].active = false;

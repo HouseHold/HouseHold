@@ -78,7 +78,7 @@ final class SetupController extends AbstractController
 
         try {
             if (null === $request->get('version', null)) {
-                return JsonResponse::create([].Response::HTTP_BAD_REQUEST);
+                return JsonResponse::create(['error' => 'Missing param version.'], Response::HTTP_BAD_REQUEST);
             }
             $migration->migrate($request->get('version'));
 
