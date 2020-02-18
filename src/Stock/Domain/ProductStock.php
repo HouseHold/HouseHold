@@ -54,6 +54,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                 },
  *             },
  *             "requestBody"={
+ *                 "required"=true,
  *                 "content"={
  *                     "application/ld+json"={
  *                         "schema"={
@@ -93,6 +94,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                 },
  *             },
  *             "requestBody"={
+ *                 "required"=true,
  *                 "content"={
  *                     "application/ld+json"={
  *                         "schema"={
