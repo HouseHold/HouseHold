@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace App\Stock\Application\Command\AddProductToStock;
 
 use App\Core\Application\Command\CommandHandlerInterface;
-use App\Stock\Domain\ProductStock;
 use App\Stock\Domain\ProductStock\Event\ProductAddedToStock;
 use App\Stock\Domain\ProductStock\Repository\ProductStockStoreRepository;
 

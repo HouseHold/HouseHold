@@ -107,7 +107,7 @@ class ORMEventStore implements EventStore, EventStoreManagement
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function loadFromPlayheadToPlayhead($id, int $fromPlayhead, int $toPlayhead): DomainEventStream
     {
@@ -124,7 +124,7 @@ class ORMEventStore implements EventStore, EventStoreManagement
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function replay($id, int $fromPlayhead, ?int $toPlayhead = null): void
     {
