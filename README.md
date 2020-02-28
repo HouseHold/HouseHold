@@ -3,6 +3,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![BSL License][license-shield]][license-url]
+[![Localization][locale-shield]][locale-url]
 
 
 <br />
@@ -170,4 +171,6 @@ support single contributor effort develop the software._</small>
 [issues-url]: https://github.com/HouseHold/HouseHold/issues
 [license-shield]: https://img.shields.io/badge/License-BSL%201.1-brightgreen.svg?style=flat-square
 [license-url]: https://github.com/HouseHold/HouseHold/blob/master/LICENSE.txt
+[locale-shield]: https://badges.crowdin.net/household/localized.svg
+[locale-url]: https://crowdin.com/project/household
 [product-screenshot]: images/screenshot.png
