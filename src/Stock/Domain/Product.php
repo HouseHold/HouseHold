@@ -42,7 +42,7 @@ class Product
      */
     public string $name;
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json")
      */
     public array $ean;
     /**

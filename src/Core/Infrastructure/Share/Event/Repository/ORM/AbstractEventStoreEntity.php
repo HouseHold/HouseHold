@@ -44,11 +44,11 @@ abstract class AbstractEventStoreEntity
      */
     protected string $type;
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json")
      */
     protected array $payload;
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json")
      */
     protected array $metadata;
 
