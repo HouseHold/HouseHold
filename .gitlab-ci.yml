@@ -70,16 +70,16 @@ publish-tag-gitlab:
 publish-latest-github:
   <<: *publish-github
   script:
-    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA docker.pkg.github.com/household/household:latest
-    - docker push docker.pkg.github.com/household/household:latest
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA household/household/household:latest
+    - docker push docker.pkg.github.com/household/household/household:latest
   only:
     - master
 
 publish-tag-github:
   <<: *publish-github
   script:
-    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA docker.pkg.github.com/household/household:$CI_COMMIT_REF_NAME
-    - docker push docker.pkg.github.com/household/household:$CI_COMMIT_REF_NAME
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA docker.pkg.github.com/household/household/household:$CI_COMMIT_REF_NAME
+    - docker push docker.pkg.github.com/household/household/household:$CI_COMMIT_REF_NAME
   only:
     - tags
 
