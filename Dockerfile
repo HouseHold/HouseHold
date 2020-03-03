@@ -50,16 +50,16 @@ ENV APP_ENV prod
 
 WORKDIR /app
 
-RUN apk add --no-cache libsodium-dev \
+RUN apk add --no-cache --quiet libsodium-dev \
     && docker-php-ext-install -j8 sodium \
     && apk del --purge libsodium-dev
-RUN docker-php-ext-install -j8 pdo_mysql bcmath sockets
-RUN apk add --no-cache $PHPIZE_DEPS rabbitmq-c rabbitmq-c-dev \
+RUN set -x && docker-php-ext-install -j8 pdo_mysql bcmath sockets > /dev/null && set +x
+RUN apk add --no-cache --quiet $PHPIZE_DEPS rabbitmq-c rabbitmq-c-dev \
     && pecl install xdebug amqp redis \
     && docker-php-ext-enable amqp redis \
     && apk del --purge $PHPIZE_DEPS rabbitmq-c-dev
-RUN apk add nginx supervisor py-pip sudo redis --no-cache
-RUN pip --no-cache-dir install supervisor-stdout
+RUN apk add --no-cache --quiet nginx supervisor py-pip sudo redis
+RUN pip --no-cache-dir --quiet install supervisor-stdout
 RUN sed -i 's|error_log = /proc/self/fd/2|error_log = /var/log/php-error.log|g' /usr/local/etc/php-fpm.d/docker.conf
 RUN touch /var/log/php-error.log;
 RUN echo -e "[PHP]\nupload_max_filesize = 8M\npost_max_size = 10M\n" > /usr/local/etc/php/php.ini
