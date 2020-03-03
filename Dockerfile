@@ -36,6 +36,8 @@ COPY ui/src /app/ui/src
 COPY ui/package.json /app/ui
 COPY ui/yarn.lock /app/ui
 COPY ui/webpack.config.js /app/ui
+COPY ui/tsconfig.json /app/ui
+COPY ui/vue.config.js /app/ui
 RUN cd /app/ui \
     && yarn install --non-interactive \
     && yarn build \
