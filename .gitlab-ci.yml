@@ -26,15 +26,31 @@ build:
 
 ### Publish ###
 .publish: &publish
+  image: docker:latest
   variables:
     GIT_STRATEGY: none
   stage: publish
+
+.publish-gitlab: &publish-gitlab
+  <<: *publish
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
 
-publish-latest-gitlab:
+.publish-github: &publish-github
   <<: *publish
+  before_script:
+    - docker login -u "GITHUB_DOCKER_USER" -p "$GITHUB_DOCKER_TOKEN" docker.pkg.github.com
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+.publish-docker: &publish-docker
+  <<: *publish
+  before_script:
+    - docker login -u "$HUB_DOCKER_USER" -p "$HUB_DOCKER_TOKEN"
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+publish-latest-gitlab:
+  <<: *publish-gitlab
   script:
     - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:latest
@@ -42,9 +58,41 @@ publish-latest-gitlab:
     - master
 
 publish-tag-gitlab:
-  <<: *publish
+  <<: *publish-gitlab
   script:
     - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  only:
+    - tags
+
+publish-latest-github:
+  <<: *publish-github
+  script:
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA docker.pkg.github.com/household/household:latest
+    - docker push docker.pkg.github.com/household/household:latest
+  only:
+    - master
+
+publish-tag-github:
+  <<: *publish-github
+  script:
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA docker.pkg.github.com/household/household:$CI_COMMIT_REF_NAME
+    - docker push docker.pkg.github.com/household/household:$CI_COMMIT_REF_NAME
+  only:
+    - tags
+
+publish-latest-docker:
+  <<: *publish-docker
+  script:
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA householdoss/household:latest
+    - docker push householdoss/household:latest
+  only:
+    - master
+
+publish-tag-docker:
+  <<: *publish
+  script:
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA householdoss/household:$CI_COMMIT_REF_NAME
+    - docker push householdoss/household:$CI_COMMIT_REF_NAME
   only:
     - tags
