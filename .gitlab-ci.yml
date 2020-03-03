@@ -29,6 +29,8 @@ build:
   image: docker:latest
   variables:
     GIT_STRATEGY: none
+  services:
+    - docker:latest
   stage: publish
 
 .publish-gitlab: &publish-gitlab
