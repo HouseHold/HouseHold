@@ -30,7 +30,7 @@ build:
   variables:
     GIT_STRATEGY: none
   services:
-    - docker:latest
+    - docker:dind
   stage: publish
 
 .publish-gitlab: &publish-gitlab
