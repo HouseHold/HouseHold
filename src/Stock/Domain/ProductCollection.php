@@ -49,7 +49,7 @@ class ProductCollection
      * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
      * @ORM\Cache
      */
-    public PersistentCollection $products;
+    public $products;
 
     public function __construct(string $name, ProductCategory $category)
     {
