@@ -64,8 +64,8 @@ RUN sed -i 's|error_log = /proc/self/fd/2|error_log = /var/log/php-error.log|g' 
 RUN touch /var/log/php-error.log;
 RUN echo -e "[PHP]\nupload_max_filesize = 8M\npost_max_size = 10M\n" > /usr/local/etc/php/php.ini
 
-COPY --from=builder /app/ui/dist /app/public/build
-COPY --from=frontend /app/ui/ /app
+COPY --from=builder /app /app
+COPY --from=frontend /app/ui/dist /app/public/build
 RUN chown www-data:www-data -R /app
 RUN /usr/bin/redis-server & \
     sudo -E -u www-data bin/console cache:clear --no-ansi -n \
