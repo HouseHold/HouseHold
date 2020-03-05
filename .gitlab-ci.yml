@@ -110,7 +110,7 @@ publish-tag-docker:
   before_script:
     - apt update && apt install curl -yqq
     - curl -sL https://sentry.io/get-cli/ | bash
-    - export SENTRY_AUTH_TOKEN="$SENTY_TOKEN"
+    - export SENTRY_AUTH_TOKEN="$SENTRY_TOKEN"
     - export SENTRY_ORG="$SENTRY_ORG"
     - export SENTRY_URL="$SENTRY_URL"
   only:
@@ -126,11 +126,11 @@ sentry-release-frontend:
     - sentry-cli releases set-commits --auto $VERSION
     - sentry-cli releases finalize "$VERSION"
   
-sentry-release-backend:
+.sentry-release-backend:
   <<: *sentry
   script:
     - VERSION=$(sentry-cli releases propose-version)
-    - sentry-cli releases new -p fron $VERSION
+    - sentry-cli releases new -p backend $VERSION
     - sentry-cli releases set-commits --auto $VERSION
     - sentry-cli releases finalize "$VERSION"
     
