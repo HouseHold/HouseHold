@@ -1,6 +1,7 @@
 stages:
   - build
   - publish
+  - sentry
 
 ### BUILD ###
 .build: &build
@@ -98,3 +99,34 @@ publish-tag-docker:
     - docker push householdoss/household:$CI_COMMIT_REF_NAME
   only:
     - tags
+    
+### Sentry Release ###
+
+.sentry: &sentry
+  image: debian:latest
+  stage: sentry
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  before_script:
+    - curl -sL https://sentry.io/get-cli/ | bash
+    - export SENTRY_AUTH_TOKEN="$SENTY_TOKEN"
+    - export SENTRY_ORG="$SENTRY_ORG"
+    - export SENTRY_URL="$SENTRY_URL"
+
+sentry-release-frontend:
+  <<: *sentry
+  script:
+    - cd ui
+    - VERSION=$(sentry-cli releases propose-version)
+    - sentry-cli releases new -p frontend $VERSION
+    - sentry-cli releases set-commits --auto $VERSION
+    - sentry-cli releases finalize "$VERSION"
+  
+sentry-release-backend:
+  <<: *sentry
+  script:
+    - VERSION=$(sentry-cli releases propose-version)
+    - sentry-cli releases new -p fron $VERSION
+    - sentry-cli releases set-commits --auto $VERSION
+    - sentry-cli releases finalize "$VERSION"
+    
