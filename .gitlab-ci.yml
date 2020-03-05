@@ -112,7 +112,7 @@ publish-tag-docker:
     - export SENTRY_AUTH_TOKEN="$SENTY_TOKEN"
     - export SENTRY_ORG="$SENTRY_ORG"
     - export SENTRY_URL="$SENTRY_URL"
-    only:
+  only:
     - tags
     - master
 
