@@ -43,7 +43,7 @@ class ProductCategory
      * @ORM\OneToMany(targetEntity="ProductCollection", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\Cache
      */
-    public PersistentCollection $collections;
+    public $collections;
 
     public function __construct(string $name)
     {
