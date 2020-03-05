@@ -108,6 +108,7 @@ publish-tag-docker:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   before_script:
+    - apt update && apt install curl -yqq
     - curl -sL https://sentry.io/get-cli/ | bash
     - export SENTRY_AUTH_TOKEN="$SENTY_TOKEN"
     - export SENTRY_ORG="$SENTRY_ORG"
