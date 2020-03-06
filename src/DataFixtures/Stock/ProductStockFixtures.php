@@ -66,7 +66,7 @@ final class ProductStockFixtures extends AbstractDependentFixture
                         $this->commandBus->dispatch(new InitializeProductStockCommand(
                             $product,
                             $location,
-                            function (ProductStock $s) use (&$stock) {$stock = $s; }
+                            function (ProductStock $s) use (&$stock) { $stock = $s; }
                         ));
                         $manager->refresh($stock);
                         $for = rand(1, 3);

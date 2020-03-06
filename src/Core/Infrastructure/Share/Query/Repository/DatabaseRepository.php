@@ -22,15 +22,8 @@ use Doctrine\ORM\QueryBuilder;
 
 abstract class DatabaseRepository
 {
-    /** @var string */
     protected string $class;
-
-    /** @var EntityRepository */
     protected EntityRepository $repository;
-
-    /**
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $entityManager)
