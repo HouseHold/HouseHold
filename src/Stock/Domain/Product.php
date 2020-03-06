@@ -55,13 +55,13 @@ class Product
     public bool $expiring;
     /**
      * @ORM\ManyToOne(targetEntity="ProductCollection", inversedBy="products")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public ProductCollection $collection;
     /**
      * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="product")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public $stocks;
 

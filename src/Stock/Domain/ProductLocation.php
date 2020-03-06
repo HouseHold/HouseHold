@@ -22,7 +22,7 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_location")
- * @ORM\Cache(usage="READ_ONLY")
+ * @ORM\Cache(usage="READ_WRITE", region="locking")
  * @ApiResource
  */
 class ProductLocation
@@ -43,7 +43,7 @@ class ProductLocation
     /**
      * @var ProductStock[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="ProductStock", mappedBy="location")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public PersistentCollection $stocks;
 

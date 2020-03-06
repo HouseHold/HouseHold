@@ -22,7 +22,7 @@ use Ramsey\Uuid\UuidInterface as Id;
 /**
  * @ORM\Entity
  * @ORM\Table(name="stock_product_collection")
- * @ORM\Cache(usage="READ_ONLY")
+ * @ORM\Cache(usage="READ_WRITE", region="locking")
  * @ApiResource
  */
 class ProductCollection
@@ -41,13 +41,13 @@ class ProductCollection
     /**
      * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="collections")
      * @ORM\JoinColumn(name="product_category_id", referencedColumnName="id")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public ProductCategory $category;
     /**
      * @var Product[]|PersistentCollection
      * @ORM\OneToMany(targetEntity="Product", mappedBy="collection")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public $products;
 

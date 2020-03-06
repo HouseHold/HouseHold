@@ -180,13 +180,13 @@ class ProductStock
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="stocks")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public Product $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProductLocation", inversedBy="stocks")
-     * @ORM\Cache
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public ProductLocation $location;
 
