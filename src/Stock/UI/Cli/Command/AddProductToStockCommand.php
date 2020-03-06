@@ -77,7 +77,7 @@ final class AddProductToStockCommand extends Command
      * @throws DateTimeException
      * @throws ProductStockNotFoundByNameAndLocationException
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->product = $this->productRepo->getProductByName($input->getArgument('product'));
         $this->productLocation = $this->locationRepo->getProductLocationByName($input->getArgument('location'));
@@ -92,6 +92,8 @@ final class AddProductToStockCommand extends Command
         }
 
         $this->commandBus->dispatch($this->getAddCommand($input));
+
+        return 0;
     }
 
     /**
