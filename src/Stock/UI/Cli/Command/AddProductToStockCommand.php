@@ -63,10 +63,10 @@ final class AddProductToStockCommand extends Command
             ->setName('hh:stock:add')
             ->setDescription('Add given amount of given product into stock.')
             ->addArgument('product', InputArgument::REQUIRED, 'Product Name')
-            ->addArgument('best-before', InputArgument::REQUIRED, 'Best Before Date for product(s).')
+            ->addArgument('location', InputArgument::REQUIRED, 'Location name.')
             ->addArgument('quantity', InputArgument::REQUIRED, 'Total quantity of products being added.')
             ->addArgument('price', InputArgument::REQUIRED, 'Price per product.')
-            ->addArgument('location', InputArgument::REQUIRED, 'Location name.')
+            ->addArgument('best-before', InputArgument::OPTIONAL, 'Best Before Date for product(s).')
         ;
     }
 
