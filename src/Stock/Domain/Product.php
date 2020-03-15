@@ -64,19 +64,26 @@ class Product
      * @ORM\Cache(usage="READ_WRITE", region="locking")
      */
     public $stocks;
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductManufacturer", inversedBy="products")
+     * @ORM\Cache(usage="READ_WRITE", region="locking")
+     */
+    public ProductManufacturer $manufacturer;
 
     public function __construct(
         string $name,
         array $ean,
         float $price,
         bool $expiring,
-        ProductCollection $collection
+        ProductCollection $collection,
+        ProductManufacturer $manufacturer
     ) {
         $this->name = $name;
         $this->ean = $ean;
         $this->price = $price;
         $this->expiring = $expiring;
         $this->collection = $collection;
+        $this->manufacturer = $manufacturer;
     }
 
     public function getId(): Id
