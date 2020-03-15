@@ -40,7 +40,17 @@ final class AddToStock extends AbstractController
             Assertion::integer($body['quantity'], 0, 'Quantity must be integer.');
             Assertion::greaterThan($body['quantity'], 0, 'Quantity must be over 0.');
             Assertion::keyIsset($body, 'price', 'Price is not set in body.');
-            Assertion::float($body['price'], 0, 'Price must be float.');
+            /**
+             * This need to be done, due javascript leaves decimals out in numbers
+             * and when doing toFixed causes it to convert it into string. We check first if
+             * it is a float and fallback to int. We do not accept string here. #StrictTypes
+             */
+            try {
+                Assertion::float($body['price'], 0, 'Price must be float.');
+            } catch (AssertionFailedException $e) {
+                Assertion::integer($body['price'], 0, 'Price must be float.');
+                $body['price'] = (float)$body['price'];
+            }
             Assertion::greaterThan($body['price'], 0, 'Price must be over 0 or equal.');
         } catch (AssertionFailedException $e) {
             return $this->returnForException($e);
