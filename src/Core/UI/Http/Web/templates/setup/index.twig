@@ -46,10 +46,10 @@
     </div>
 </div>
 <script src="//unpkg.com/moment/min/moment.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//unpkg.com/axios/dist/axios.min.js"></script>
 <script src="//unpkg.com/vue/dist/vue.js"></script>
 <script src="//unpkg.com/vuetify/dist/vuetify.min.js"></script>
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="//unpkg.com/vue-router/dist/vue-router.js"></script>
 <!--suppress ES6ModulesDependencies -->
 <script>
     const Check = {
@@ -146,8 +146,7 @@
                         this.items[item.id].error = true;
                         this.updateButton = false;
                         if(e.response.data.error !== undefined) {
-                            console.log(e.response);
-                            this.errorMsg = `Message: ${e.response.data.error}\n Code: ${e.response.status}\n Status: ${e.response.statusText}`
+                            this.errorMsg = `Code: ${e.response.status}\nStatus: ${e.response.statusText}\nMessage: ${e.response.data.error}`
                         } else {
                             this.errorMsg = e.message;
                         }

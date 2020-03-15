@@ -17,7 +17,6 @@ namespace App\Core\UI\Http\Web\Controller;
 use const DIRECTORY_SEPARATOR as DS;
 use Doctrine\DBAL\Connection;
 use Doctrine\Migrations\Configuration\Configuration;
-use Doctrine\Migrations\Exception\MigrationException;
 use Doctrine\Migrations\Finder\GlobFinder;
 use Doctrine\Migrations\MigrationRepository;
 use Doctrine\Migrations\Migrator;
@@ -85,7 +84,7 @@ final class SetupController extends AbstractController
             $migration->migrate($json['version']);
 
             return JsonResponse::create(['status' => Response::HTTP_ACCEPTED], Response::HTTP_ACCEPTED);
-        } catch (MigrationException $e) {
+        } catch (\Throwable $e) {
             return JsonResponse::create(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
