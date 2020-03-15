@@ -16,12 +16,13 @@ namespace App\DataFixtures\Stock;
 
 use App\Stock\Domain\Product;
 use App\Stock\Domain\ProductCollection;
+use App\Stock\Domain\ProductManufacturer;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 final class ProductFixtures extends AbstractDependentFixture
 {
-    protected const DEPS = [CategoryFixtures::class, CollectionFixtures::class];
+    protected const DEPS = [CategoryFixtures::class, CollectionFixtures::class, ProductManufacturerFixtures::class];
 
     public const CG_1_PC_1_NAME_1 = 'Pantteri';
     public const CG_1_PC_1_NAME_2 = 'Tyrkisk Peber';
@@ -285,8 +286,13 @@ final class ProductFixtures extends AbstractDependentFixture
 
         foreach (self::ALL as $categoryName => $collections) {
             foreach ($collections as $c => $products) {
-                /** @var ProductCollection $collection */
+                $m = ProductManufacturerFixtures::ALL[array_rand(ProductManufacturerFixtures::ALL)];
+                /**
+                 * @var ProductCollection
+                 * @var ProductManufacturer $manufacturer
+                 */
                 $collection = $manager->getRepository(ProductCollection::class)->findOneBy(['name' => $c]);
+                $manufacturer = $manager->getRepository(ProductManufacturer::class)->findOneBy(['name' => $m]);
                 foreach ($products as $product) {
                     $manager->persist(new Product(
                         $product,
@@ -294,6 +300,7 @@ final class ProductFixtures extends AbstractDependentFixture
                         $f->randomFloat(2, 0.5, 100),
                         $f->boolean(50),
                         $collection,
+                        $manufacturer
                     ));
                 }
             }
