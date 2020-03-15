@@ -18,6 +18,6 @@ class DateTimeException extends Exception
 {
     public function __construct(\Exception $e)
     {
-        parent::__construct('Datetime Malformed or not valid', 500, $e);
+        parent::__construct('Datetime malformed or not valid', 500, $e);
     }
 }

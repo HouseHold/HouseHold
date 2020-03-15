@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace App\Stock\UI\Http\Api\Controller\ProductStock;
 
+use App\Core\Domain\Shared\Exception\DateTimeException;
 use App\Core\Domain\Shared\Exception\FailedToDecodeBodyException;
 use App\Core\Domain\Shared\ValueObject\DateTime;
 use App\Core\UI\Http\Web\Controller\AbstractController;
@@ -42,7 +43,7 @@ final class AddToStock extends AbstractController
             Assertion::float($body['price'], 0, 'Price must be float.');
             Assertion::greaterThan($body['price'], 0, 'Price must be over 0 or equal.');
         } catch (AssertionFailedException $e) {
-            return new Response('', 400, ['x-debug' => $e->getMessage()]);
+            return $this->returnForException($e);
         }
 
         /** @var ProductStock|null $stock */
@@ -51,7 +52,22 @@ final class AddToStock extends AbstractController
             return new Response('', 404);
         }
 
-        $this->run(new AddProductToStockCommand($stock, DateTime::now(), $body['quantity'], $body['price']));
+        $date = null;
+        if (true === $stock->product->expiring) {
+            try {
+                Assertion::keyIsset($body, 'bestBefore', 'BestBefore is not set in body.');
+
+                try {
+                    $date = DateTime::fromString($body['bestBefore']);
+                } catch (DateTimeException $e) {
+                    throw new \InvalidArgumentException('BestBefore is not in valid format.');
+                }
+            } catch (AssertionFailedException | \InvalidArgumentException $e) {
+                return $this->returnForException($e);
+            }
+        }
+
+        $this->run(new AddProductToStockCommand($stock, $date, $body['quantity'], $body['price']));
 
         return new Response('', 204);
     }

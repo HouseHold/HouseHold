@@ -67,6 +67,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                                 "price"={
  *                                     "type"="number",
  *                                 },
+ *                                 "bestBefore"={
+ *                                     "type"="string",
+ *                                     "description"="YYYY-MM-DD date or null, if product is set not expiring.",
+ *                                     "format"="date",
+ *                                     "nullable"=true,
+ *                                 },
  *                             },
  *                         },
  *                     },
@@ -107,7 +113,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                                 "bestBefore"={
  *                                     "type"="string",
  *                                     "description"="YYYY-MM-DD date or null, if product is set not expiring.",
- *                                     "pattern"="/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/",
+ *                                     "format"="date",
  *                                     "nullable"=true,
  *                                 },
  *                             },

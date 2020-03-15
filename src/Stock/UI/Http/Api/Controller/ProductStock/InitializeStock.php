@@ -48,7 +48,7 @@ final class InitializeStock extends AbstractController
         }
 
         /**
-         * @var Product|null $product
+         * @var Product|null
          * @var ProductLocation|null $location
          */
         $product = $this->findOneBy(Product::class, $this->getIdFromIRI($body['product']));

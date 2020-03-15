@@ -77,6 +77,7 @@ final class SetupController extends AbstractController
         }
 
         $json = json_decode($request->getContent(), true) ?? [];
+
         try {
             if (!isset($json['version'])) {
                 return JsonResponse::create(['error' => 'Missing param version.'], Response::HTTP_BAD_REQUEST);
