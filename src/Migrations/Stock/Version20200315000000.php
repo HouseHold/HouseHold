@@ -28,11 +28,17 @@ final class Version20200315000000 extends AbstractMigration
     {
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
         $this->addSql('CREATE TABLE stock_product_manufacturer (id BINARY(16) NOT NULL COMMENT \'(DC2Type:uuid_binary)\', name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE stock_product ADD manufacturer_id BINARY(16) DEFAULT NULL COMMENT \'(DC2Type:uuid_binary)\' AFTER collection_id');
+        $this->addSql('ALTER TABLE stock_product ADD CONSTRAINT FK_CAEC140EA23B42D FOREIGN KEY (manufacturer_id) REFERENCES stock_product_manufacturer (id)');
+        $this->addSql('CREATE INDEX IDX_CAEC140EA23B42D ON stock_product (manufacturer_id)');
     }
 
     public function down(Schema $schema): void
     {
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->addSql('ALTER TABLE stock_product DROP FOREIGN KEY FK_CAEC140EA23B42D');
+        $this->addSql('DROP INDEX IDX_CAEC140EA23B42D ON stock_product');
+        $this->addSql('ALTER TABLE stock_product DROP manufacturer_id');
         $this->addSql('DROP TABLE stock_product_manufacturer');
     }
 }
