@@ -21,7 +21,7 @@
     <br />
     <strong> HouseHold is in Alpha and expirencing heavy development</strong>
     <br />
-    <strong> Pre-Alpha coming 1st of April </strong>
+    <strong> Pre-Alpha coming 1st of May </strong>
     <!-- <a href="https://github.com/HouseHold/HouseHold"><strong>Explore the docs »</strong></a> -->
     <br />
     <br />
