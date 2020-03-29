@@ -117,7 +117,7 @@ publish-tag-docker:
     - tags
     - master
 
-sentry-release-frontend:
+.sentry-release-frontend:
   <<: *sentry
   script:
     - cd ui
